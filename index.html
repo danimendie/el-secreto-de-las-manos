@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es" data-mode="organic">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#020008" />
+
+  <title>El Secreto de las Manos | Descubrí qué lectura necesitás</title>
+  <meta name="description"
+    content="5 preguntas. Un diagnóstico personalizado. La lectura exacta que necesitás ahora: Tarot o Lectura de Manos." />
+
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+
+  <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:title" content="El Secreto de las Manos" />
+  <meta property="og:description"
+    content="Descubrí en 5 preguntas qué lectura necesitás: Tarot o Lectura de Manos." />
+  <meta property="og:type" content="website" />
+  <!-- REEMPLAZAR la URL de abajo con la URL real del sitio publicado + ruta a la imagen de preview -->
+  <!-- Tamaño recomendado: 1200×630 px -->
+  <meta property="og:image" content="img/og-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="El Secreto de las Manos" />
+  <meta name="twitter:description"
+    content="Descubrí en 5 preguntas qué lectura necesitás: Tarot o Lectura de Manos." />
+  <meta name="twitter:image" content="img/og-preview.png" />
+
+  <!-- Fonts: preconnect primero, luego carga -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <!-- Phosphor Icons (line icons para UI) -->
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+  <!-- ── CSS — orden intencional: base → layout → components ── -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+
+  <!-- Fases siguientes (activar cuando corresponda) -->
+  <link rel="stylesheet" href="css/quiz.css" />      <!-- Fase 2 ✓ -->
+  <link rel="stylesheet" href="css/result.css" />    <!-- Fase 3 ✓ -->
+  <link rel="stylesheet" href="css/sections.css" />  <!-- Fase 5 ✓ -->
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════
+       NOISE OVERLAY — textura de grano permanente
+       z-index alto, pointer-events:none, no interactúa
+       ══════════════════════════════════════════════════ -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════
+       HEADER FLOTANTE INTELIGENTE
+       - Transparente al inicio
+       - Oscurece al scrollear (is-scrolled)
+       - Se oculta al bajar, reaparece al subir (is-hidden)
+       - En modo ads: clase ads-mode (ver main.js)
+       ══════════════════════════════════════════════════ -->
+  <header id="site-header" class="site-header" role="banner">
+    <div class="container header-container">
+
+      <!-- Logo -->
+      <a href="#" class="header-logo" aria-label="El Secreto de las Manos — inicio">
+        <span class="logo-text">El Secreto de las Manos</span>
+      </a>
+
+      <!-- Nav desktop -->
+      <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+          <li><a href="#quiz" class="nav-link">Diagnóstico</a></li>
+          <li><a href="#lecturas" class="nav-link">Lecturas</a></li>
+          <li><a href="#como-funciona" class="nav-link">Cómo funciona</a></li>
+          <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- CTA desktop -->
+      <div class="header-actions">
+        <button class="btn btn-primary btn-sm js-wa-trigger" data-wa-service="default">
+          Reservar
+        </button>
+      </div>
+
+      <!-- Hamburger mobile -->
+      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu"
+        aria-label="Abrir menú">
+        <span class="menu-line" aria-hidden="true"></span>
+        <span class="menu-line" aria-hidden="true"></span>
+        <span class="menu-line" aria-hidden="true"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile menu drawer -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-label="Menú de navegación">
+      <nav class="mobile-nav" aria-label="Navegación móvil">
+        <a href="#quiz" class="mobile-nav-link">Diagnóstico</a>
+        <a href="#lecturas" class="mobile-nav-link">Lecturas</a>
+        <a href="#como-funciona" class="mobile-nav-link">Cómo funciona</a>
+        <a href="#testimonios" class="mobile-nav-link">Testimonios</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <button class="btn btn-primary btn-full js-wa-trigger" data-wa-service="default">
+          Reservar mi lectura
+        </button>
+        <p class="mobile-menu-disclaimer">Sin videollamada · A tu ritmo · WhatsApp</p>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════════════════════════════
+       MAIN CONTENT
+       ══════════════════════════════════════════════════ -->
+  <main id="main" role="main">
+
+    <!-- ────────────────────────────────────────────────
+         FASE 1 ✓  PANTALLA 0 — PORTAL DE BIENVENIDA
+         Ocupa 100dvh · Establece tono ritual e inmersivo
+         ──────────────────────────────────────────────── -->
+    <section id="portal" class="section-portal" aria-label="Bienvenida">
+
+      <!-- Capas de fondo (gradientes + ambient) -->
+      <div class="portal-bg" aria-hidden="true">
+        <div class="portal-glow portal-glow-1"></div>
+        <div class="portal-glow portal-glow-2"></div>
+        <div class="portal-glow portal-glow-3"></div>
+      </div>
+
+      <!-- Partículas flotantes CSS-only -->
+      <div class="portal-particles" aria-hidden="true">
+        <span class="particle p-1"></span>
+        <span class="particle p-2"></span>
+        <span class="particle p-3"></span>
+        <span class="particle p-4"></span>
+        <span class="particle p-5"></span>
+        <span class="particle p-6"></span>
+        <span class="particle p-7"></span>
+      </div>
+
+      <!-- Contenido central -->
+      <div class="container portal-container">
+
+        <!-- Símbolo de marca animado -->
+        <div class="brand-symbol" aria-hidden="true">
+          <div class="sym-glow"></div>
+          <svg class="sym-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- Anillo exterior — rotación lenta -->
+            <circle cx="60" cy="60" r="54"
+              stroke="rgba(220,185,120,0.12)" stroke-width="0.6"
+              class="sym-ring-outer" />
+
+            <!-- Anillo interior -->
+            <circle cx="60" cy="60" r="46"
+              stroke="rgba(220,185,120,0.07)" stroke-width="0.4" />
+
+            <!-- Marcadores de brújula (N / S / E / O) -->
+            <path d="M60,6 L62.5,14 L57.5,14 Z" fill="rgba(220,185,120,0.28)" class="sym-mark" />
+            <path d="M60,114 L62.5,106 L57.5,106 Z" fill="rgba(220,185,120,0.20)" class="sym-mark" />
+            <path d="M6,60 L14,57.5 L14,62.5 Z" fill="rgba(220,185,120,0.20)" class="sym-mark" />
+            <path d="M114,60 L106,57.5 L106,62.5 Z" fill="rgba(220,185,120,0.20)" class="sym-mark" />
+
+            <!-- Relleno central sutil -->
+            <circle cx="60" cy="60" r="34" fill="rgba(123,71,201,0.07)" />
+
+            <!-- Las 3 líneas de la palma (se trazan animadas) -->
+            <!-- Línea del corazón -->
+            <path class="sym-line sym-l1"
+              d="M 26,50 Q 42,43 60,50 Q 78,57 94,48"
+              stroke="rgba(196,165,245,0.75)" stroke-width="1.3" stroke-linecap="round" fill="none" />
+
+            <!-- Línea de la cabeza -->
+            <path class="sym-line sym-l2"
+              d="M 24,62 Q 42,56 60,62 Q 78,68 94,60"
+              stroke="rgba(196,165,245,0.52)" stroke-width="1.0" stroke-linecap="round" fill="none" />
+
+            <!-- Línea de la vida -->
+            <path class="sym-line sym-l3"
+              d="M 30,40 Q 25,55 27,68 Q 29,80 38,90"
+              stroke="rgba(196,165,245,0.38)" stroke-width="0.9" stroke-linecap="round" fill="none" />
+
+            <!-- Estrella de 4 puntas (acento superior) -->
+            <path class="sym-star"
+              d="M60,26 L62.2,29.8 L66,28 L62.8,31.8 L65,36 L61,32.5 L58,36 L59.8,31.8 L56,28 L59.8,29.8 Z"
+              fill="rgba(220,185,120,0.45)" />
+
+          </svg>
+        </div>
+        <!-- /brand-symbol -->
+
+        <!-- Texto del portal -->
+        <div class="portal-text">
+          <span class="eyebrow portal-eyebrow anim-fade-up" style="--anim-delay: 0.3s">
+            Lecturas espirituales · El Secreto de las Manos
+          </span>
+          <h1 class="portal-title anim-fade-up" style="--anim-delay: 0.5s">
+            Algo en vos ya<br>sabe la respuesta.
+          </h1>
+          <p class="portal-subtitle anim-fade-up" style="--anim-delay: 0.7s">
+            5 preguntas. Un diagnóstico. La lectura exacta que necesitás ahora.
+          </p>
+        </div>
+
+        <!-- Acciones del portal -->
+        <div class="portal-actions anim-fade-up" style="--anim-delay: 0.9s">
+          <button class="btn btn-primary btn-lg glow-on-hover" id="portal-cta"
+            aria-label="Iniciar diagnóstico">
+            Descubrí qué lectura es para vos
+          </button>
+          <p class="portal-microcopy">Sin registrarte · Sin compromiso · Solo claridad.</p>
+        </div>
+
+      </div>
+      <!-- /portal-container -->
+
+      <!-- Indicador de scroll sutil -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-hint-line"></span>
+      </div>
+
+    </section>
+    <!-- /section-portal -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 2 ✓  QUIZ DE DIAGNÓSTICO
+         5 preguntas full-screen · lógica en quiz.js
+         ──────────────────────────────────────────────── -->
+    <section id="quiz" class="section-quiz" aria-label="Diagnóstico de lecturas" hidden>
+
+      <!-- Capas de fondo -->
+      <div class="quiz-bg" aria-hidden="true">
+        <div class="quiz-glow quiz-glow-1"></div>
+        <div class="quiz-glow quiz-glow-2"></div>
+      </div>
+
+      <!-- Barra de progreso con lunas -->
+      <div class="quiz-progress"
+           role="progressbar"
+           aria-valuenow="0"
+           aria-valuemin="0"
+           aria-valuemax="5"
+           aria-label="Progreso del diagnóstico">
+        <div class="progress-moons" aria-hidden="true">
+          <span class="moon moon-1"></span>
+          <span class="moon moon-2"></span>
+          <span class="moon moon-3"></span>
+          <span class="moon moon-4"></span>
+          <span class="moon moon-5"></span>
+        </div>
+        <div class="progress-bar-track" aria-hidden="true">
+          <div class="progress-bar-fill" id="quiz-progress-fill"></div>
+        </div>
+        <span class="progress-label" id="quiz-progress-label" aria-live="polite">
+          Pregunta 1 de 5
+        </span>
+      </div>
+
+      <!-- Slides: intro + preguntas dinámicas -->
+      <div class="quiz-slides" id="quiz-slides">
+
+        <!-- Slide intro (estático en HTML) -->
+        <div class="quiz-slide quiz-intro is-hidden" id="quiz-intro">
+          <div class="quiz-container">
+            <div class="quiz-intro-content">
+
+              <div class="quiz-intro-symbol" aria-hidden="true">
+                <i class="ph ph-sparkle"></i>
+              </div>
+
+              <h2 class="quiz-intro-title">Tu diagnóstico gratuito</h2>
+              <p class="quiz-intro-subtitle">
+                5 preguntas para descubrir qué lectura conecta con lo que estás atravesando ahora.
+              </p>
+
+              <button class="btn btn-primary btn-lg glow-on-hover" id="quiz-start-btn">
+                Comenzar
+              </button>
+
+              <p class="quiz-intro-disclaimer">Sin registrarte · Sin compromiso · 2 minutos</p>
+
+            </div>
+          </div>
+        </div>
+        <!-- /quiz-intro -->
+
+        <!-- Preguntas renderizadas dinámicamente por quiz.js -->
+        <div id="quiz-questions-wrapper" class="quiz-questions-wrapper"></div>
+
+      </div>
+      <!-- /quiz-slides -->
+
+    </section>
+    <!-- /section-quiz -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 3 ✓  LOADER RITUAL
+         Visible post-Q5. Cicla frases mientras result.js
+         calcula el diagnóstico y prepara la pantalla.
+         ──────────────────────────────────────────────── -->
+    <section id="loader" class="section-loader" aria-label="Analizando tu diagnóstico" hidden>
+
+      <!-- Capas de fondo ambientales -->
+      <div class="loader-bg" aria-hidden="true">
+        <div class="loader-glow loader-glow-1"></div>
+        <div class="loader-glow loader-glow-2"></div>
+      </div>
+
+      <div class="loader-inner">
+
+        <!-- Símbolo animado con líneas de palma -->
+        <div class="loader-symbol" aria-hidden="true">
+          <div class="loader-symbol-pulse"></div>
+          <svg class="loader-sym-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Anillo exterior sutil -->
+            <circle cx="40" cy="40" r="34"
+              stroke="rgba(220,185,120,0.09)" stroke-width="0.5"/>
+            <!-- Relleno central -->
+            <circle cx="40" cy="40" r="22" fill="rgba(123,71,201,0.07)"/>
+            <!-- Línea del corazón -->
+            <path class="loader-line loader-l1"
+              d="M16,32 Q28,27 40,32 Q52,37 64,30"
+              stroke="rgba(196,165,245,0.72)" stroke-width="1.2"
+              stroke-linecap="round" fill="none"/>
+            <!-- Línea de la cabeza -->
+            <path class="loader-line loader-l2"
+              d="M15,42 Q28,37 40,42 Q52,47 63,40"
+              stroke="rgba(196,165,245,0.48)" stroke-width="0.9"
+              stroke-linecap="round" fill="none"/>
+            <!-- Línea de la vida -->
+            <path class="loader-line loader-l3"
+              d="M20,25 Q17,35 18,46 Q19,55 26,62"
+              stroke="rgba(196,165,245,0.32)" stroke-width="0.8"
+              stroke-linecap="round" fill="none"/>
+            <!-- Estrella acento -->
+            <path class="loader-star"
+              d="M40,17 L41.6,21 L45,19.5 L42.6,23 L45,26 L41.5,24.3 L40,28 L38.5,24.3 L35,26 L37.4,23 L35,19.5 L38.4,21 Z"
+              fill="rgba(220,185,120,0.42)"/>
+          </svg>
+        </div>
+
+        <!-- Frase ritual (actualizada por result.js) -->
+        <p class="loader-phrase" id="loader-phrase">Leyendo tus respuestas…</p>
+
+        <!-- Puntos de ritmo -->
+        <div class="loader-dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+      </div>
+    </section>
+    <!-- /section-loader -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 3 ✓  DIAGNÓSTICO + RESULTADO
+         Poblado dinámicamente por result.js
+         Variante A: Tarot / Variante B: Manos
+         ──────────────────────────────────────────────── -->
+    <section id="section-result" class="section-result" aria-label="Tu diagnóstico" hidden>
+
+      <!-- Background ambiental (fixed, no scrollea) -->
+      <div class="result-bg" aria-hidden="true">
+        <div class="result-glow result-glow-1"></div>
+        <div class="result-glow result-glow-2"></div>
+      </div>
+
+      <!-- Área scrollable -->
+      <div class="result-scroll">
+        <div class="result-inner">
+
+          <!-- ── HEADER: eyebrow + título + badge ── -->
+          <div class="result-reveal-block" id="result-header">
+            <span class="eyebrow result-eyebrow" id="result-eyebrow"></span>
+            <h2 class="result-title" id="result-title"></h2>
+            <div class="result-badge-row">
+              <span class="badge badge-affinity" id="result-affinity-badge"></span>
+            </div>
+          </div>
+
+          <!-- ── PÁRRAFO 1 — variante p1+p2 ── -->
+          <p class="result-para result-reveal-block" id="result-para-1"></p>
+
+          <!-- ── PÁRRAFO 2 — complementario ── -->
+          <p class="result-para result-para-secondary result-reveal-block" id="result-para-2"></p>
+
+          <!-- ── PÁRRAFO 3 — modulado por p3 ── -->
+          <p class="result-reveal-block" id="result-para-3"></p>
+
+          <!-- ── CHECKLIST de beneficios ── -->
+          <div class="result-checklist-wrapper result-reveal-block" id="result-checklist-wrapper">
+            <span class="result-checklist-label">Lo que vas a descubrir en tu lectura:</span>
+            <ul class="check-list result-checklist" id="result-checklist"></ul>
+          </div>
+
+          <!-- ── CTA PRINCIPAL ── -->
+          <div class="result-reveal-block" id="result-cta-wrapper">
+            <button
+              class="btn btn-primary btn-xl glow-on-hover js-wa-trigger"
+              id="result-cta"
+              data-wa-service=""
+              aria-label="Reservar lectura por WhatsApp">
+              Reservar mi lectura
+            </button>
+            <p class="result-cta-disclaimer">Sin videollamada · A tu ritmo · Por WhatsApp</p>
+          </div>
+
+          <!-- ── BLOQUE REGALO (aparece ~3s después, gestionado por result.js) ── -->
+          <div id="result-gift" hidden>
+
+            <!-- Separador decorativo -->
+            <div class="gift-separator" aria-hidden="true"></div>
+
+            <!-- Tarjeta del regalo -->
+            <div class="gift-card glass-panel-gold">
+
+              <!-- Acento decorativo -->
+              <span class="gift-star" aria-hidden="true">✦ ✦ ✦</span>
+
+              <!-- Encabezado -->
+              <span class="eyebrow gift-eyebrow" id="gift-eyebrow"></span>
+              <h3 class="gift-title" id="gift-title"></h3>
+              <p class="gift-body" id="gift-body"></p>
+
+              <!-- Countdown (actualizado por countdown.js) -->
+              <div class="gift-countdown-wrapper" id="gift-countdown-wrapper">
+                <span class="gift-countdown-label">Esta oferta se cierra en</span>
+                <div class="gift-countdown"
+                     role="timer"
+                     aria-live="polite"
+                     aria-label="Tiempo restante para la oferta">
+                  <div class="countdown-unit">
+                    <span class="countdown-number" id="cd-minutes">20</span>
+                    <span class="countdown-label">min</span>
+                  </div>
+                  <span class="countdown-sep" aria-hidden="true">:</span>
+                  <div class="countdown-unit">
+                    <span class="countdown-number" id="cd-seconds">00</span>
+                    <span class="countdown-label">seg</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mensaje de expiración (oculto hasta que el timer expire) -->
+              <p class="gift-expired-msg" id="gift-expired-msg" hidden>
+                Esta oferta ya no está disponible, pero podés escribirnos y coordinamos tu lectura.
+              </p>
+
+              <!-- CTA del regalo -->
+              <button
+                class="btn btn-primary btn-xl glow-on-hover js-wa-trigger"
+                id="gift-cta"
+                data-wa-service=""
+                aria-label="Reservar ambas lecturas por WhatsApp">
+                Quiero las dos lecturas
+              </button>
+
+              <!-- Disclaimer -->
+              <p class="gift-disclaimer" id="gift-disclaimer"></p>
+
+            </div>
+            <!-- /gift-card -->
+
+          </div>
+          <!-- /result-gift -->
+
+        </div>
+        <!-- /result-inner -->
+      </div>
+      <!-- /result-scroll -->
+
+    </section>
+    <!-- /section-result -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 5 ✓  PRUEBA SOCIAL
+         Contadores + testimonios + screenshots
+         ──────────────────────────────────────────────── -->
+    <section id="testimonios" class="section section-social" aria-label="Testimonios">
+      <div class="container">
+
+        <!-- Contadores animados -->
+        <div class="counters-row" data-stagger-children data-stagger-base="0" data-stagger-step="150">
+          <div class="counter-item" data-reveal>
+            <div class="counter-display">
+              <span class="counter-number" data-counter="847">0</span>
+              <span class="counter-suffix">+</span>
+            </div>
+            <span class="counter-label">lecturas realizadas</span>
+          </div>
+          <div class="counter-divider" aria-hidden="true"></div>
+          <div class="counter-item" data-reveal>
+            <div class="counter-display">
+              <span class="counter-number" data-counter="96">0</span>
+              <span class="counter-suffix">%</span>
+            </div>
+            <span class="counter-label">recomendarían la experiencia</span>
+          </div>
+          <div class="counter-divider" aria-hidden="true"></div>
+          <div class="counter-item" data-reveal>
+            <div class="counter-display">
+              <span class="counter-number" data-counter="4">0</span>
+              <span class="counter-suffix"> años</span>
+            </div>
+            <span class="counter-label">de práctica y estudio</span>
+          </div>
+        </div>
+
+        <!-- Header de sección -->
+        <div class="section-header" data-reveal>
+          <span class="eyebrow section-eyebrow">Lo que dicen</span>
+          <h2 class="section-title">Lecturas que cambian perspectivas</h2>
+          <p class="section-subtitle">Personas reales, momentos reales, claridad real.</p>
+        </div>
+
+        <!-- Grid de testimonios -->
+        <div class="testimonials-grid" data-stagger-children data-stagger-base="100" data-stagger-step="180">
+
+          <article class="testimo-card glass-panel" data-reveal>
+            <p class="testimo-quote">
+              "Llegué sin saber qué preguntarle al Tarot y con una sola vuelta entendí por qué me sentía tan estancada en el trabajo. No esperaba esa claridad."
+            </p>
+            <footer class="testimo-author">
+              <span class="testimo-name">Valentina R.</span>
+              <span class="testimo-label">Lectura de Tarot</span>
+            </footer>
+          </article>
+
+          <article class="testimo-card glass-panel" data-reveal>
+            <p class="testimo-quote">
+              "La lectura de manos me reveló cosas sobre cómo proceso las emociones que ni mi terapeuta había nombrado así. Fue muy preciso y muy gentil."
+            </p>
+            <footer class="testimo-author">
+              <span class="testimo-name">Lucía M.</span>
+              <span class="testimo-label">Lectura de Manos</span>
+            </footer>
+          </article>
+
+          <article class="testimo-card glass-panel" data-reveal>
+            <p class="testimo-quote">
+              "Vine por curiosidad y me fui con una dirección. El diagnóstico fue exacto — sabía que era Manos antes de que me lo confirmara. Vale cada peso."
+            </p>
+            <footer class="testimo-author">
+              <span class="testimo-name">Martina G.</span>
+              <span class="testimo-label">Lectura de Manos</span>
+            </footer>
+          </article>
+
+        </div>
+        <!-- /testimonials-grid -->
+
+        <!-- Galería de screenshots reales de WhatsApp -->
+        <div class="screenshots-row" data-reveal>
+          <p class="screenshots-label">Lo que recibimos después de cada lectura</p>
+          <div class="screenshots-track" role="list" aria-label="Capturas de conversaciones reales">
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-01.jpg" alt="Testimonio de clienta — Lectura de Manos" loading="lazy" />
+            </div>
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-02.jpg" alt="Testimonio de clienta — Lectura de Manos" loading="lazy" />
+            </div>
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-03.jpg" alt="Testimonio de clienta — Lectura de Manos" loading="lazy" />
+            </div>
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-04.jpg" alt="Testimonio de cliente — Lectura de Tarot" loading="lazy" />
+            </div>
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-05.jpg" alt="Testimonio de clienta — Lectura de Tarot" loading="lazy" />
+            </div>
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-06.jpg" alt="Testimonio de clienta — Lectura de Manos" loading="lazy" />
+            </div>
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-07.jpg" alt="Testimonio de clienta — Lectura de Manos" loading="lazy" />
+            </div>
+            <div class="screenshot-item" role="listitem">
+              <img src="img/testimonio-08.jpg" alt="Testimonio de clienta — Lectura de Tarot" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- /section-testimonios -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 5 ✓  CÓMO FUNCIONA
+         4 pasos del proceso de reserva
+         ──────────────────────────────────────────────── -->
+    <section id="como-funciona" class="section section-process" aria-label="Cómo funciona">
+      <div class="container">
+
+        <div class="section-header" data-reveal>
+          <span class="eyebrow section-eyebrow">El proceso</span>
+          <h2 class="section-title">Simple, personal, a tu ritmo</h2>
+          <p class="section-subtitle">Sin videollamadas incómodas. Sin esperas. Sin burocracia.</p>
+        </div>
+
+        <div class="process-steps" data-stagger-children data-stagger-base="0" data-stagger-step="160">
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">01</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-sparkle"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Hacés el diagnóstico</h3>
+            <p class="step-desc">5 preguntas que revelan qué tipo de guía necesitás ahora mismo. Sin registrarte, sin datos.</p>
+          </div>
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">02</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-chat-circle-text"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Reservás por WhatsApp</h3>
+            <p class="step-desc">Un mensaje directo. Coordinamos el horario que mejor te quede. Sin formularios complicados.</p>
+          </div>
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">03</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-hand-palm"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Recibís tu lectura</h3>
+            <p class="step-desc">Por audio o mensaje de texto, en WhatsApp. Podés escucharla o leerla cuando quieras, las veces que quieras.</p>
+          </div>
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">04</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-shooting-star"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Integrás a tu tiempo</h3>
+            <p class="step-desc">La lectura queda guardada. Podés volver a ella cuando necesites recordar lo que resonó.</p>
+          </div>
+
+        </div>
+        <!-- /process-steps -->
+
+      </div>
+    </section>
+    <!-- /section-como-funciona -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 5 ✓  UNIVERSO DE LECTURAS
+         Sub-bloque A: Tarot (visual CSS, deck.js en sub-fase posterior)
+         Sub-bloque B: Manos (SVG, hand-explorer.js en sub-fase posterior)
+         ──────────────────────────────────────────────── -->
+    <section id="lecturas" class="section section-readings" aria-label="Nuestras lecturas">
+      <div class="container">
+
+        <div class="section-header" data-reveal>
+          <span class="eyebrow section-eyebrow">Las lecturas</span>
+          <h2 class="section-title">Dos caminos. Una misma intención.</h2>
+          <p class="section-subtitle">Cada lectura accede a una capa diferente de lo que estás viviendo.</p>
+        </div>
+
+        <!-- BLOQUE TAROT -->
+        <div class="reading-block" data-reveal>
+
+          <div class="reading-visual">
+            <!-- Mazo interactivo — deck.js -->
+            <div class="tarot-deck-wrapper" id="tarot-deck-visual">
+              <p class="tarot-hint">— Elegí una carta y descubrí qué energía quiere hablarte hoy —</p>
+              <div class="deck-glow"></div>
+              <div class="deck-stage" id="deck-stage"></div>
+              <div class="tarot-bottom">
+                <p class="tarot-instruction" id="tarot-instruction">Respirá profundo. Dejá que tu intuición elija.</p>
+                <button class="btn btn-outline btn-sm" id="tarot-reshuffle">
+                  <i class="ph-bold ph-arrows-left-right"></i> Barajar de nuevo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="reading-text">
+            <span class="eyebrow reading-eyebrow">Lectura de Tarot</span>
+            <h3 class="reading-title">El espejo de lo que está en movimiento</h3>
+            <p class="reading-desc">
+              El Tarot no predice: ilumina. Cada carta refleja una energía presente en tu situación, ayudándote a ver desde afuera lo que desde adentro no podés nombrar.
+            </p>
+            <ul class="check-list reading-includes">
+              <li>Ideal para situaciones concretas, decisiones, y encrucijadas</li>
+              <li>Claridad sobre dinámicas relacionales, laborales o personales</li>
+              <li>Una perspectiva externa que te devuelve el centro</li>
+            </ul>
+            <button class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="tarot">
+              Reservar lectura de Tarot
+            </button>
+          </div>
+
+        </div>
+        <!-- /reading-block tarot -->
+
+        <!-- BLOQUE MANOS -->
+        <div class="reading-block reading-block-reverse" data-reveal>
+
+          <div class="reading-visual">
+            <!-- Explorador de mano interactivo — hand-explorer.js -->
+            <div class="hand-explorer" id="hand-explorer-visual">
+              <div class="hand-image-wrapper">
+                <svg viewBox="0 0 220 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- Palma -->
+                  <ellipse cx="110" cy="210" rx="62" ry="72"
+                    fill="rgba(123,71,201,0.07)" stroke="rgba(196,165,245,0.25)" stroke-width="1.2"/>
+                  <!-- Pulgar -->
+                  <ellipse cx="46" cy="180" rx="18" ry="30"
+                    fill="rgba(123,71,201,0.05)" stroke="rgba(196,165,245,0.20)" stroke-width="1"
+                    transform="rotate(-20 46 180)"/>
+                  <!-- Índice -->
+                  <rect x="62" y="90" width="22" height="85" rx="11"
+                    fill="rgba(123,71,201,0.05)" stroke="rgba(196,165,245,0.20)" stroke-width="1"/>
+                  <!-- Medio -->
+                  <rect x="90" y="75" width="22" height="98" rx="11"
+                    fill="rgba(123,71,201,0.05)" stroke="rgba(196,165,245,0.20)" stroke-width="1"/>
+                  <!-- Anular -->
+                  <rect x="118" y="82" width="22" height="91" rx="11"
+                    fill="rgba(123,71,201,0.05)" stroke="rgba(196,165,245,0.20)" stroke-width="1"/>
+                  <!-- Meñique -->
+                  <rect x="146" y="102" width="18" height="72" rx="9"
+                    fill="rgba(123,71,201,0.05)" stroke="rgba(196,165,245,0.20)" stroke-width="1"/>
+                  <!-- Línea del corazón -->
+                  <path d="M62,170 Q90,158 120,165 Q148,172 168,158"
+                    stroke="rgba(196,165,245,0.65)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+                  <!-- Línea de la cabeza -->
+                  <path d="M60,192 Q90,180 118,188 Q148,196 166,182"
+                    stroke="rgba(196,165,245,0.42)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+                  <!-- Línea de la vida -->
+                  <path d="M76,155 Q68,178 68,200 Q68,222 78,240"
+                    stroke="rgba(220,185,120,0.45)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                </svg>
+
+                <!-- Hotspot: Línea del corazón -->
+                <div class="hotspot hs-corazon">
+                  <button class="hs-pulse js-hs-btn" aria-label="Línea del corazón"></button>
+                  <div class="hs-tooltip">
+                    <h4>Línea del corazón</h4>
+                    <p>Habla de tu forma de amar y abrirte emocionalmente.</p>
+                  </div>
+                </div>
+
+                <!-- Hotspot: Línea de la cabeza -->
+                <div class="hotspot hs-cabeza">
+                  <button class="hs-pulse js-hs-btn" aria-label="Línea de la cabeza"></button>
+                  <div class="hs-tooltip">
+                    <h4>Línea de la cabeza</h4>
+                    <p>Refleja tu mente y cómo procesás lo que vivís.</p>
+                  </div>
+                </div>
+
+                <!-- Hotspot: Línea de la vida -->
+                <div class="hotspot hs-vida">
+                  <button class="hs-pulse js-hs-btn" aria-label="Línea de la vida"></button>
+                  <div class="hs-tooltip hs-tooltip-right">
+                    <h4>Línea de la vida</h4>
+                    <p>Fuerza vital, cambios y etapas importantes.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="reading-text">
+            <span class="eyebrow reading-eyebrow">Lectura de Manos</span>
+            <h3 class="reading-title">El mapa que traés desde el nacimiento</h3>
+            <p class="reading-desc">
+              Las líneas de la palma no dicen lo que va a pasar. Revelan cómo procesás la vida: tus patrones emocionales, tu forma de tomar decisiones, tu vínculo con el cuerpo y el tiempo.
+            </p>
+            <ul class="check-list reading-includes">
+              <li>Patrones de carácter, emoción y pensamiento</li>
+              <li>Cómo te relacionás con el cambio, el amor y la energía</li>
+              <li>Una lectura que no caduca — es sobre quién sos, no solo qué estás viviendo</li>
+            </ul>
+            <button class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="manos">
+              Reservar lectura de Manos
+            </button>
+          </div>
+
+        </div>
+        <!-- /reading-block manos -->
+
+      </div>
+    </section>
+    <!-- /section-lecturas -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 5 ✓  DIFERENCIAL
+         "No es adivinación. Es autoconocimiento."
+         ──────────────────────────────────────────────── -->
+    <section id="diferencial" class="section section-diferencial" aria-label="Nuestro diferencial">
+      <div class="diferencial-glow" aria-hidden="true"></div>
+      <div class="container container-sm">
+
+        <div class="diferencial-inner" data-reveal>
+
+          <div class="diferencial-statement">
+            <span class="eyebrow section-eyebrow">Por qué es diferente</span>
+            <blockquote class="diferencial-quote">
+              No es adivinación.<br>
+              Es autoconocimiento<br>
+              con una brújula.
+            </blockquote>
+            <p class="diferencial-body">
+              Las lecturas no te dicen qué va a pasar. Te devuelven una perspectiva que ya estaba en vos, pero que el ruido cotidiano apagó.
+            </p>
+          </div>
+
+          <ul class="diferencial-list">
+            <li class="diferencial-item">
+              <i class="ph ph-check-circle diferencial-icon" aria-hidden="true"></i>
+              <span>Sin predicciones vacías ni frases genéricas</span>
+            </li>
+            <li class="diferencial-item">
+              <i class="ph ph-check-circle diferencial-icon" aria-hidden="true"></i>
+              <span>Cada lectura es personal, no un molde</span>
+            </li>
+            <li class="diferencial-item">
+              <i class="ph ph-check-circle diferencial-icon" aria-hidden="true"></i>
+              <span>El objetivo siempre es que puedas decidir con más claridad</span>
+            </li>
+            <li class="diferencial-item">
+              <i class="ph ph-check-circle diferencial-icon" aria-hidden="true"></i>
+              <span>Confidencialidad y un espacio sin juicio</span>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- /section-diferencial -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 5 ✓  FAQ
+         Accordion limpio (sin zodíaco)
+         ──────────────────────────────────────────────── -->
+    <section id="section-faq" class="section section-faq" aria-label="Preguntas frecuentes">
+      <div class="container container-md">
+
+        <div class="section-header" data-reveal>
+          <span class="eyebrow section-eyebrow">Preguntas frecuentes</span>
+          <h2 class="section-title">Lo que suelen preguntar</h2>
+        </div>
+
+        <div class="faq-accordion" data-reveal>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">¿Necesito creer en el Tarot para que funcione?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                <p>No. Las lecturas trabajan con simbolismo e interpretación, no con fe. Muchas personas llegan con escepticismo y se van con reflexiones que les resultan útiles. La apertura ayuda, pero no es un requisito.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">¿Cómo funciona la lectura de manos a distancia?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                <p>Enviás fotos claras de ambas manos (palma abierta, buena luz). A partir de esas imágenes se realiza la lectura completa y te la enviamos por WhatsApp en audio o texto, según prefieras.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">¿Cuánto tiempo tarda en llegar mi lectura?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                <p>En general entre 24 y 48 horas hábiles desde la confirmación del pago. Si hay urgencia lo coordinamos directamente por WhatsApp y vemos opciones.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">¿Puedo hacer las dos lecturas?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                <p>Sí. Muchas personas combinan ambas porque acceden a capas distintas: el Tarot ilumina la situación presente, la lectura de manos revela el patrón estructural. Se complementan muy bien.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">¿Qué pasa si no me siento identificada con el resultado del diagnóstico?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                <p>Podés escribirnos y charlamos. El diagnóstico es una orientación, no una sentencia. Si sentís que el otro tipo de lectura resuena más contigo, lo tenemos en cuenta al preparar tu sesión.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">¿La lectura de manos me dice cuándo voy a morir o cosas así?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                <p>No. La lectura de manos no predice eventos ni fechas. Se centra en patrones de carácter, formas de procesar la emoción y rasgos de personalidad. No hacemos pronósticos de ese tipo bajo ninguna circunstancia.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /faq-list -->
+
+      </div>
+    </section>
+    <!-- /section-faq -->
+
+
+    <!-- ────────────────────────────────────────────────
+         FASE 5 ✓  CTA FINAL DE CIERRE
+         ──────────────────────────────────────────────── -->
+    <section class="section section-cta-final" aria-label="Reservar lectura">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="container container-sm">
+
+        <div class="cta-final-inner" data-reveal>
+          <span class="eyebrow section-eyebrow">Estás lista</span>
+          <h2 class="cta-final-title">Tu lectura te está esperando.</h2>
+          <p class="cta-final-subtitle">
+            Hacé el diagnóstico y en un mensaje coordinamos todo. Sin compromiso, sin registros.
+          </p>
+          <div class="cta-final-actions">
+            <button class="btn btn-primary btn-xl glow-on-hover js-wa-trigger" data-wa-service="default">
+              Reservar mi lectura
+            </button>
+            <p class="cta-final-microcopy">Sin videollamada · A tu ritmo · WhatsApp</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- /section-cta-final -->
+
+  </main>
+
+
+  <!-- ────────────────────────────────────────────────
+       FASE 5 ✓  FOOTER
+       ──────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <span class="footer-logo">El Secreto de las Manos</span>
+          <p class="footer-tagline">Lecturas espirituales personales. Tarot y lectura de palma.</p>
+          <button class="btn btn-outline btn-sm js-wa-trigger" data-wa-service="default">
+            Escribir por WhatsApp
+          </button>
+        </div>
+
+        <nav class="footer-links" aria-label="Lecturas">
+          <span class="footer-nav-title">Lecturas</span>
+          <ul role="list">
+            <li><button class="footer-link js-wa-trigger" data-wa-service="tarot">Tarot</button></li>
+            <li><button class="footer-link js-wa-trigger" data-wa-service="manos">Lectura de Manos</button></li>
+            <li><a href="#quiz" class="footer-link">Diagnóstico gratuito</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-links" aria-label="Información">
+          <span class="footer-nav-title">Info</span>
+          <ul role="list">
+            <li><a href="#como-funciona" class="footer-link">Cómo funciona</a></li>
+            <li><a href="#testimonios" class="footer-link">Testimonios</a></li>
+            <li><a href="#section-faq" class="footer-link">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+
+      </div>
+      <!-- /footer-grid -->
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 El Secreto de las Manos · Todos los derechos reservados.</p>
+        <p class="footer-disclaimer">Las lecturas son con fines de orientación personal y no reemplazan atención profesional de salud mental.</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ────────────────────────────────────────────────
+       FASE 5 ✓  BOTÓN FLOTANTE WHATSAPP (desktop)
+       ──────────────────────────────────────────────── -->
+  <button class="floating-wa js-wa-trigger" data-wa-service="default"
+          aria-label="Contactar por WhatsApp">
+    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+  </button>
+
+
+  <!-- ────────────────────────────────────────────────
+       FASE 5 ✓  STICKY FOOTER MOBILE
+       ──────────────────────────────────────────────── -->
+  <div class="sticky-footer-mobile" id="sticky-footer" aria-hidden="true">
+    <button class="btn btn-primary btn-full js-wa-trigger" data-wa-service="default"
+            aria-label="Reservar lectura por WhatsApp">
+      Reservar mi lectura
+    </button>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       MODAL TAROT
+       ══════════════════════════════════════════════════ -->
+  <div class="tarot-modal-overlay" id="tarot-modal" role="dialog" aria-modal="true" aria-label="Carta de tarot">
+    <div class="tarot-modal-content">
+
+      <button class="tarot-modal-close" id="modal-close" aria-label="Cerrar">✕</button>
+
+      <div class="tarot-modal-card">
+        <img id="modal-img" src="" alt="Carta de tarot">
+      </div>
+
+      <div class="tarot-modal-text">
+        <p class="tarot-modal-name"><span id="modal-name"></span></p>
+        <p class="tarot-modal-keywords" id="modal-keywords"></p>
+        <p class="tarot-modal-meaning"  id="modal-meaning"></p>
+      </div>
+
+      <div class="tarot-modal-actions">
+        <button class="tarot-btn-outline" id="modal-otra">Elegir otra carta</button>
+        <button class="btn btn-primary btn-sm js-wa-trigger" data-wa-service="tarot">
+          Quiero mi lectura completa →
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <!-- /modal tarot -->
+
+  <!-- ══════════════════════════════════════════════════
+       JAVASCRIPT
+       Fase 1: solo main.js
+       Fases siguientes: activar en orden
+       ══════════════════════════════════════════════════ -->
+  <script src="js/main.js"></script>
+
+  <!-- Fase 2 ✓ -->
+  <script src="data/quiz-copy.js"></script>
+  <script src="js/quiz.js"></script>
+
+  <!-- Fase 3 ✓ -->
+  <script src="data/result-copy.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/result.js"></script>
+
+  <!-- Fase 5 ✓ -->
+  <script src="js/animations.js"></script>
+
+  <!-- Sub-fase visual interactiva ✓ -->
+  <script src="js/deck.js"></script>
+  <script src="js/hand-explorer.js"></script>
+
+</body>
+</html>

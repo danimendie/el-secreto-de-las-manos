@@ -1,0 +1,656 @@
+/* ============================================================
+   result.css — El Secreto de las Manos v2
+   Fase 3: Loader ritual · Pantalla de diagnóstico · Oferta regalo
+   Paleta: negro profundo · violeta oscuro · violeta claro · dorado suave
+   ============================================================ */
+
+
+/* ════════════════════════════════════════════════════════════
+   LOADER RITUAL
+   Extiende y reemplaza los estilos básicos de quiz.css
+   (#loader .section-loader)
+   ════════════════════════════════════════════════════════════ */
+
+/* Background ambiental del loader */
+.loader-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.loader-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.loader-glow-1 {
+  width: 420px;
+  height: 420px;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(26, 12, 94, 0.65) 0%, transparent 70%);
+  animation: glowPulse 7s ease-in-out infinite;
+}
+
+.loader-glow-2 {
+  width: 320px;
+  height: 320px;
+  bottom: -60px;
+  right: 8%;
+  background: radial-gradient(circle, rgba(123, 71, 201, 0.15) 0%, transparent 70%);
+  animation: glowPulse 9s ease-in-out infinite 2.5s;
+}
+
+/* Inner: más espacioso para el ritual */
+.section-loader .loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+/* ── Símbolo del loader ── */
+.loader-symbol {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-symbol-pulse {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123, 71, 201, 0.22) 0%, transparent 70%);
+  animation: glowPulse 3.5s ease-in-out infinite;
+}
+
+.loader-sym-svg {
+  width: 80px;
+  height: 80px;
+  overflow: visible;
+}
+
+/* Las 3 líneas de la palma — se trazan una sola vez */
+.loader-line {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+}
+
+.loader-l1 { animation: lineTrace 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
+.loader-l2 { animation: lineTrace 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; }
+.loader-l3 { animation: lineTrace 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards; }
+
+.loader-star {
+  animation: glowPulse 2.8s ease-in-out infinite 0.5s;
+}
+
+/* ── Frase ritual ── */
+.loader-phrase {
+  font-family: var(--font-ritual);
+  font-size: clamp(1.2rem, 3.5vw, 1.55rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white-70);
+  text-align: center;
+  margin: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.loader-phrase.is-fading {
+  opacity: 0;
+  transform: translateY(-7px);
+}
+
+.loader-phrase.is-appearing {
+  animation: fadeInUp 0.4s ease both;
+}
+
+/* ── Puntos animados ── */
+.loader-dots {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.loader-dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(196, 165, 245, 0.35);
+}
+
+.loader-dots span:nth-child(1) { animation: dotPulse 1.5s ease-in-out infinite 0s; }
+.loader-dots span:nth-child(2) { animation: dotPulse 1.5s ease-in-out infinite 0.22s; }
+.loader-dots span:nth-child(3) { animation: dotPulse 1.5s ease-in-out infinite 0.44s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% {
+    opacity: 0.22;
+    transform: scale(0.9);
+    background: rgba(196, 165, 245, 0.35);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.3);
+    background: var(--violet);
+  }
+}
+
+/* Salida del loader */
+.section-loader.is-exiting {
+  animation: fadeOutScale 0.42s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes fadeOutScale {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.03); }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   SECTION RESULT — overlay fijo, scrollable internamente
+   ════════════════════════════════════════════════════════════ */
+
+.section-result {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--bg-void);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.section-result[hidden] {
+  display: none;
+}
+
+.section-result.is-entering {
+  animation: resultFadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes resultFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Background ambiental (fijo, no scrollea) ── */
+.result-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.result-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.result-glow-1 {
+  width: 550px;
+  height: 550px;
+  top: -120px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(26, 12, 94, 0.55) 0%, transparent 70%);
+  animation: glowPulse 10s ease-in-out infinite;
+}
+
+.result-glow-2 {
+  width: 420px;
+  height: 420px;
+  bottom: 5%;
+  right: -80px;
+  background: radial-gradient(circle, rgba(123, 71, 201, 0.15) 0%, transparent 70%);
+  animation: glowPulse 12s ease-in-out infinite 4s;
+}
+
+/* ── Área scrollable ── */
+.result-scroll {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 88px 24px 80px;
+}
+
+/* ── Columna central ── */
+.result-inner {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   REVELACIÓN PROGRESIVA
+   Cada bloque empieza invisible y aparece con .is-revealed
+   ════════════════════════════════════════════════════════════ */
+
+.result-reveal-block {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity  0.62s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.62s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.result-reveal-block.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sin animación en recarga */
+.result-reveal-block.no-animation {
+  transition: none;
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   HEADER DEL DIAGNÓSTICO
+   Eyebrow + título + badge de afinidad
+   ════════════════════════════════════════════════════════════ */
+
+#result-header {
+  text-align: center;
+  margin-bottom: var(--sp-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+.result-eyebrow {
+  /* hereda .eyebrow de base.css */
+  letter-spacing: 0.18em;
+}
+
+.result-title {
+  font-family: var(--font-ritual);
+  font-size: clamp(1.9rem, 5.5vw, 3.1rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white-90);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-shadow:
+    0 0 50px rgba(196, 165, 245, 0.10),
+    0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.result-badge-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* El badge .badge-affinity ya tiene shimmer en components.css */
+
+
+/* ════════════════════════════════════════════════════════════
+   PÁRRAFOS DINÁMICOS
+   ════════════════════════════════════════════════════════════ */
+
+.result-para {
+  font-family: var(--font-ritual);
+  font-size: clamp(1.1rem, 2.6vw, 1.3rem);
+  font-weight: 300;
+  color: var(--white-70);
+  line-height: 1.80;
+  margin-bottom: var(--sp-6);
+}
+
+.result-para-secondary {
+  font-family: var(--font-ritual);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: var(--white-50);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+/* Tercer párrafo — modulado por P3, tono más contenido */
+#result-para-3 {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--fw-light);
+  color: var(--white-40);
+  line-height: 1.70;
+  padding: var(--sp-5) var(--sp-6);
+  border-left: 1px solid rgba(196, 165, 245, 0.18);
+  background: rgba(196, 165, 245, 0.03);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  margin-bottom: var(--sp-10);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   CHECKLIST
+   ════════════════════════════════════════════════════════════ */
+
+#result-checklist-wrapper {
+  margin-bottom: var(--sp-10);
+}
+
+.result-checklist-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.60;
+  margin-bottom: var(--sp-5);
+  display: block;
+}
+
+/* .check-list y sus li ya están definidos en components.css */
+
+
+/* ════════════════════════════════════════════════════════════
+   CTA PRINCIPAL
+   ════════════════════════════════════════════════════════════ */
+
+#result-cta-wrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  padding-bottom: var(--sp-12);
+}
+
+.result-cta-disclaimer {
+  font-size: var(--text-xs);
+  color: var(--white-20);
+  letter-spacing: 0.06em;
+  font-weight: var(--fw-light);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   BLOQUE REGALO
+   Separador + tarjeta con la oferta + countdown + CTA
+   ════════════════════════════════════════════════════════════ */
+
+#result-gift {
+  margin-bottom: var(--sp-16);
+}
+
+#result-gift.is-entering {
+  animation: revealFromBottom 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#result-gift.no-animation {
+  animation: none;
+}
+
+/* Separador decorativo antes del regalo */
+.gift-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 185, 120, 0.22),
+    transparent
+  );
+  margin-bottom: var(--sp-12);
+}
+
+/* Tarjeta del regalo — extiende .glass-panel-gold de components.css */
+.gift-card {
+  padding: var(--sp-10) var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Resplandor suave en la parte superior de la card */
+.gift-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 185, 120, 0.30), transparent);
+  pointer-events: none;
+}
+
+.gift-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(220, 185, 120, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Estrella decorativa */
+.gift-star {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 0.6em;
+  color: var(--gold);
+  opacity: 0.45;
+  margin-bottom: var(--sp-6);
+}
+
+.gift-eyebrow {
+  /* hereda .eyebrow de base.css */
+  display: block;
+  margin-bottom: var(--sp-5);
+}
+
+.gift-title {
+  font-family: var(--font-ritual);
+  font-size: clamp(1.45rem, 4vw, 2.1rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white-90);
+  line-height: 1.25;
+  margin-bottom: var(--sp-6);
+  text-shadow: 0 0 30px rgba(220, 185, 120, 0.08);
+}
+
+.gift-body {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--fw-light);
+  color: var(--white-50);
+  line-height: 1.72;
+  max-width: 520px;
+  margin: 0 auto var(--sp-10);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   COUNTDOWN — urgencia premium, no alarmista
+   Dorado suave sobre fondo oscuro, sin rojo ni agresividad
+   ════════════════════════════════════════════════════════════ */
+
+.gift-countdown-wrapper {
+  margin-bottom: var(--sp-8);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.gift-countdown-wrapper.is-fading-out {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.gift-countdown-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-30);
+  margin-bottom: var(--sp-4);
+  display: block;
+}
+
+/* Dígitos del countdown */
+.gift-countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-10);
+  background: rgba(220, 185, 120, 0.05);
+  border: 1px solid rgba(220, 185, 120, 0.14);
+  border-radius: var(--r-base);
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 44px;
+}
+
+.countdown-number {
+  font-family: var(--font-ritual);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--gold-light);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-sep {
+  font-family: var(--font-ritual);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: rgba(220, 185, 120, 0.22);
+  line-height: 1;
+  margin-bottom: 14px; /* alinear visualmente con los números */
+}
+
+.countdown-label {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(220, 185, 120, 0.38);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   ESTADO EXPIRADO
+   Mensaje sutil — no punitivo ni agresivo
+   ════════════════════════════════════════════════════════════ */
+
+.gift-expired-msg {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-light);
+  font-style: italic;
+  color: var(--white-30);
+  line-height: 1.65;
+  padding: var(--sp-5) var(--sp-6);
+  border: 1px solid var(--white-08);
+  border-radius: var(--r-sm);
+  margin-bottom: var(--sp-6);
+}
+
+.gift-expired-msg.is-appearing {
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* CTA desactivado cuando expiró */
+#gift-cta.is-expired {
+  opacity: 0.25;
+  pointer-events: none;
+  cursor: default;
+  filter: saturate(0);
+}
+
+.gift-disclaimer {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--white-20);
+  letter-spacing: 0.05em;
+  font-weight: var(--fw-light);
+  margin-top: var(--sp-5);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .result-scroll {
+    padding: 72px 20px 60px;
+  }
+
+  #result-header {
+    margin-bottom: var(--sp-10);
+    gap: var(--sp-4);
+  }
+
+  .gift-card {
+    padding: var(--sp-8) var(--sp-5);
+  }
+
+  .gift-body {
+    font-size: var(--text-sm);
+  }
+
+  .gift-countdown {
+    padding: var(--sp-4) var(--sp-8);
+  }
+}
+
+@media (max-width: 480px) {
+  .result-scroll {
+    padding: 56px 16px 48px;
+  }
+
+  .result-title {
+    font-size: 1.85rem;
+  }
+
+  .result-para {
+    font-size: 1.1rem;
+  }
+
+  #result-para-3 {
+    padding: var(--sp-4) var(--sp-4);
+    font-size: var(--text-sm);
+  }
+
+  .gift-card {
+    padding: var(--sp-6) var(--sp-4);
+  }
+
+  .gift-title {
+    font-size: 1.45rem;
+  }
+
+  .countdown-number {
+    font-size: 1.9rem;
+  }
+
+  .gift-countdown {
+    padding: var(--sp-3) var(--sp-6);
+  }
+}
