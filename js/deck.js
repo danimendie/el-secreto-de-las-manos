@@ -89,19 +89,21 @@
   }
 
   /* ── Animación spread ── */
-  function spreadCards() {
-    if (isSpread) return;
-    isSpread = true;
-    cardEls.forEach(function (el, i) {
-      setTimeout(function () {
-        el.classList.remove('collapsing');
-        el.classList.add('spread');
-      }, 60 * i);
-    });
+function spreadCards() {
+  if (isSpread) return;
+  isSpread = true;
+  cardEls.forEach(function (el, i) {
     setTimeout(function () {
-      if (instructionEl) instructionEl.classList.add('visible');
-    }, 60 * N + 500);
-  }
+      el.style.opacity = '';
+      el.style.transform = '';
+      el.classList.remove('collapsing');
+      el.classList.add('spread');
+    }, 60 * i);
+  });
+  setTimeout(function () {
+    if (instructionEl) instructionEl.classList.add('visible');
+  }, 60 * N + 500);
+}
 
   /* ── Animación collapse ── */
   function collapseCards(callback) {
