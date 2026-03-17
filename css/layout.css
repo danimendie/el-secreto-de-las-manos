@@ -87,6 +87,10 @@
   position: relative;
 }
 
+@media (min-width: 769px) {
+  .section { padding-block: var(--sp-24); }
+}
+
 .section-sm {
   padding-block: var(--sp-12);
   position: relative;
@@ -315,7 +319,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: var(--sp-8);
+  gap: var(--sp-10);
   min-height: 100dvh;
   min-height: 100vh; /* fallback */
   padding-block: var(--sp-16);

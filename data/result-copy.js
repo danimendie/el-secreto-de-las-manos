@@ -26,8 +26,8 @@ window.RESULT_COPY = {
      una decisión, un panorama externo, señales concretas.
      ════════════════════════════════════════════════════════════ */
   tarot: {
-    eyebrow: 'Diagnóstico · Lectura de Tarot',
-    title: 'Tu lectura es el Tarot',
+    eyebrow: 'Tu diagnóstico · Lectura recomendada',
+    title: 'El Tarot es la lectura indicada para vos',
     titleShort: 'Tarot',
 
     paragraphs: {
@@ -69,16 +69,14 @@ window.RESULT_COPY = {
       'Un camino posible hacia adelante, sin forzar nada',
     ],
 
-    cta: 'Reservar mi Lectura de Tarot',
+    // Gancho del 2x1 — aparece integrado en el bloque de oferta
+    offerHook: 'El Tarot es la lectura que más te conviene hoy para entender con claridad lo que está pasando en tu vida. Y si reservás en los próximos 20 minutos, te llevás también la Lectura de Manos sin costo extra. Recibís las dos por WhatsApp, a tu ritmo y por el precio de una.',
 
-    // Bloque regalo — el resultado es Tarot, el regalo es Manos
+    cta: 'Quiero mi 2x1 por WhatsApp →',
+
+    // Datos de regalo — usados por main.js para construir el mensaje de WhatsApp
     gift: {
-      eyebrow: 'Solo para vos · Por tiempo limitado',
-      title: 'Y la Lectura de Manos, de regalo',
-      body:  'Cuando el Tarot muestra el camino, la lectura de manos revela quién camina. Las dos lecturas juntas te dan una imagen completa: la situación de afuera y la esencia de adentro. Hoy, si reservás tu Tarot, la Lectura de Manos no tiene costo adicional.',
       service: 'tarot',
-      cta: 'Quiero las dos — reservar ahora',
-      disclaimer: 'Al reservar, recibís ambas lecturas · Sin videollamada · A tu ritmo',
     },
   },
 
@@ -89,8 +87,8 @@ window.RESULT_COPY = {
      esencia, ciclos internos, paz interior.
      ════════════════════════════════════════════════════════════ */
   manos: {
-    eyebrow: 'Diagnóstico · Lectura de Manos',
-    title: 'Tu lectura es la Lectura de Manos',
+    eyebrow: 'Tu diagnóstico · Lectura recomendada',
+    title: 'La Lectura de Manos es la indicada para vos',
     titleShort: 'Manos',
 
     paragraphs: {
@@ -131,16 +129,14 @@ window.RESULT_COPY = {
       'La esencia de quién sos y lo que viniste a vivir en este ciclo',
     ],
 
-    cta: 'Reservar mi Lectura de Manos',
+    // Gancho del 2x1 — aparece integrado en el bloque de oferta
+    offerHook: 'La Lectura de Manos es la que más te conviene hoy para ver con claridad el patrón que estás atravesando. Y si reservás en los próximos 20 minutos, te llevás también la Lectura de Tarot sin costo extra. Recibís las dos por WhatsApp, a tu ritmo y por el precio de una.',
 
-    // Bloque regalo — el resultado es Manos, el regalo es Tarot
+    cta: 'Quiero mi 2x1 por WhatsApp →',
+
+    // Datos de regalo — usados por main.js para construir el mensaje de WhatsApp
     gift: {
-      eyebrow: 'Solo para vos · Por tiempo limitado',
-      title: 'Y la Lectura de Tarot, de regalo',
-      body:  'Cuando la lectura de manos revela tu esencia, el Tarot puede mostrarte el momento exacto que estás atravesando. Las dos lecturas juntas se potencian: una muestra quién sos, la otra muestra el ahora. Hoy, si reservás tu Lectura de Manos, la Lectura de Tarot no tiene costo adicional.',
       service: 'manos',
-      cta: 'Quiero las dos — reservar ahora',
-      disclaimer: 'Al reservar, recibís ambas lecturas · Sin videollamada · A tu ritmo',
     },
   },
 

@@ -100,7 +100,7 @@ function handleExpired() {
 
   const countdownWrapper = document.getElementById('gift-countdown-wrapper');
   const expiredMsg       = document.getElementById('gift-expired-msg');
-  const giftCta          = document.getElementById('gift-cta');
+  const giftCta          = document.getElementById('result-cta'); // único CTA del 2x1
 
   // Fade out el countdown, mostrar mensaje
   if (countdownWrapper) {

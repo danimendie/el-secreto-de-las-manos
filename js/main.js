@@ -1,9 +1,6 @@
 /**
  * main.js — El Secreto de las Manos v2
- * Fase 1: Header inteligente · Menu mobile · WhatsApp trigger · Modo Ads
- *
- * Fases siguientes agregan a este archivo:
- * - Fase 6: sticky footer mobile, botón WA flotante
+ * Header inteligente · Menu mobile · WhatsApp trigger · Modo Ads
  */
 
 'use strict';
@@ -21,9 +18,9 @@ const CONFIG = {
     manos:
       'Hola, completé el diagnóstico y me recomendó la Lectura de Manos. Me gustaría reservar. 🌿',
     tarot_gift:
-      'Hola, completé el diagnóstico, me recomendó la Lectura de Tarot y vi que puedo obtener la Lectura de Manos de regalo si reservo ahora. Me gustaría coordinar. ✨',
+      'Hola, completé el diagnóstico y me recomendó el Tarot. Quiero reservar el 2x1 — Tarot + Lectura de Manos incluida. ✨',
     manos_gift:
-      'Hola, completé el diagnóstico, me recomendó la Lectura de Manos y vi que puedo obtener la Lectura de Tarot de regalo si reservo ahora. Me gustaría coordinar. 🌿',
+      'Hola, completé el diagnóstico y me recomendó la Lectura de Manos. Quiero reservar el 2x1 — Manos + Tarot incluido. 🌿',
     default:
       'Hola, me gustaría reservar una lectura. ✨',
   },
@@ -42,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
   setupWhatsAppTriggers();
   setupPortalCTA();
+  setupResultNavigation();
   detectAdsMode();
 });
 
@@ -199,6 +197,46 @@ function setupPortalCTA() {
     if (typeof window.activateQuiz === 'function') {
       window.activateQuiz();
     }
+  });
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   NAVEGACIÓN DESDE EL RESULTADO
+   Permite al usuario salir del overlay del resultado y volver
+   a explorar la landing normalmente.
+   ───────────────────────────────────────────────────────────── */
+function setupResultNavigation() {
+  const resultSection = document.getElementById('section-result');
+  if (!resultSection) return;
+
+  function closeResult(targetId) {
+    resultSection.setAttribute('hidden', '');
+    const target = targetId ? document.getElementById(targetId) : null;
+    requestAnimationFrame(() => {
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Botón "Seguir explorando" — cierra el overlay y navega a #como-funciona
+  const exploreBtn = document.querySelector('.js-close-result');
+  if (exploreBtn) {
+    exploreBtn.addEventListener('click', () => closeResult('como-funciona'));
+  }
+
+  // Nav links del header y mobile menu — si el resultado está visible, cerrarlo primero
+  document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+    link.addEventListener('click', e => {
+      if (resultSection.hasAttribute('hidden')) return; // resultado no visible → comportamiento normal
+      const href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      e.preventDefault();
+      closeResult(href.slice(1));
+    });
   });
 }
 

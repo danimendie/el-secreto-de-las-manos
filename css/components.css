@@ -43,8 +43,8 @@
 
 /* ── Botón primario — fondo purple con glow ── */
 .btn-primary {
-  background: linear-gradient(135deg, var(--purple-core) 0%, var(--purple-deep) 100%);
-  border-color: rgba(196, 165, 245, 0.25);
+  background: linear-gradient(150deg, var(--purple-core) 0%, var(--purple-deep) 100%);
+  border-color: rgba(196, 165, 245, 0.30);
   color: var(--white-90);
   box-shadow:
     0 0 0 0 rgba(123, 71, 201, 0),
@@ -144,7 +144,7 @@
 
 .glass-panel {
   background: rgba(14, 8, 36, 0.55);
-  border: 1px solid var(--white-08);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--r-lg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -217,7 +217,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(220, 185, 120, 0.20), transparent);
+  background: linear-gradient(90deg, transparent, rgba(220, 185, 120, 0.28), transparent);
   pointer-events: none;
 }
 
@@ -788,7 +788,7 @@
   font-family: var(--font-ui);
   font-size: var(--text-md);
   font-weight: var(--fw-light);
-  color: var(--white-40);
+  color: var(--white-50);
   line-height: var(--lh-relaxed);
   letter-spacing: 0.02em;
   max-width: 420px;
@@ -808,6 +808,21 @@
   font-weight: var(--fw-light);
   color: var(--white-20);
   letter-spacing: 0.06em;
+}
+
+/* ── Ancla de precio en el portal ── */
+.portal-price-anchor {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-light);
+  color: rgba(220, 185, 120, 0.48);
+  letter-spacing: 0.08em;
+  margin-top: calc(var(--sp-1) * -1); /* compensa el gap del flex */
+}
+
+.portal-price-anchor strong {
+  color: rgba(220, 185, 120, 0.82);
+  font-weight: var(--fw-medium);
 }
 
 /* ── Indicador de scroll ── */

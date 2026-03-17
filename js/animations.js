@@ -11,7 +11,6 @@
  * - Mostrar el floating WhatsApp button al hacer scroll (desktop)
  *
  * Depende de: js/main.js (window.setupRevealObserver, window.animateCounter)
- * Nota: deck.js y hand-explorer.js se integran en una sub-fase posterior.
  */
 
 'use strict';

@@ -14,21 +14,21 @@
 .section-header {
   text-align: center;
   max-width: 580px;
-  margin: 0 auto var(--sp-16);
+  margin: 0 auto var(--sp-20);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--sp-4);
+  gap: var(--sp-5);
 }
 
 .section-title {
   font-family: var(--font-ritual);
-  font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 300;
   font-style: italic;
   color: var(--white-90);
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .section-subtitle {
@@ -36,7 +36,7 @@
   font-size: var(--text-md);
   font-weight: var(--fw-light);
   color: var(--white-50);
-  line-height: var(--lh-relaxed);
+  line-height: 1.82;
   max-width: 480px;
 }
 
@@ -78,11 +78,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--sp-10);
-  padding: var(--sp-8) var(--sp-12);
-  background: rgba(14, 8, 36, 0.45);
-  border: 1px solid var(--white-08);
-  border-radius: var(--r-xl);
+  gap: var(--sp-12);
+  padding: var(--sp-10) var(--sp-12);
+  background: rgba(14, 8, 36, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--r-base);
   margin-bottom: var(--sp-16);
   flex-wrap: wrap;
 }
@@ -144,13 +144,13 @@
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-6);
+  gap: var(--sp-8);
   margin-bottom: var(--sp-12);
 }
 
 .testimo-card {
   /* hereda glass-panel de components.css */
-  padding: var(--sp-8);
+  padding: var(--sp-10);
   display: flex;
   flex-direction: column;
   gap: var(--sp-5);
@@ -195,7 +195,7 @@
   font-weight: 300;
   font-style: italic;
   color: var(--white-70);
-  line-height: 1.65;
+  line-height: 1.75;
   flex: 1;
   margin: 0;
   quotes: none;
@@ -352,8 +352,8 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(196, 165, 245, 0.10) 20%,
-    rgba(196, 165, 245, 0.10) 80%,
+    rgba(196, 165, 245, 0.14) 20%,
+    rgba(196, 165, 245, 0.14) 80%,
     transparent
   );
   pointer-events: none;
@@ -425,7 +425,7 @@
   font-weight: var(--fw-light);
   color: var(--white-50);
   line-height: var(--lh-relaxed);
-  max-width: 200px;
+  max-width: 240px;
   margin: 0;
 }
 
@@ -446,13 +446,17 @@
 /* ── Bloque de lectura (texto + visual) ── */
 .reading-block {
   display: flex;
-  gap: var(--sp-16);
+  gap: var(--sp-20);
   align-items: center;
   margin-bottom: var(--sp-20);
 }
 
 .reading-block-reverse {
   flex-direction: row-reverse;
+}
+
+.reading-block:last-of-type {
+  margin-bottom: 0;
 }
 
 .reading-text {
@@ -477,11 +481,11 @@
 
 .reading-title {
   font-family: var(--font-ritual);
-  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-size: clamp(1.9rem, 4.5vw, 2.8rem);
   font-weight: 300;
   font-style: italic;
   color: var(--white-90);
-  line-height: 1.25;
+  line-height: 1.2;
   margin: 0 0 var(--sp-6);
 }
 
@@ -490,7 +494,7 @@
   font-size: var(--text-base);
   font-weight: var(--fw-light);
   color: var(--white-50);
-  line-height: 1.72;
+  line-height: 1.80;
   margin: 0 0 var(--sp-8);
   max-width: 440px;
 }
@@ -1069,7 +1073,7 @@
   quotes: none;
   margin: 0;
   padding-left: var(--sp-6);
-  border-left: 2px solid rgba(220, 185, 120, 0.20);
+  border-left: 1.5px solid rgba(220, 185, 120, 0.32);
   text-shadow:
     0 0 60px rgba(196, 165, 245, 0.08),
     0 4px 20px rgba(0, 0, 0, 0.3);
@@ -1160,7 +1164,7 @@
 
 .faq-item {
   border: 1px solid var(--white-08);
-  border-radius: var(--r-base);
+  border-radius: var(--r-sm);
   background: rgba(14, 8, 36, 0.30);
   overflow: hidden;
   transition: border-color var(--t-base) ease;
@@ -1240,7 +1244,7 @@
 }
 
 .faq-answer-inner {
-  padding: 0 var(--sp-8) var(--sp-6);
+  padding: 0 var(--sp-8) var(--sp-8);
 }
 
 .faq-answer p {
@@ -1309,17 +1313,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--sp-6);
+  gap: var(--sp-8);
 }
 
 .cta-final-title {
   font-family: var(--font-ritual);
-  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
   font-weight: 300;
   font-style: italic;
   color: var(--white-90);
-  line-height: 1.18;
-  letter-spacing: -0.01em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   text-shadow:
     0 0 60px rgba(196, 165, 245, 0.12),
     0 6px 30px rgba(0, 0, 0, 0.4);
@@ -1340,8 +1344,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--sp-4);
-  margin-top: var(--sp-4);
+  gap: var(--sp-5);
+  margin-top: var(--sp-6);
 }
 
 .cta-final-microcopy {
@@ -1383,7 +1387,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--fw-regular);
-  color: var(--white-70);
+  color: var(--white-90);
   letter-spacing: 0.02em;
   display: block;
 }

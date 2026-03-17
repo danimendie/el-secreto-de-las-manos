@@ -29,15 +29,11 @@ const LOADER_PHRASES = [
 ];
 
 const REVEAL_STEPS = [
-  { id: 'result-header',            delay: 0    },
-  { id: 'result-para-1',            delay: 380  },
-  { id: 'result-para-2',            delay: 660  },
-  { id: 'result-para-3',            delay: 940  },
-  { id: 'result-checklist-wrapper', delay: 1220 },
-  { id: 'result-cta-wrapper',       delay: 1600 },
+  { id: 'result-header',      delay: 0   },
+  { id: 'result-para-1',      delay: 340 },
+  { id: 'result-offer-block', delay: 700 }, // bloque 2x1 unificado (checklist + countdown + CTA)
 ];
-
-const GIFT_APPEAR_DELAY = 2800; // ms después de revelar el CTA
+// GIFT_APPEAR_DELAY eliminado — la oferta es inmediata y única
 
 
 /* ─────────────────────────────────────────────────────
@@ -66,14 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
       buildResult(diagnosis);
       resultSection.removeAttribute('hidden');
       revealAllImmediate();
-      // Mostrar regalo si el countdown sigue activo
+      // Retomar countdown si sigue activo
       const stored  = sessionStorage.getItem('giftCountdownStart');
       const active  = sessionStorage.getItem('giftActive');
       const expired = stored
         ? Math.floor((Date.now() - parseInt(stored, 10)) / 1000) >= 20 * 60
         : false;
       if (active === 'true' && !expired) {
-        showGiftBlock(false);
+        if (typeof window.startCountdown === 'function') window.startCountdown();
       }
     }
   }
@@ -194,10 +190,8 @@ function buildResult(diagnosis) {
   if (!copy) return;
 
   const variantKey  = getVariantKey(diagnosis);
-  const p3Key       = getP3Key(diagnosis);
   const affinity    = getAffinityPct(diagnosis);
   const paragraphs  = copy.paragraphs[variantKey] || copy.paragraphs.ext_recent;
-  const p3Sentence  = copy.p3[p3Key];
 
   // Eyebrow
   const eyebrowEl = document.getElementById('result-eyebrow');
@@ -211,13 +205,13 @@ function buildResult(diagnosis) {
   const badgeEl = document.getElementById('result-affinity-badge');
   if (badgeEl) badgeEl.textContent = `${affinity}% afinidad`;
 
-  // Párrafos
+  // Párrafo 1 (visible)
   const para1 = document.getElementById('result-para-1');
-  const para2 = document.getElementById('result-para-2');
-  const para3 = document.getElementById('result-para-3');
   if (para1) para1.textContent = paragraphs[0];
-  if (para2) para2.textContent = paragraphs[1];
-  if (para3) para3.textContent = p3Sentence;
+
+  // Gancho del 2x1
+  const hookEl = document.getElementById('offer-hook-text');
+  if (hookEl) hookEl.textContent = copy.offerHook;
 
   // Checklist
   const checklistEl = document.getElementById('result-checklist');
@@ -227,33 +221,19 @@ function buildResult(diagnosis) {
       .join('');
   }
 
-  // CTA principal
+  // CTA único — apunta al servicio; giftActive=true hará que main.js use el mensaje 2x1
   const ctaEl = document.getElementById('result-cta');
   if (ctaEl) {
     ctaEl.textContent = copy.cta;
     ctaEl.setAttribute('data-wa-service', diagnosis.resultado);
   }
 
-  // Construir bloque regalo
-  buildGiftBlock(copy.gift, diagnosis.resultado);
-}
+  // Activar oferta regalo desde el inicio (main.js usará el mensaje _gift automáticamente)
+  sessionStorage.setItem('giftActive', 'true');
 
-function buildGiftBlock(giftCopy, resultado) {
-  const eyebrowEl   = document.getElementById('gift-eyebrow');
-  const titleEl     = document.getElementById('gift-title');
-  const bodyEl      = document.getElementById('gift-body');
-  const ctaEl       = document.getElementById('gift-cta');
-  const disclaimerEl = document.getElementById('gift-disclaimer');
-
-  if (eyebrowEl)    eyebrowEl.textContent    = giftCopy.eyebrow;
-  if (titleEl)      titleEl.textContent      = giftCopy.title;
-  if (bodyEl)       bodyEl.textContent       = giftCopy.body;
-  if (disclaimerEl) disclaimerEl.textContent = giftCopy.disclaimer;
-
-  if (ctaEl) {
-    ctaEl.textContent = giftCopy.cta;
-    // main.js detecta giftActive en sessionStorage y construye el mensaje correcto
-    ctaEl.setAttribute('data-wa-service', giftCopy.service);
+  // Iniciar countdown
+  if (typeof window.startCountdown === 'function') {
+    window.startCountdown();
   }
 }
 
@@ -268,9 +248,6 @@ function revealProgressively(diagnosis) {
     if (!el) return;
     setTimeout(() => el.classList.add('is-revealed'), delay);
   });
-
-  // Mostrar regalo después de que el CTA ya es visible
-  setTimeout(() => showGiftBlock(true), GIFT_APPEAR_DELAY);
 }
 
 // Para el caso de recarga: todos los elementos visibles de inmediato
@@ -281,38 +258,4 @@ function revealAllImmediate() {
       el.classList.add('is-revealed', 'no-animation');
     }
   });
-}
-
-
-/* ─────────────────────────────────────────────────────
-   BLOQUE REGALO
-   Aparece con animación (o sin ella si es recarga)
-   ───────────────────────────────────────────────────── */
-function showGiftBlock(withAnimation) {
-  const giftBlock = document.getElementById('result-gift');
-  if (!giftBlock) return;
-
-  giftBlock.removeAttribute('hidden');
-
-  if (withAnimation) {
-    giftBlock.classList.add('is-entering');
-    void giftBlock.offsetWidth;
-    setTimeout(() => giftBlock.classList.remove('is-entering'), 800);
-
-    // Hacer scroll suave hasta el regalo
-    setTimeout(() => {
-      const resultSection = document.getElementById('section-result');
-      if (resultSection) {
-        const giftTop = giftBlock.offsetTop;
-        resultSection.scrollTo({ top: giftTop - 40, behavior: 'smooth' });
-      }
-    }, 600);
-  } else {
-    giftBlock.classList.add('no-animation');
-  }
-
-  // Iniciar countdown
-  if (typeof window.startCountdown === 'function') {
-    window.startCountdown();
-  }
 }

@@ -22,6 +22,8 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="El Secreto de las Manos — Lecturas de Tarot y Manos por WhatsApp" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="El Secreto de las Manos" />
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -48,27 +50,15 @@
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
 
-  <!-- Fases siguientes (activar cuando corresponda) -->
-  <link rel="stylesheet" href="css/quiz.css" />      <!-- Fase 2 ✓ -->
-  <link rel="stylesheet" href="css/result.css" />    <!-- Fase 3 ✓ -->
-  <link rel="stylesheet" href="css/sections.css" />  <!-- Fase 5 ✓ -->
+  <link rel="stylesheet" href="css/quiz.css" />
+  <link rel="stylesheet" href="css/result.css" />
+  <link rel="stylesheet" href="css/sections.css" />
 </head>
 
 <body>
 
-  <!-- ══════════════════════════════════════════════════
-       NOISE OVERLAY — textura de grano permanente
-       z-index alto, pointer-events:none, no interactúa
-       ══════════════════════════════════════════════════ -->
   <div class="noise-overlay" aria-hidden="true"></div>
 
-  <!-- ══════════════════════════════════════════════════
-       HEADER FLOTANTE INTELIGENTE
-       - Transparente al inicio
-       - Oscurece al scrollear (is-scrolled)
-       - Se oculta al bajar, reaparece al subir (is-hidden)
-       - En modo ads: clase ads-mode (ver main.js)
-       ══════════════════════════════════════════════════ -->
   <header id="site-header" class="site-header" role="banner">
     <div class="container header-container">
 
@@ -90,13 +80,13 @@
 
       <!-- CTA desktop -->
       <div class="header-actions">
-        <button class="btn btn-primary btn-sm js-wa-trigger" data-wa-service="default">
+        <button type="button" class="btn btn-primary btn-sm js-wa-trigger" data-wa-service="default">
           Reservar
         </button>
       </div>
 
       <!-- Hamburger mobile -->
-      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu"
+      <button type="button" id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu"
         aria-label="Abrir menú">
         <span class="menu-line" aria-hidden="true"></span>
         <span class="menu-line" aria-hidden="true"></span>
@@ -115,7 +105,7 @@
         <a href="#section-faq" class="mobile-nav-link">FAQ</a>
       </nav>
       <div class="mobile-menu-footer">
-        <button class="btn btn-primary btn-full js-wa-trigger" data-wa-service="default">
+        <button type="button" class="btn btn-primary btn-full js-wa-trigger" data-wa-service="default">
           Reservar mi lectura
         </button>
         <p class="mobile-menu-disclaimer">Sin videollamada · A tu ritmo · WhatsApp</p>
@@ -124,14 +114,10 @@
   </header>
 
 
-  <!-- ══════════════════════════════════════════════════
-       MAIN CONTENT
-       ══════════════════════════════════════════════════ -->
   <main id="main" role="main">
 
     <!-- ────────────────────────────────────────────────
-         FASE 1 ✓  PANTALLA 0 — PORTAL DE BIENVENIDA
-         Ocupa 100dvh · Establece tono ritual e inmersivo
+         PORTAL DE BIENVENIDA
          ──────────────────────────────────────────────── -->
     <section id="portal" class="section-portal" aria-label="Bienvenida">
 
@@ -219,11 +205,12 @@
 
         <!-- Acciones del portal -->
         <div class="portal-actions anim-fade-up" style="--anim-delay: 0.9s">
-          <button class="btn btn-primary btn-lg glow-on-hover" id="portal-cta"
+          <button type="button" class="btn btn-primary btn-lg glow-on-hover" id="portal-cta"
             aria-label="Iniciar diagnóstico gratuito">
             Empezar el diagnóstico gratuito →
           </button>
           <p class="portal-microcopy">Sin registrarte · Sin videollamada · 2 minutos · Gratis</p>
+          <p class="portal-price-anchor">Lecturas personalizadas por <strong>Bianca</strong> · desde <strong>Gs. 80.000</strong></p>
         </div>
 
       </div>
@@ -239,8 +226,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 2 ✓  QUIZ DE DIAGNÓSTICO
-         5 preguntas full-screen · lógica en quiz.js
+         QUIZ DE DIAGNÓSTICO
          ──────────────────────────────────────────────── -->
     <section id="quiz" class="section-quiz" aria-label="Diagnóstico de lecturas" hidden>
 
@@ -289,7 +275,7 @@
                 5 preguntas para descubrir qué lectura conecta con lo que estás atravesando ahora.
               </p>
 
-              <button class="btn btn-primary btn-lg glow-on-hover" id="quiz-start-btn">
+              <button type="button" class="btn btn-primary btn-lg glow-on-hover" id="quiz-start-btn">
                 Comenzar
               </button>
 
@@ -311,9 +297,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 3 ✓  LOADER RITUAL
-         Visible post-Q5. Cicla frases mientras result.js
-         calcula el diagnóstico y prepara la pantalla.
+         LOADER RITUAL
          ──────────────────────────────────────────────── -->
     <section id="loader" class="section-loader" aria-label="Analizando tu diagnóstico" hidden>
 
@@ -372,9 +356,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 3 ✓  DIAGNÓSTICO + RESULTADO
-         Poblado dinámicamente por result.js
-         Variante A: Tarot / Variante B: Manos
+         DIAGNÓSTICO + RESULTADO
          ──────────────────────────────────────────────── -->
     <section id="section-result" class="section-result" aria-label="Tu diagnóstico" hidden>
 
@@ -388,8 +370,9 @@
       <div class="result-scroll">
         <div class="result-inner">
 
-          <!-- ── HEADER: eyebrow + título + badge ── -->
+          <!-- ── HEADER: confirmación + eyebrow + título + badge ── -->
           <div class="result-reveal-block" id="result-header">
+            <div class="result-done-tag" aria-label="Diagnóstico completado">✦ Diagnóstico completado</div>
             <span class="eyebrow result-eyebrow" id="result-eyebrow"></span>
             <h2 class="result-title" id="result-title"></h2>
             <div class="result-badge-row">
@@ -412,76 +395,86 @@
             <ul class="check-list result-checklist" id="result-checklist"></ul>
           </div>
 
-          <!-- ── CTA PRINCIPAL ── -->
-          <div class="result-reveal-block" id="result-cta-wrapper">
+          <!-- ── OFERTA 2x1 UNIFICADA ── -->
+          <div class="result-offer-block result-reveal-block" id="result-offer-block">
+
+            <!-- Gancho de la oferta — completado dinámicamente por result.js -->
+            <div class="offer-hook-card glass-panel-gold">
+              <span class="gift-star" aria-hidden="true">✦ ✦ ✦</span>
+              <p class="offer-hook-text" id="offer-hook-text"></p>
+            </div>
+
+            <!-- Checklist de beneficios -->
+            <div id="result-checklist-wrapper">
+              <span class="result-checklist-label">Lo que vas a descubrir en tus lecturas:</span>
+              <ul class="check-list result-checklist" id="result-checklist"></ul>
+            </div>
+
+            <!-- Countdown integrado -->
+            <div class="gift-countdown-wrapper" id="gift-countdown-wrapper">
+              <span class="gift-countdown-label">Esta oferta se cierra en</span>
+              <div class="gift-countdown"
+                   role="timer"
+                   aria-live="polite"
+                   aria-label="Tiempo restante para la oferta">
+                <div class="countdown-unit">
+                  <span class="countdown-number" id="cd-minutes">20</span>
+                  <span class="countdown-label">min</span>
+                </div>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-unit">
+                  <span class="countdown-number" id="cd-seconds">00</span>
+                  <span class="countdown-label">seg</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mensaje de expiración -->
+            <p class="gift-expired-msg" id="gift-expired-msg" hidden>
+              Esta oferta ya no está disponible, pero podés escribirnos y coordinamos tu lectura.
+            </p>
+
+            <!-- Desglose de precio — claridad antes del CTA -->
+            <div class="result-price-block" aria-label="Desglose de precio">
+              <div class="result-price-row">
+                <span>Tu lectura recomendada</span>
+                <span class="result-price-val">Gs. 80.000</span>
+              </div>
+              <div class="result-price-row">
+                <span>Segunda lectura incluida</span>
+                <span class="result-price-val result-price-free">Gratis ✦</span>
+              </div>
+              <div class="result-price-divider" aria-hidden="true"></div>
+              <div class="result-price-row result-price-total-row">
+                <span>Total hoy</span>
+                <span class="result-price-val">Gs. 80.000</span>
+              </div>
+            </div>
+
+            <!-- CTA único -->
+            <p class="result-next-step-label">Reservá tu 2x1 ahora</p>
             <button
+              type="button"
               class="btn btn-primary btn-xl glow-on-hover js-wa-trigger"
               id="result-cta"
               data-wa-service=""
-              aria-label="Reservar lectura por WhatsApp">
-              Reservar mi lectura
+              aria-label="Reservar ambas lecturas por WhatsApp">
+              Quiero mi 2x1 por WhatsApp →
             </button>
-            <p class="result-cta-disclaimer">Sin videollamada · A tu ritmo · Por WhatsApp</p>
-          </div>
+            <p class="result-cta-disclaimer">Al tocar el botón se abre WhatsApp · Coordinamos la reserva y el pago ahí · No se cobra nada automáticamente</p>
 
-          <!-- ── BLOQUE REGALO (aparece ~3s después, gestionado por result.js) ── -->
-          <div id="result-gift" hidden>
+            <p class="result-author-sig">Lecturas personalizadas por <strong>Bianca</strong></p>
 
-            <!-- Separador decorativo -->
-            <div class="gift-separator" aria-hidden="true"></div>
+            <button type="button" class="result-doubt-btn js-wa-trigger" data-wa-service="default">
+              ¿Tenés dudas antes de reservar? Escribinos →
+            </button>
 
-            <!-- Tarjeta del regalo -->
-            <div class="gift-card glass-panel-gold">
-
-              <!-- Acento decorativo -->
-              <span class="gift-star" aria-hidden="true">✦ ✦ ✦</span>
-
-              <!-- Encabezado -->
-              <span class="eyebrow gift-eyebrow" id="gift-eyebrow"></span>
-              <h3 class="gift-title" id="gift-title"></h3>
-              <p class="gift-body" id="gift-body"></p>
-
-              <!-- Countdown (actualizado por countdown.js) -->
-              <div class="gift-countdown-wrapper" id="gift-countdown-wrapper">
-                <span class="gift-countdown-label">Esta oferta se cierra en</span>
-                <div class="gift-countdown"
-                     role="timer"
-                     aria-live="polite"
-                     aria-label="Tiempo restante para la oferta">
-                  <div class="countdown-unit">
-                    <span class="countdown-number" id="cd-minutes">20</span>
-                    <span class="countdown-label">min</span>
-                  </div>
-                  <span class="countdown-sep" aria-hidden="true">:</span>
-                  <div class="countdown-unit">
-                    <span class="countdown-number" id="cd-seconds">00</span>
-                    <span class="countdown-label">seg</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Mensaje de expiración (oculto hasta que el timer expire) -->
-              <p class="gift-expired-msg" id="gift-expired-msg" hidden>
-                Esta oferta ya no está disponible, pero podés escribirnos y coordinamos tu lectura.
-              </p>
-
-              <!-- CTA del regalo -->
-              <button
-                class="btn btn-primary btn-xl glow-on-hover js-wa-trigger"
-                id="gift-cta"
-                data-wa-service=""
-                aria-label="Reservar ambas lecturas por WhatsApp">
-                Quiero las dos lecturas
-              </button>
-
-              <!-- Disclaimer -->
-              <p class="gift-disclaimer" id="gift-disclaimer"></p>
-
-            </div>
-            <!-- /gift-card -->
+            <button type="button" class="result-explore-btn js-close-result">
+              Seguir explorando la página ↓
+            </button>
 
           </div>
-          <!-- /result-gift -->
+          <!-- /result-offer-block -->
 
         </div>
         <!-- /result-inner -->
@@ -493,8 +486,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 5 ✓  CÓMO FUNCIONA
-         4 pasos del proceso de reserva
+         CÓMO FUNCIONA
          ──────────────────────────────────────────────── -->
     <section id="como-funciona" class="section section-process" aria-label="Cómo funciona">
       <div class="container">
@@ -560,8 +552,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 5 ✓  PRUEBA SOCIAL
-         Contadores + testimonios + screenshots
+         PRUEBA SOCIAL
          ──────────────────────────────────────────────── -->
     <section id="testimonios" class="section section-social" aria-label="Testimonios">
       <div class="container">
@@ -595,54 +586,14 @@
 
         <!-- Header de sección -->
         <div class="section-header" data-reveal>
-          <span class="eyebrow section-eyebrow">Lo que dicen</span>
-          <h2 class="section-title">Lecturas que cambian perspectivas</h2>
-          <p class="section-subtitle">Personas reales, momentos reales, claridad real.</p>
+          <span class="eyebrow section-eyebrow">Prueba real</span>
+          <h2 class="section-title">Lo que nos escriben después de cada lectura</h2>
+          <p class="section-subtitle">Mensajes reales de clientes por WhatsApp</p>
         </div>
-
-        <!-- Grid de testimonios -->
-        <div class="testimonials-grid" data-stagger-children data-stagger-base="100" data-stagger-step="180">
-
-          <!-- Testimonio destacado primero — el más persuasivo -->
-          <article class="testimo-card glass-panel testimo-card--featured" data-reveal>
-            <div class="testimo-rating" aria-label="Calificación 5 estrellas">★★★★★</div>
-            <p class="testimo-quote">
-              "Vine por curiosidad y me fui con una dirección. El diagnóstico fue exacto — sabía que era Manos antes de que me lo confirmara. Vale cada peso."
-            </p>
-            <footer class="testimo-author">
-              <span class="testimo-name">Martina G.</span>
-              <span class="testimo-label">Lectura de Manos</span>
-            </footer>
-          </article>
-
-          <article class="testimo-card glass-panel" data-reveal>
-            <div class="testimo-rating" aria-label="Calificación 5 estrellas">★★★★★</div>
-            <p class="testimo-quote">
-              "Llegué sin saber qué preguntarle al Tarot y con una sola vuelta entendí por qué me sentía tan estancada en el trabajo. No esperaba esa claridad."
-            </p>
-            <footer class="testimo-author">
-              <span class="testimo-name">Valentina R.</span>
-              <span class="testimo-label">Lectura de Tarot</span>
-            </footer>
-          </article>
-
-          <article class="testimo-card glass-panel" data-reveal>
-            <div class="testimo-rating" aria-label="Calificación 5 estrellas">★★★★★</div>
-            <p class="testimo-quote">
-              "La lectura de manos me reveló cosas sobre cómo proceso las emociones que ni mi terapeuta había nombrado así. Fue muy preciso y muy gentil."
-            </p>
-            <footer class="testimo-author">
-              <span class="testimo-name">Lucía M.</span>
-              <span class="testimo-label">Lectura de Manos</span>
-            </footer>
-          </article>
-
-        </div>
-        <!-- /testimonials-grid -->
 
         <!-- Galería de screenshots reales de WhatsApp -->
         <div class="screenshots-row" data-reveal>
-          <p class="screenshots-label">Lo que recibimos después de cada lectura</p>
+          <p class="screenshots-label">Conversaciones reales de clientes</p>
           <div class="screenshots-track" role="list" aria-label="Capturas de conversaciones reales">
             <div class="screenshot-item" role="listitem">
               <img src="img/testimonio-01.jpg" alt="Testimonio de clienta — Lectura de Manos" loading="lazy" />
@@ -677,9 +628,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 5 ✓  UNIVERSO DE LECTURAS
-         Sub-bloque A: Tarot (visual CSS, deck.js en sub-fase posterior)
-         Sub-bloque B: Manos (SVG, hand-explorer.js en sub-fase posterior)
+         UNIVERSO DE LECTURAS
          ──────────────────────────────────────────────── -->
     <section id="lecturas" class="section section-readings" aria-label="Nuestras lecturas">
       <div class="container">
@@ -701,7 +650,7 @@
               <div class="deck-stage" id="deck-stage"></div>
               <div class="tarot-bottom">
                 <p class="tarot-instruction" id="tarot-instruction">Respirá profundo. Dejá que tu intuición elija.</p>
-                <button class="btn btn-outline btn-sm" id="tarot-reshuffle">
+                <button type="button" class="btn btn-outline btn-sm" id="tarot-reshuffle">
                   <i class="ph-bold ph-arrows-left-right"></i> Barajar de nuevo
                 </button>
               </div>
@@ -719,10 +668,9 @@
               <li>Claridad sobre dinámicas relacionales, laborales o personales</li>
               <li>Una perspectiva externa que te devuelve el centro</li>
             </ul>
-            <button class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="tarot">
+            <button type="button" class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="tarot">
               Reservar lectura de Tarot
             </button>
-            <!-- PRECIO TAROT: reemplazá el valor entre comillas con el precio real (ej: "Gs. 150.000" o "$25 USD") -->
             <p class="reading-price-note">Precio accesible · Coordinás el pago por WhatsApp</p>
           </div>
 
@@ -769,7 +717,7 @@
 
                 <!-- Hotspot: Línea del corazón -->
                 <div class="hotspot hs-corazon">
-                  <button class="hs-pulse js-hs-btn" aria-label="Línea del corazón"></button>
+                  <button type="button" class="hs-pulse js-hs-btn" aria-label="Línea del corazón"></button>
                   <div class="hs-tooltip">
                     <h4>Línea del corazón</h4>
                     <p>Habla de tu forma de amar y abrirte emocionalmente.</p>
@@ -778,7 +726,7 @@
 
                 <!-- Hotspot: Línea de la cabeza -->
                 <div class="hotspot hs-cabeza">
-                  <button class="hs-pulse js-hs-btn" aria-label="Línea de la cabeza"></button>
+                  <button type="button" class="hs-pulse js-hs-btn" aria-label="Línea de la cabeza"></button>
                   <div class="hs-tooltip">
                     <h4>Línea de la cabeza</h4>
                     <p>Refleja tu mente y cómo procesás lo que vivís.</p>
@@ -787,7 +735,7 @@
 
                 <!-- Hotspot: Línea de la vida -->
                 <div class="hotspot hs-vida">
-                  <button class="hs-pulse js-hs-btn" aria-label="Línea de la vida"></button>
+                  <button type="button" class="hs-pulse js-hs-btn" aria-label="Línea de la vida"></button>
                   <div class="hs-tooltip hs-tooltip-right">
                     <h4>Línea de la vida</h4>
                     <p>Fuerza vital, cambios y etapas importantes.</p>
@@ -809,10 +757,9 @@
               <li>Cómo te relacionás con el cambio, el amor y la energía</li>
               <li>Una lectura que no caduca — es sobre quién sos, no solo qué estás viviendo</li>
             </ul>
-            <button class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="manos">
+            <button type="button" class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="manos">
               Reservar lectura de Manos
             </button>
-            <!-- PRECIO MANOS: reemplazá el valor entre comillas con el precio real (ej: "Gs. 150.000" o "$25 USD") -->
             <p class="reading-price-note">Precio accesible · Coordinás el pago por WhatsApp</p>
           </div>
 
@@ -825,8 +772,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 5 ✓  DIFERENCIAL
-         "No es adivinación. Es autoconocimiento."
+         DIFERENCIAL
          ──────────────────────────────────────────────── -->
     <section id="diferencial" class="section section-diferencial" aria-label="Nuestro diferencial">
       <div class="diferencial-glow" aria-hidden="true"></div>
@@ -885,8 +831,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 5 ✓  FAQ
-         Accordion limpio (sin zodíaco)
+         FAQ
          ──────────────────────────────────────────────── -->
     <section id="section-faq" class="section section-faq" aria-label="Preguntas frecuentes">
       <div class="container container-md">
@@ -903,7 +848,7 @@
               <span class="faq-question-text">¿Necesito creer en el Tarot para que funcione?</span>
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
+            <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>No. Las lecturas trabajan con simbolismo e interpretación, no con fe. Muchas personas llegan con escepticismo y se van con reflexiones que les resultan útiles. La apertura ayuda, pero no es un requisito.</p>
               </div>
@@ -915,7 +860,7 @@
               <span class="faq-question-text">¿Cómo funciona la lectura de manos a distancia?</span>
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
+            <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Enviás fotos claras de ambas manos (palma abierta, buena luz). A partir de esas imágenes se realiza la lectura completa y te la enviamos por WhatsApp en audio o texto, según prefieras.</p>
               </div>
@@ -927,9 +872,9 @@
               <span class="faq-question-text">¿Cuánto tiempo tarda en llegar mi lectura?</span>
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
+            <div class="faq-answer">
               <div class="faq-answer-inner">
-                <p>En general entre 24 y 48 horas hábiles desde la confirmación del pago. Si hay urgencia lo coordinamos directamente por WhatsApp y vemos opciones.</p>
+                <p>En general, tu lectura se entrega dentro de 2 a 3 horas. Si hay pedidos antes que el tuyo, puede demorar un poco más, pero siempre se entrega en el mismo día.</p>
               </div>
             </div>
           </div>
@@ -939,7 +884,7 @@
               <span class="faq-question-text">¿Puedo hacer las dos lecturas?</span>
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
+            <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Sí. Muchas personas combinan ambas porque acceden a capas distintas: el Tarot ilumina la situación presente, la lectura de manos revela el patrón estructural. Se complementan muy bien.</p>
               </div>
@@ -951,7 +896,7 @@
               <span class="faq-question-text">¿Qué pasa si no me siento identificada con el resultado del diagnóstico?</span>
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
+            <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Podés escribirnos y charlamos. El diagnóstico es una orientación, no una sentencia. Si sentís que el otro tipo de lectura resuena más contigo, lo tenemos en cuenta al preparar tu sesión.</p>
               </div>
@@ -963,7 +908,7 @@
               <span class="faq-question-text">¿La lectura de manos me dice cuándo voy a morir o cosas así?</span>
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
+            <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>No. La lectura de manos no predice eventos ni fechas. Se centra en patrones de carácter, formas de procesar la emoción y rasgos de personalidad. No hacemos pronósticos de ese tipo bajo ninguna circunstancia.</p>
               </div>
@@ -975,7 +920,7 @@
               <span class="faq-question-text">¿Cuánto cuesta una lectura?</span>
               <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer" role="region">
+            <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Cada lectura tiene un precio accesible diseñado para que la decisión sea fácil. Para conocer el precio actual de la Lectura de Tarot o de Manos, escribinos directamente por WhatsApp — te respondemos rápido y coordinamos todo en el mismo mensaje.</p>
               </div>
@@ -991,7 +936,7 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 5 ✓  CTA FINAL DE CIERRE
+         CTA FINAL
          ──────────────────────────────────────────────── -->
     <section class="section section-cta-final" aria-label="Reservar lectura">
       <div class="cta-glow" aria-hidden="true"></div>
@@ -1004,7 +949,7 @@
             Un mensaje en WhatsApp es todo lo que hace falta. Sin formularios, sin esperas.
           </p>
           <div class="cta-final-actions">
-            <button class="btn btn-primary btn-xl glow-on-hover js-wa-trigger" data-wa-service="default">
+            <button type="button" class="btn btn-primary btn-xl glow-on-hover js-wa-trigger" data-wa-service="default">
               Reservar mi lectura
             </button>
             <p class="cta-final-microcopy">Sin videollamada · Sin registro · A tu ritmo</p>
@@ -1019,7 +964,7 @@
 
 
   <!-- ────────────────────────────────────────────────
-       FASE 5 ✓  FOOTER
+       FOOTER
        ──────────────────────────────────────────────── -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
@@ -1029,7 +974,7 @@
         <div class="footer-brand">
           <span class="footer-logo">El Secreto de las Manos</span>
           <p class="footer-tagline">Lecturas espirituales personales. Tarot y Lectura de Manos.</p>
-          <button class="btn btn-outline btn-sm js-wa-trigger" data-wa-service="default">
+          <button type="button" class="btn btn-outline btn-sm js-wa-trigger" data-wa-service="default">
             Escribir por WhatsApp
           </button>
         </div>
@@ -1037,8 +982,8 @@
         <nav class="footer-links" aria-label="Lecturas">
           <span class="footer-nav-title">Lecturas</span>
           <ul role="list">
-            <li><button class="footer-link js-wa-trigger" data-wa-service="tarot">Tarot</button></li>
-            <li><button class="footer-link js-wa-trigger" data-wa-service="manos">Lectura de Manos</button></li>
+            <li><button type="button" class="footer-link js-wa-trigger" data-wa-service="tarot">Tarot</button></li>
+            <li><button type="button" class="footer-link js-wa-trigger" data-wa-service="manos">Lectura de Manos</button></li>
             <li><a href="#quiz" class="footer-link">Diagnóstico gratuito</a></li>
           </ul>
         </nav>
@@ -1065,32 +1010,30 @@
 
 
   <!-- ────────────────────────────────────────────────
-       FASE 5 ✓  BOTÓN FLOTANTE WHATSAPP (desktop)
+       BOTÓN FLOTANTE WHATSAPP (desktop)
        ──────────────────────────────────────────────── -->
-  <button class="floating-wa js-wa-trigger" data-wa-service="default"
+  <button type="button" class="floating-wa js-wa-trigger" data-wa-service="default"
           aria-label="Contactar por WhatsApp">
     <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
   </button>
 
 
   <!-- ────────────────────────────────────────────────
-       FASE 5 ✓  STICKY FOOTER MOBILE
+       STICKY FOOTER MOBILE
        ──────────────────────────────────────────────── -->
   <div class="sticky-footer-mobile" id="sticky-footer" aria-hidden="true">
-    <button class="btn btn-primary btn-full js-wa-trigger" data-wa-service="default"
+    <button type="button" class="btn btn-primary btn-full js-wa-trigger" data-wa-service="default"
             aria-label="Reservar lectura por WhatsApp">
       Reservar mi lectura
     </button>
   </div>
 
 
-  <!-- ══════════════════════════════════════════════════
-       MODAL TAROT
-       ══════════════════════════════════════════════════ -->
+  <!-- Modal tarot -->
   <div class="tarot-modal-overlay" id="tarot-modal" role="dialog" aria-modal="true" aria-label="Carta de tarot">
     <div class="tarot-modal-content">
 
-      <button class="tarot-modal-close" id="modal-close" aria-label="Cerrar">✕</button>
+      <button type="button" class="tarot-modal-close" id="modal-close" aria-label="Cerrar">✕</button>
 
       <div class="tarot-modal-card">
         <img id="modal-img" src="" alt="Carta de tarot">
@@ -1103,8 +1046,8 @@
       </div>
 
       <div class="tarot-modal-actions">
-        <button class="tarot-btn-outline" id="modal-otra">Elegir otra carta</button>
-        <button class="btn btn-primary btn-sm js-wa-trigger" data-wa-service="tarot">
+        <button type="button" class="tarot-btn-outline" id="modal-otra">Elegir otra carta</button>
+        <button type="button" class="btn btn-primary btn-sm js-wa-trigger" data-wa-service="tarot">
           Quiero mi lectura completa →
         </button>
       </div>
@@ -1113,26 +1056,14 @@
   </div>
   <!-- /modal tarot -->
 
-  <!-- ══════════════════════════════════════════════════
-       JAVASCRIPT
-       Fase 1: solo main.js
-       Fases siguientes: activar en orden
-       ══════════════════════════════════════════════════ -->
+  <!-- Scripts -->
   <script src="js/main.js"></script>
-
-  <!-- Fase 2 ✓ -->
   <script src="data/quiz-copy.js"></script>
   <script src="js/quiz.js"></script>
-
-  <!-- Fase 3 ✓ -->
   <script src="data/result-copy.js"></script>
   <script src="js/countdown.js"></script>
   <script src="js/result.js"></script>
-
-  <!-- Fase 5 ✓ -->
   <script src="js/animations.js"></script>
-
-  <!-- Sub-fase visual interactiva ✓ -->
   <script src="js/deck.js"></script>
   <script src="js/hand-explorer.js"></script>
 
