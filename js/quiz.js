@@ -58,7 +58,7 @@ function activateQuiz() {
 
     setTimeout(() => {
       quiz.classList.remove('is-entering');
-      showIntro();
+      startQuiz(); // Ir directo a Q1 — intro slide eliminado por ser fricción innecesaria
     }, 60);
   }, delay);
 }

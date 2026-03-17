@@ -480,6 +480,17 @@
   margin-bottom: var(--sp-10);
 }
 
+/* Nota de precio bajo el CTA de cada lectura */
+.reading-price-note {
+  margin-top: var(--sp-4);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.70;
+  letter-spacing: 0.02em;
+}
+
 .reading-divider {
   width: 100%;
   height: 1px;

@@ -13,22 +13,25 @@
   <link rel="icon" type="image/png" href="img/favicon.png" />
 
   <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
-  <meta property="og:title" content="El Secreto de las Manos" />
+  <meta property="og:title" content="El Secreto de las Manos | Descubrí qué lectura necesitás" />
   <meta property="og:description"
-    content="Descubrí en 5 preguntas qué lectura necesitás: Tarot o Lectura de Manos." />
+    content="5 preguntas. Un diagnóstico personalizado. Descubrí si es Tarot o Lectura de Manos lo que necesitás ahora — y recibilo por WhatsApp." />
   <meta property="og:type" content="website" />
-  <!-- REEMPLAZAR la URL de abajo con la URL real del sitio publicado + ruta a la imagen de preview -->
-  <!-- Tamaño recomendado: 1200×630 px -->
-  <meta property="og:image" content="img/og-preview.png" />
+  <meta property="og:url" content="https://secretodelasmanos.lat/" />
+  <meta property="og:image" content="https://secretodelasmanos.lat/img/og-preview.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="El Secreto de las Manos — Lecturas de Tarot y Manos por WhatsApp" />
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="El Secreto de las Manos" />
+  <meta name="twitter:title" content="El Secreto de las Manos | Descubrí qué lectura necesitás" />
   <meta name="twitter:description"
-    content="Descubrí en 5 preguntas qué lectura necesitás: Tarot o Lectura de Manos." />
-  <meta name="twitter:image" content="img/og-preview.png" />
+    content="5 preguntas. Un diagnóstico personalizado. Descubrí si es Tarot o Lectura de Manos lo que necesitás ahora — y recibilo por WhatsApp." />
+  <meta name="twitter:image" content="https://secretodelasmanos.lat/img/og-preview.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://secretodelasmanos.lat/" />
 
   <!-- Fonts: preconnect primero, luego carga -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -37,8 +40,8 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
 
-  <!-- Phosphor Icons (line icons para UI) -->
-  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+  <!-- Phosphor Icons (line icons para UI) — versión fija para evitar roturas por updates -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 
   <!-- ── CSS — orden intencional: base → layout → components ── -->
   <link rel="stylesheet" href="css/base.css" />
@@ -81,7 +84,7 @@
           <li><a href="#lecturas" class="nav-link">Lecturas</a></li>
           <li><a href="#como-funciona" class="nav-link">Cómo funciona</a></li>
           <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#section-faq" class="nav-link">FAQ</a></li>
         </ul>
       </nav>
 
@@ -109,7 +112,7 @@
         <a href="#lecturas" class="mobile-nav-link">Lecturas</a>
         <a href="#como-funciona" class="mobile-nav-link">Cómo funciona</a>
         <a href="#testimonios" class="mobile-nav-link">Testimonios</a>
-        <a href="#faq" class="mobile-nav-link">FAQ</a>
+        <a href="#section-faq" class="mobile-nav-link">FAQ</a>
       </nav>
       <div class="mobile-menu-footer">
         <button class="btn btn-primary btn-full js-wa-trigger" data-wa-service="default">
@@ -204,23 +207,23 @@
         <!-- Texto del portal -->
         <div class="portal-text">
           <span class="eyebrow portal-eyebrow anim-fade-up" style="--anim-delay: 0.3s">
-            Lecturas espirituales · El Secreto de las Manos
+            Tarot · Lectura de Manos · Diagnóstico gratuito
           </span>
           <h1 class="portal-title anim-fade-up" style="--anim-delay: 0.5s">
-            Algo en vos ya<br>sabe la respuesta.
+            La claridad que buscás<br>ya está en vos.
           </h1>
           <p class="portal-subtitle anim-fade-up" style="--anim-delay: 0.7s">
-            5 preguntas. Un diagnóstico. La lectura exacta que necesitás ahora.
+            5 preguntas. Un diagnóstico personalizado. Descubrí si es Tarot o Lectura de Manos lo que necesitás ahora — y recibilo por WhatsApp.
           </p>
         </div>
 
         <!-- Acciones del portal -->
         <div class="portal-actions anim-fade-up" style="--anim-delay: 0.9s">
           <button class="btn btn-primary btn-lg glow-on-hover" id="portal-cta"
-            aria-label="Iniciar diagnóstico">
-            Descubrí qué lectura es para vos
+            aria-label="Iniciar diagnóstico gratuito">
+            Empezar el diagnóstico gratuito →
           </button>
-          <p class="portal-microcopy">Sin registrarte · Sin compromiso · Solo claridad.</p>
+          <p class="portal-microcopy">Sin registrarte · Sin videollamada · 2 minutos · Gratis</p>
         </div>
 
       </div>
@@ -490,6 +493,73 @@
 
 
     <!-- ────────────────────────────────────────────────
+         FASE 5 ✓  CÓMO FUNCIONA
+         4 pasos del proceso de reserva
+         ──────────────────────────────────────────────── -->
+    <section id="como-funciona" class="section section-process" aria-label="Cómo funciona">
+      <div class="container">
+
+        <div class="section-header" data-reveal>
+          <span class="eyebrow section-eyebrow">El proceso</span>
+          <h2 class="section-title">Simple, personal, a tu ritmo</h2>
+          <p class="section-subtitle">4 pasos · Por WhatsApp · Sin videollamadas</p>
+        </div>
+
+        <div class="process-steps" data-stagger-children data-stagger-base="0" data-stagger-step="160">
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">01</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-sparkle"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Hacés el diagnóstico</h3>
+            <p class="step-desc">5 preguntas que revelan qué tipo de guía necesitás ahora mismo. Sin registrarte, sin datos.</p>
+          </div>
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">02</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-chat-circle-text"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Reservás por WhatsApp</h3>
+            <p class="step-desc">Un mensaje directo. Coordinamos el horario que mejor te quede. Sin formularios complicados.</p>
+          </div>
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">03</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-hand-palm"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Recibís tu lectura</h3>
+            <p class="step-desc">Por audio o mensaje de texto, en WhatsApp. Podés escucharla o leerla cuando quieras, las veces que quieras.</p>
+          </div>
+
+          <div class="step-item" data-reveal>
+            <div class="step-head">
+              <span class="step-number">04</span>
+              <div class="step-icon-wrap" aria-hidden="true">
+                <i class="ph ph-shooting-star"></i>
+              </div>
+            </div>
+            <h3 class="step-title">Integrás a tu tiempo</h3>
+            <p class="step-desc">La lectura queda guardada. Podés volver a ella cuando necesites recordar lo que resonó.</p>
+          </div>
+
+        </div>
+        <!-- /process-steps -->
+
+      </div>
+    </section>
+    <!-- /section-como-funciona -->
+
+
+    <!-- ────────────────────────────────────────────────
          FASE 5 ✓  PRUEBA SOCIAL
          Contadores + testimonios + screenshots
          ──────────────────────────────────────────────── -->
@@ -603,73 +673,6 @@
 
 
     <!-- ────────────────────────────────────────────────
-         FASE 5 ✓  CÓMO FUNCIONA
-         4 pasos del proceso de reserva
-         ──────────────────────────────────────────────── -->
-    <section id="como-funciona" class="section section-process" aria-label="Cómo funciona">
-      <div class="container">
-
-        <div class="section-header" data-reveal>
-          <span class="eyebrow section-eyebrow">El proceso</span>
-          <h2 class="section-title">Simple, personal, a tu ritmo</h2>
-          <p class="section-subtitle">Sin videollamadas incómodas. Sin esperas. Sin burocracia.</p>
-        </div>
-
-        <div class="process-steps" data-stagger-children data-stagger-base="0" data-stagger-step="160">
-
-          <div class="step-item" data-reveal>
-            <div class="step-head">
-              <span class="step-number">01</span>
-              <div class="step-icon-wrap" aria-hidden="true">
-                <i class="ph ph-sparkle"></i>
-              </div>
-            </div>
-            <h3 class="step-title">Hacés el diagnóstico</h3>
-            <p class="step-desc">5 preguntas que revelan qué tipo de guía necesitás ahora mismo. Sin registrarte, sin datos.</p>
-          </div>
-
-          <div class="step-item" data-reveal>
-            <div class="step-head">
-              <span class="step-number">02</span>
-              <div class="step-icon-wrap" aria-hidden="true">
-                <i class="ph ph-chat-circle-text"></i>
-              </div>
-            </div>
-            <h3 class="step-title">Reservás por WhatsApp</h3>
-            <p class="step-desc">Un mensaje directo. Coordinamos el horario que mejor te quede. Sin formularios complicados.</p>
-          </div>
-
-          <div class="step-item" data-reveal>
-            <div class="step-head">
-              <span class="step-number">03</span>
-              <div class="step-icon-wrap" aria-hidden="true">
-                <i class="ph ph-hand-palm"></i>
-              </div>
-            </div>
-            <h3 class="step-title">Recibís tu lectura</h3>
-            <p class="step-desc">Por audio o mensaje de texto, en WhatsApp. Podés escucharla o leerla cuando quieras, las veces que quieras.</p>
-          </div>
-
-          <div class="step-item" data-reveal>
-            <div class="step-head">
-              <span class="step-number">04</span>
-              <div class="step-icon-wrap" aria-hidden="true">
-                <i class="ph ph-shooting-star"></i>
-              </div>
-            </div>
-            <h3 class="step-title">Integrás a tu tiempo</h3>
-            <p class="step-desc">La lectura queda guardada. Podés volver a ella cuando necesites recordar lo que resonó.</p>
-          </div>
-
-        </div>
-        <!-- /process-steps -->
-
-      </div>
-    </section>
-    <!-- /section-como-funciona -->
-
-
-    <!-- ────────────────────────────────────────────────
          FASE 5 ✓  UNIVERSO DE LECTURAS
          Sub-bloque A: Tarot (visual CSS, deck.js en sub-fase posterior)
          Sub-bloque B: Manos (SVG, hand-explorer.js en sub-fase posterior)
@@ -715,6 +718,8 @@
             <button class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="tarot">
               Reservar lectura de Tarot
             </button>
+            <!-- PRECIO TAROT: reemplazá el valor entre comillas con el precio real (ej: "Gs. 150.000" o "$25 USD") -->
+            <p class="reading-price-note">Precio accesible · Coordinás el pago por WhatsApp</p>
           </div>
 
         </div>
@@ -803,6 +808,8 @@
             <button class="btn btn-outline btn-lg js-wa-trigger" data-wa-service="manos">
               Reservar lectura de Manos
             </button>
+            <!-- PRECIO MANOS: reemplazá el valor entre comillas con el precio real (ej: "Gs. 150.000" o "$25 USD") -->
+            <p class="reading-price-note">Precio accesible · Coordinás el pago por WhatsApp</p>
           </div>
 
         </div>
@@ -947,6 +954,18 @@
             </div>
           </div>
 
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">¿Cuánto cuesta una lectura?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                <p>Cada lectura tiene un precio accesible diseñado para que la decisión sea fácil. Para conocer el precio actual de la Lectura de Tarot o de Manos, escribinos directamente por WhatsApp — te respondemos rápido y coordinamos todo en el mismo mensaje.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
         <!-- /faq-list -->
 
@@ -963,7 +982,7 @@
       <div class="container container-sm">
 
         <div class="cta-final-inner" data-reveal>
-          <span class="eyebrow section-eyebrow">Estás lista</span>
+          <span class="eyebrow section-eyebrow">Tu momento es ahora</span>
           <h2 class="cta-final-title">Tu lectura te está esperando.</h2>
           <p class="cta-final-subtitle">
             Hacé el diagnóstico y en un mensaje coordinamos todo. Sin compromiso, sin registros.
@@ -993,7 +1012,7 @@
 
         <div class="footer-brand">
           <span class="footer-logo">El Secreto de las Manos</span>
-          <p class="footer-tagline">Lecturas espirituales personales. Tarot y lectura de palma.</p>
+          <p class="footer-tagline">Lecturas espirituales personales. Tarot y Lectura de Manos.</p>
           <button class="btn btn-outline btn-sm js-wa-trigger" data-wa-service="default">
             Escribir por WhatsApp
           </button>
@@ -1021,7 +1040,7 @@
       <!-- /footer-grid -->
 
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 El Secreto de las Manos · Todos los derechos reservados.</p>
+        <p class="footer-copyright">© 2026 El Secreto de las Manos · Todos los derechos reservados.</p>
         <p class="footer-disclaimer">Las lecturas son con fines de orientación personal y no reemplazan atención profesional de salud mental.</p>
       </div>
 
