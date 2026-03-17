@@ -162,6 +162,26 @@
   transform: translateY(-3px);
 }
 
+/* Variante destacada — borde dorado sutil para el testimonio principal */
+.testimo-card--featured {
+  border-color: rgba(220, 185, 120, 0.20);
+  background: rgba(26, 12, 94, 0.50);
+}
+
+.testimo-card--featured:hover {
+  border-color: rgba(220, 185, 120, 0.38);
+}
+
+/* Estrellas de calificación */
+.testimo-rating {
+  font-size: 13px;
+  color: var(--gold);
+  opacity: 0.80;
+  letter-spacing: 3px;
+  line-height: 1;
+  margin-bottom: var(--sp-1);
+}
+
 .testimo-icon {
   color: var(--gold);
   opacity: 0.55;
@@ -1093,9 +1113,9 @@
 
 .diferencial-icon {
   color: var(--gold);
-  font-size: 12px;
-  opacity: 0.65;
-  margin-top: 4px;
+  font-size: 16px;
+  opacity: 0.75;
+  margin-top: 3px;
   flex-shrink: 0;
 }
 

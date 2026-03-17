@@ -120,8 +120,10 @@ function setupFAQ() {
 
 /* ─────────────────────────────────────────────────────
    VISIBILIDAD EN SCROLL
-   Floating WA (desktop) y sticky footer (mobile)
-   aparecen cuando el usuario scrollea ≥ 40% de la página
+   Floating WA (desktop) y sticky footer (mobile):
+   - Aparecen cuando el usuario scrollea ≥ 40% de la página
+   - Se ocultan al llegar al 92%+ (CTA final visible — evita
+     duplicar el botón de reserva en la sección de cierre)
    ───────────────────────────────────────────────────── */
 function setupScrollVisibility() {
   var floatingWA   = document.querySelector('.floating-wa');
@@ -129,22 +131,21 @@ function setupScrollVisibility() {
 
   if (!floatingWA && !stickyFooter) return;
 
-  var triggered = false;
-
   function onScroll() {
-    var scrolled = window.scrollY + window.innerHeight;
-    var total    = document.documentElement.scrollHeight;
+    var scrolled    = window.scrollY + window.innerHeight;
+    var total       = document.documentElement.scrollHeight;
+    var pct         = scrolled / total;
+    var shouldShow  = pct >= 0.40 && pct < 0.92;
 
-    if (!triggered && (scrolled / total) >= 0.40) {
-      triggered = true;
-      if (floatingWA)   floatingWA.classList.add('is-visible');
-      if (stickyFooter) {
-        stickyFooter.classList.add('is-visible');
-        stickyFooter.setAttribute('aria-hidden', 'false');
-      }
-      window.removeEventListener('scroll', onScroll);
+    if (floatingWA) {
+      floatingWA.classList.toggle('is-visible', shouldShow);
+    }
+    if (stickyFooter) {
+      stickyFooter.classList.toggle('is-visible', shouldShow);
+      stickyFooter.setAttribute('aria-hidden', String(!shouldShow));
     }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // evaluar estado inicial
 }
