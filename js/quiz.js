@@ -27,6 +27,13 @@ const QUIZ_STATE = {
    o automáticamente en modo ads.
    ───────────────────────────────────────────────────── */
 function activateQuiz() {
+  // Resetear estado completo para que un re-run sea limpio
+  QUIZ_STATE.currentQuestion  = -1;
+  QUIZ_STATE.answers          = [];
+  QUIZ_STATE.totalT           = 0;
+  QUIZ_STATE.totalM           = 0;
+  QUIZ_STATE.isTransitioning  = false;
+
   const portal  = document.getElementById('portal');
   const quiz    = document.getElementById('quiz');
   if (!quiz) return;
@@ -87,6 +94,10 @@ function showIntro() {
    INICIAR QUIZ (post-intro)
    ───────────────────────────────────────────────────── */
 function startQuiz() {
+  // Limpiar slides de un run anterior (por si el usuario rehace el quiz)
+  const wrapper = document.getElementById('quiz-questions-wrapper');
+  if (wrapper) wrapper.innerHTML = '';
+
   const intro    = document.getElementById('quiz-intro');
   const progress = document.querySelector('.quiz-progress');
 

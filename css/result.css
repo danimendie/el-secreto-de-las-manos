@@ -776,6 +776,28 @@
 }
 
 
+/* ── Botón para reiniciar el quiz desde cero (acción destructiva, muy sutil) ── */
+.result-restart-btn {
+  display: block;
+  margin: var(--sp-2) auto 0;
+  padding: var(--sp-2) var(--sp-4);
+  background: none;
+  border: none;
+  color: var(--white-20);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: color var(--t-base);
+  letter-spacing: 0.02em;
+}
+
+.result-restart-btn:hover,
+.result-restart-btn:focus-visible {
+  color: var(--white-40);
+  outline: none;
+}
+
+
 /* ── Botón para salir del resultado y explorar la landing ── */
 .result-explore-btn {
   display: block;

@@ -44,12 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!loaderSection) return;
 
   // ── Flujo normal: quiz acaba de terminar ──
-  // MutationObserver detecta cuando quiz.js elimina el atributo hidden del loader
+  // MutationObserver detecta cuando quiz.js elimina hidden del loader.
+  // NO se desconecta: así funciona correctamente si el usuario rehace el quiz.
+  // La bandera _loaderSequenceRunning evita ejecuciones concurrentes.
+  let _loaderSequenceRunning = false;
+
   const observer = new MutationObserver(() => {
     if (!loaderSection.hasAttribute('hidden')) {
-      observer.disconnect();
-      const diagnosis = getDiagnosis();
-      if (diagnosis) startLoaderSequence(diagnosis);
+      if (!_loaderSequenceRunning) {
+        _loaderSequenceRunning = true;
+        const diagnosis = getDiagnosis();
+        if (diagnosis) startLoaderSequence(diagnosis);
+      }
+    } else {
+      // Loader se ocultó → resetear bandera para el próximo run
+      _loaderSequenceRunning = false;
     }
   });
   observer.observe(loaderSection, { attributes: true, attributeFilter: ['hidden'] });
@@ -259,3 +268,28 @@ function revealAllImmediate() {
     }
   });
 }
+
+
+/* ─────────────────────────────────────────────────────
+   REVELAR RESULTADO GUARDADO
+   Llamado desde main.js cuando el usuario quiere volver
+   a su resultado sin rehacer el quiz.
+   ───────────────────────────────────────────────────── */
+window.revealSavedResult = function () {
+  const diagnosis = getDiagnosis();
+  if (!diagnosis) return;
+
+  const resultSection = document.getElementById('section-result');
+  if (!resultSection) return;
+
+  buildResult(diagnosis);
+  resultSection.scrollTop = 0;
+  resultSection.removeAttribute('hidden');
+  resultSection.classList.add('is-entering');
+  void resultSection.offsetWidth; // forzar reflow
+
+  setTimeout(() => {
+    resultSection.classList.remove('is-entering');
+    revealAllImmediate();
+  }, 60);
+};

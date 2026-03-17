@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupWhatsAppTriggers();
   setupPortalCTA();
   setupResultNavigation();
+  setupRestartQuiz();
   detectAdsMode();
 });
 
@@ -186,18 +187,40 @@ function setupWhatsAppTriggers() {
 
 /* ─────────────────────────────────────────────────────────────
    PORTAL CTA
-   En Fase 1: scroll suave hacia la primera sección disponible.
-   En Fase 2: se reemplaza para activar el quiz.
+   Si el usuario ya tiene un resultado en sesión: abre el resultado guardado.
+   Si no: inicia el quiz normalmente.
    ───────────────────────────────────────────────────────────── */
 function setupPortalCTA() {
   const cta = document.getElementById('portal-cta');
   if (!cta) return;
 
+  // Actualizar texto del CTA según si ya hay resultado guardado
+  updatePortalCTA();
+
   cta.addEventListener('click', () => {
-    if (typeof window.activateQuiz === 'function') {
+    const hasDiagnosis = !!sessionStorage.getItem('quizDiagnosis');
+    if (hasDiagnosis && typeof window.revealSavedResult === 'function') {
+      // Ocultar portal y mostrar el resultado guardado
+      const portal = document.getElementById('portal');
+      if (portal) portal.setAttribute('hidden', '');
+      window.revealSavedResult();
+    } else if (typeof window.activateQuiz === 'function') {
       window.activateQuiz();
     }
   });
+}
+
+/**
+ * Actualiza el texto del CTA del portal según si hay resultado en sesión.
+ * Llamado en setupPortalCTA() y cada vez que se cierra o reinicia el resultado.
+ */
+function updatePortalCTA() {
+  const cta = document.getElementById('portal-cta');
+  if (!cta) return;
+  const hasDiagnosis = !!sessionStorage.getItem('quizDiagnosis');
+  cta.textContent = hasDiagnosis
+    ? 'Ver mi diagnóstico →'
+    : 'Empezar el diagnóstico gratuito →';
 }
 
 
@@ -212,6 +235,13 @@ function setupResultNavigation() {
 
   function closeResult(targetId) {
     resultSection.setAttribute('hidden', '');
+
+    // Restaurar el portal para que el usuario pueda volver a su resultado
+    // usando el CTA (que ahora dirá "Ver mi diagnóstico →")
+    const portal = document.getElementById('portal');
+    if (portal) portal.removeAttribute('hidden');
+    updatePortalCTA();
+
     const target = targetId ? document.getElementById(targetId) : null;
     requestAnimationFrame(() => {
       if (target) {
@@ -237,6 +267,35 @@ function setupResultNavigation() {
       e.preventDefault();
       closeResult(href.slice(1));
     });
+  });
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   REINICIO DEL QUIZ
+   El botón .js-restart-quiz limpia la sesión y arranca el quiz desde cero.
+   El usuario lo activa explícitamente desde el resultado.
+   ───────────────────────────────────────────────────────────── */
+function setupRestartQuiz() {
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.js-restart-quiz');
+    if (!btn) return;
+
+    // Limpiar todos los datos de sesión del quiz
+    ['quizDiagnosis', 'quizResult', 'selectedService', 'giftActive', 'giftCountdownStart']
+      .forEach(key => sessionStorage.removeItem(key));
+
+    // Ocultar el resultado si está visible
+    const resultSection = document.getElementById('section-result');
+    if (resultSection) resultSection.setAttribute('hidden', '');
+
+    // Actualizar CTA (ahora sin resultado guardado)
+    updatePortalCTA();
+
+    // Arrancar el quiz fresco
+    if (typeof window.activateQuiz === 'function') {
+      window.activateQuiz();
+    }
   });
 }
 
