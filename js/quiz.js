@@ -117,6 +117,7 @@ function startQuiz() {
 
   // Renderizar primera pregunta
   QUIZ_STATE.currentQuestion = 0;
+  if (typeof window.fbq === 'function') window.fbq('trackCustom', 'QuizStart');
   setTimeout(() => renderQuestion(0), 320);
 }
 
@@ -302,6 +303,8 @@ function finishQuiz() {
   const label = document.getElementById('quiz-progress-label');
   if (fill)  fill.style.width = '100%';
   if (label) label.textContent = 'Diagnóstico completado';
+
+  if (typeof window.fbq === 'function') window.fbq('trackCustom', 'QuizComplete', { result });
 
   // Transicionar al loader
   setTimeout(transitionToLoader, 600);

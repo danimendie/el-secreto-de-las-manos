@@ -174,6 +174,20 @@ function setupWhatsAppTriggers() {
 
     const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
+
+    // Tracking de eventos Meta Pixel
+    if (typeof window.fbq === 'function') {
+      const waLocation =
+        trigger.closest('#section-result') ? 'result'  :
+        trigger.closest('#site-header')    ? 'header'  :
+        trigger.closest('#mobile-menu')    ? 'header'  : 'default';
+
+      window.fbq('trackCustom', 'WhatsAppClick', { location: waLocation });
+
+      if (trigger.id === 'result-cta') {
+        window.fbq('trackCustom', 'Offer2x1Click');
+      }
+    }
   });
 
   // Guardar servicio seleccionado en sessionStorage
