@@ -1,0 +1,539 @@
+/* ══════════════════════════════════════════════════════
+   QUIZ — css/quiz.css
+   El Secreto de las Manos v2 — Fase 2
+   Pantalla de diagnóstico: intro + 5 preguntas full-screen
+   ══════════════════════════════════════════════════════ */
+
+
+/* ─────────────────────────────────────────────────────
+   SECTION QUIZ — contenedor principal, fixed overlay
+   ───────────────────────────────────────────────────── */
+.section-quiz {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--bg-void, #020008);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.section-quiz[hidden] {
+  display: none;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   BACKGROUND GLOWS
+   ───────────────────────────────────────────────────── */
+.quiz-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.quiz-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0;
+  animation: quizGlowIn 1.2s ease forwards;
+}
+
+.quiz-glow-1 {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(123, 71, 201, 0.16) 0%, transparent 70%);
+  top: -120px;
+  right: -120px;
+  animation-delay: 0.2s;
+}
+
+.quiz-glow-2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(220, 185, 120, 0.07) 0%, transparent 70%);
+  bottom: -80px;
+  left: -80px;
+  animation-delay: 0.5s;
+}
+
+@keyframes quizGlowIn {
+  to { opacity: 1; }
+}
+
+
+/* ─────────────────────────────────────────────────────
+   PROGRESS BAR
+   Parte superior fija, fuera del slide wrapper
+   ───────────────────────────────────────────────────── */
+.quiz-progress {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem 2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.quiz-progress.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Moons row */
+.progress-moons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.moon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(196, 165, 245, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+  flex-shrink: 0;
+}
+
+.moon::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(196, 165, 245, 0.18);
+  transition: width 0.4s ease, height 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.moon.is-active {
+  border-color: var(--violet, #c4a5f5);
+  box-shadow: 0 0 10px rgba(196, 165, 245, 0.35);
+}
+
+.moon.is-active::before {
+  width: 8px;
+  height: 8px;
+  background: var(--violet, #c4a5f5);
+  box-shadow: 0 0 6px rgba(196, 165, 245, 0.5);
+}
+
+.moon.is-completed {
+  border-color: var(--gold, #DCB978);
+  background: rgba(220, 185, 120, 0.07);
+}
+
+.moon.is-completed::before {
+  width: 10px;
+  height: 10px;
+  background: var(--gold, #DCB978);
+  box-shadow: 0 0 5px rgba(220, 185, 120, 0.4);
+}
+
+/* Fill bar */
+.progress-bar-track {
+  width: 100%;
+  max-width: 280px;
+  height: 2px;
+  background: rgba(196, 165, 245, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple-core, #7B47C9), var(--violet, #c4a5f5));
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Label */
+.progress-label {
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(196, 165, 245, 0.38);
+}
+
+
+/* ─────────────────────────────────────────────────────
+   SLIDES WRAPPER
+   flex: 1 — ocupa todo el espacio debajo del progress
+   ───────────────────────────────────────────────────── */
+.quiz-slides {
+  flex: 1;
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.quiz-questions-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* FIX: el wrapper vacío no intercepta clicks del quiz-intro */
+}
+
+
+/* ─────────────────────────────────────────────────────
+   INDIVIDUAL SLIDE — base + state classes
+   ───────────────────────────────────────────────────── */
+.quiz-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(24px);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+
+.quiz-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.quiz-slide.is-entering {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.quiz-slide.is-exiting {
+  opacity: 0;
+  transform: translateY(-18px);
+  transition: opacity 0.32s ease, transform 0.32s ease;
+  pointer-events: none;
+}
+
+.quiz-slide.is-hidden {
+  display: none;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   QUIZ CONTAINER — centrado, max-width, scrollable
+   ───────────────────────────────────────────────────── */
+.quiz-container {
+  width: 100%;
+  max-width: 720px;
+  padding: 2rem 1.5rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+@media (max-width: 480px) {
+  .quiz-container {
+    padding: 1.25rem 1rem;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────
+   INTRO SLIDE
+   ───────────────────────────────────────────────────── */
+.quiz-intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 480px;
+}
+
+.quiz-intro-symbol {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123, 71, 201, 0.25) 0%, transparent 70%);
+  border: 1px solid rgba(196, 165, 245, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--violet, #c4a5f5);
+  font-size: 1.6rem;
+}
+
+.quiz-intro-title {
+  font-family: var(--font-ritual, 'Cormorant Garamond', serif);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 300;
+  color: var(--text-primary, #f0eafa);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.quiz-intro-subtitle {
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.975rem;
+  color: var(--text-secondary, rgba(240, 234, 250, 0.62));
+  line-height: 1.65;
+  max-width: 400px;
+  margin: 0;
+}
+
+.quiz-intro-disclaimer {
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  color: rgba(196, 165, 245, 0.32);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   QUESTION SLIDE
+   ───────────────────────────────────────────────────── */
+.quiz-question-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.quiz-question-number {
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(196, 165, 245, 0.42);
+  margin: 0;
+}
+
+.quiz-question-number span {
+  opacity: 0.5;
+}
+
+.quiz-question-text {
+  font-family: var(--font-ritual, 'Cormorant Garamond', serif);
+  font-size: clamp(1.45rem, 3.8vw, 2.1rem);
+  font-weight: 400;
+  color: var(--text-primary, #f0eafa);
+  line-height: 1.35;
+  margin: 0;
+  max-width: 560px;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   OPTIONS GRID
+   ───────────────────────────────────────────────────── */
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 620px;
+}
+
+@media (max-width: 520px) {
+  .quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────
+   OPTION CARD
+   ───────────────────────────────────────────────────── */
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(196, 165, 245, 0.04);
+  border: 1px solid rgba(196, 165, 245, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  min-height: 72px;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.18s ease,
+    box-shadow 0.22s ease;
+}
+
+.quiz-option:hover {
+  background: rgba(196, 165, 245, 0.09);
+  border-color: rgba(196, 165, 245, 0.28);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(123, 71, 201, 0.14);
+}
+
+.quiz-option:focus-visible {
+  outline: 2px solid var(--violet, #c4a5f5);
+  outline-offset: 2px;
+}
+
+.quiz-option:active {
+  transform: translateY(0);
+}
+
+.quiz-option.is-selected {
+  background: rgba(123, 71, 201, 0.2);
+  border-color: var(--purple-core, #7B47C9);
+  box-shadow:
+    0 0 24px rgba(123, 71, 201, 0.22),
+    inset 0 0 0 1px rgba(196, 165, 245, 0.12);
+  transform: translateY(-1px);
+  pointer-events: none;
+}
+
+/* Option marker badge (A / B / C / D) */
+.option-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(196, 165, 245, 0.07);
+  border: 1px solid rgba(196, 165, 245, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(196, 165, 245, 0.42);
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.quiz-option:hover .option-marker {
+  background: rgba(196, 165, 245, 0.14);
+  border-color: rgba(196, 165, 245, 0.28);
+  color: var(--violet, #c4a5f5);
+}
+
+.quiz-option.is-selected .option-marker {
+  background: var(--purple-core, #7B47C9);
+  border-color: var(--purple-core, #7B47C9);
+  color: #fff;
+}
+
+/* Option text */
+.option-text {
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgba(240, 234, 250, 0.7);
+  transition: color 0.22s ease;
+}
+
+.quiz-option:hover .option-text,
+.quiz-option.is-selected .option-text {
+  color: var(--text-primary, #f0eafa);
+}
+
+
+/* ─────────────────────────────────────────────────────
+   LOADER PLACEHOLDER (Fase 2)
+   Visible post-Q5. Fase 3 lo reemplaza con result.js
+   ───────────────────────────────────────────────────── */
+.section-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--bg-void, #020008);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-loader[hidden] {
+  display: none;
+}
+
+.loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(196, 165, 245, 0.12);
+  border-top-color: var(--violet, #c4a5f5);
+  animation: loaderSpin 1s linear infinite;
+}
+
+@keyframes loaderSpin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-family: var(--font-ritual, 'Cormorant Garamond', serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--text-primary, #f0eafa);
+  margin: 0;
+}
+
+.loader-subtext {
+  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  color: rgba(196, 165, 245, 0.38);
+  letter-spacing: 0.07em;
+  margin: 0;
+}
+
+.section-loader.is-entering {
+  animation: quizFadeIn 0.5s ease forwards;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   SECTION ENTER / EXIT ANIMATIONS
+   ───────────────────────────────────────────────────── */
+.section-quiz.is-entering {
+  animation: quizFadeIn 0.55s ease forwards;
+}
+
+.section-quiz.is-exiting {
+  animation: quizFadeOut 0.45s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes quizFadeIn {
+  from { opacity: 0; transform: scale(1.015); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes quizFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Portal → quiz: el portal sale hacia arriba */
+.section-portal.is-exiting {
+  animation: portalExit 0.52s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes portalExit {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-28px); }
+}

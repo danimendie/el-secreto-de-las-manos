@@ -1,0 +1,927 @@
+/* ============================================================
+   components.css — El Secreto de las Manos v2
+   Botones · Cards · Badges · Glass panels · Glow
+   Animaciones de componentes · Header · Portal (Fase 1)
+   ============================================================ */
+
+
+/* ════════════════════════════════════════════════════════════
+   BOTONES
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Base compartida ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 14px var(--sp-8);
+  border-radius: var(--r-full);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    transform    var(--t-base) var(--ease-smooth),
+    box-shadow   var(--t-base) var(--ease-smooth),
+    background   var(--t-base) var(--ease-smooth),
+    border-color var(--t-base) var(--ease-smooth),
+    color        var(--t-base) var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* ── Botón primario — fondo purple con glow ── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--purple-core) 0%, var(--purple-deep) 100%);
+  border-color: rgba(196, 165, 245, 0.25);
+  color: var(--white-90);
+  box-shadow:
+    0 0 0 0 rgba(123, 71, 201, 0),
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple-core) 100%);
+  border-color: rgba(196, 165, 245, 0.50);
+  box-shadow:
+    0 0 30px rgba(123, 71, 201, 0.45),
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  transform: translateY(-2px);
+  color: var(--white);
+}
+
+/* ── Botón fantasma — borde transparente ── */
+.btn-ghost {
+  background: transparent;
+  border-color: var(--white-15);
+  color: var(--white-50);
+}
+
+.btn-ghost:hover {
+  border-color: var(--white-30);
+  color: var(--white-70);
+  background: var(--white-04);
+}
+
+/* ── Botón outline — borde gold ── */
+.btn-outline {
+  background: transparent;
+  border-color: var(--gold-faint);
+  color: rgba(220, 185, 120, 0.55);
+}
+
+.btn-outline:hover {
+  border-color: rgba(220, 185, 120, 0.45);
+  color: var(--gold);
+  box-shadow: 0 0 16px rgba(220, 185, 120, 0.08);
+}
+
+/* ── Tamaños ── */
+.btn-sm {
+  padding: 10px var(--sp-5);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+}
+
+.btn-lg {
+  padding: 18px var(--sp-10);
+  font-size: var(--text-base);
+  letter-spacing: 0.05em;
+}
+
+.btn-xl {
+  padding: 22px var(--sp-12);
+  font-size: var(--text-md);
+  letter-spacing: 0.05em;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ── Efecto glow pulsante en hover ── */
+.glow-on-hover {
+  transition:
+    transform    var(--t-base) var(--ease-smooth),
+    box-shadow   0.35s ease,
+    border-color 0.35s ease,
+    background   var(--t-base) var(--ease-smooth),
+    color        var(--t-base) var(--ease-smooth);
+}
+
+.glow-on-hover:hover {
+  box-shadow:
+    0 0 28px rgba(196, 165, 245, 0.45),
+    0 0 60px rgba(123, 71, 201, 0.25),
+    0 8px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(196, 165, 245, 0.65) !important;
+}
+
+/* ── Estado cargando ── */
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   GLASS PANELS (glassmorphism esotérico)
+   ════════════════════════════════════════════════════════════ */
+
+.glass-panel {
+  background: rgba(14, 8, 36, 0.55);
+  border: 1px solid var(--white-08);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Variante gold — para elementos destacados */
+.glass-panel-gold {
+  background: rgba(14, 8, 36, 0.50);
+  border: 1px solid var(--gold-faint);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Variante violet — para el diagnóstico y resultado */
+.glass-panel-violet {
+  background: rgba(26, 12, 94, 0.40);
+  border: 1px solid var(--violet-faint);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   CARDS BASE
+   Usadas en servicios, testimonios, FAQ
+   ════════════════════════════════════════════════════════════ */
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--white-08);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform     var(--t-base) var(--ease-smooth),
+    border-color  var(--t-base) var(--ease-smooth),
+    box-shadow    var(--t-base) var(--ease-smooth);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(196, 165, 245, 0.30);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(196, 165, 245, 0.08);
+}
+
+/* Card destacada (recomendada / highlight) */
+.card-highlight {
+  background: linear-gradient(160deg, rgba(45, 20, 120, 0.55) 0%, rgba(14, 8, 36, 0.70) 100%);
+  border-color: rgba(196, 165, 245, 0.20);
+  box-shadow: 0 0 40px rgba(123, 71, 201, 0.12);
+}
+
+.card-highlight:hover {
+  border-color: rgba(220, 185, 120, 0.40);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(123, 71, 201, 0.20);
+}
+
+/* Brillo decorativo superior en cards (::before) */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 185, 120, 0.20), transparent);
+  pointer-events: none;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   BADGES
+   ════════════════════════════════════════════════════════════ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 4px 12px;
+  border-radius: var(--r-full);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.badge-violet {
+  background: rgba(123, 71, 201, 0.18);
+  border: 1px solid rgba(123, 71, 201, 0.30);
+  color: var(--violet);
+}
+
+.badge-gold {
+  background: rgba(220, 185, 120, 0.10);
+  border: 1px solid rgba(220, 185, 120, 0.25);
+  color: var(--gold);
+}
+
+.badge-success {
+  background: rgba(50, 160, 100, 0.12);
+  border: 1px solid rgba(50, 160, 100, 0.25);
+  color: rgba(100, 210, 150, 0.90);
+}
+
+/* Badge de porcentaje (diagnóstico) — shimmer animado */
+.badge-affinity {
+  background: linear-gradient(
+    90deg,
+    rgba(123, 71, 201, 0.15) 0%,
+    rgba(196, 165, 245, 0.25) 50%,
+    rgba(123, 71, 201, 0.15) 100%
+  );
+  background-size: 200% 100%;
+  border: 1px solid rgba(196, 165, 245, 0.25);
+  color: var(--violet);
+  animation: shimmer 2.5s ease infinite;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   GLOW LAYERS (elementos de luz ambiental)
+   ════════════════════════════════════════════════════════════ */
+
+/* Glow radial genérico — posicionar con parent relative */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+.glow-orb-purple {
+  background: radial-gradient(circle, rgba(123, 71, 201, 0.35) 0%, transparent 70%);
+}
+
+.glow-orb-violet {
+  background: radial-gradient(circle, rgba(196, 165, 245, 0.20) 0%, transparent 70%);
+}
+
+.glow-orb-gold {
+  background: radial-gradient(circle, rgba(220, 185, 120, 0.18) 0%, transparent 70%);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   HEADER INTELIGENTE
+   Fases de comportamiento:
+   - Carga:      transparente, sin fondo
+   - .is-scrolled: fondo glass oscuro
+   - .is-hidden:   oculto por transform
+   - .ads-mode:    oculto por defecto
+   ════════════════════════════════════════════════════════════ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  transition:
+    transform    0.4s var(--ease-smooth),
+    background   0.4s ease,
+    backdrop-filter 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow   0.4s ease;
+  /* Transparente al inicio */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+/* Fondo glass al scrollear */
+.site-header.is-scrolled {
+  background: rgba(2, 0, 8, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--white-04);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Oculto (baja) */
+.site-header.is-hidden {
+  transform: translateY(-110%);
+}
+
+/* Modo anuncio: header invisible hasta scroll */
+.site-header.ads-mode {
+  transform: translateY(-110%);
+}
+
+/* Logo */
+.header-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--fw-regular);
+  color: var(--white-70);
+  letter-spacing: 0.02em;
+  transition: color var(--t-base) ease;
+}
+
+.header-logo:hover .logo-text {
+  color: var(--white-90);
+}
+
+/* Nav desktop */
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-regular);
+  color: var(--white-40);
+  letter-spacing: 0.03em;
+  padding: var(--sp-1) 0;
+  position: relative;
+  transition: color var(--t-fast) ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+  transition: width var(--t-base) var(--ease-smooth);
+}
+
+.nav-link:hover {
+  color: var(--white-70);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Acciones del header */
+.header-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+/* Hamburger mobile */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: var(--sp-1);
+  border-radius: var(--r-sm);
+  transition: background var(--t-fast) ease;
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background: var(--white-04);
+}
+
+.menu-line {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--white-50);
+  border-radius: 2px;
+  transition:
+    transform  var(--t-base) var(--ease-smooth),
+    opacity    var(--t-base) ease,
+    background var(--t-fast) ease;
+  transform-origin: center;
+}
+
+/* Animación X cuando el menu está abierto */
+.menu-toggle.is-active .menu-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.menu-toggle.is-active .menu-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.menu-toggle.is-active .menu-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile menu drawer */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: calc(var(--z-header) - 1);
+  background: rgba(2, 0, 8, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-8);
+  padding: var(--sp-8);
+  /* Oculto por defecto */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transition:
+    opacity    var(--t-base) var(--ease-smooth),
+    transform  var(--t-base) var(--ease-smooth);
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.mobile-nav-link {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-regular);
+  color: var(--white-50);
+  letter-spacing: 0.02em;
+  transition: color var(--t-base) ease;
+  padding: var(--sp-1) 0;
+}
+
+.mobile-nav-link:hover {
+  color: var(--white-90);
+}
+
+.mobile-menu-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  width: 100%;
+  max-width: 320px;
+}
+
+.mobile-menu-disclaimer {
+  font-size: var(--text-xs);
+  color: var(--white-30);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+/* Responsive: mostrar hamburger en mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+  .main-nav,
+  .header-actions {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   PORTAL — PANTALLA 0 (Fase 1)
+   Nota: En Fase 5 estos estilos se migran a sections.css
+   ════════════════════════════════════════════════════════════ */
+
+/* Sección completa */
+.section-portal {
+  position: relative;
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Capas de fondo ── */
+.portal-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.portal-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+/* Glow 1: violeta profundo — arriba izquierda */
+.portal-glow-1 {
+  top: -15%;
+  left: -10%;
+  width: 65%;
+  height: 65%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(26, 12, 94, 0.60) 0%,
+    rgba(45, 20, 120, 0.30) 40%,
+    transparent 70%
+  );
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+/* Glow 2: purple brillante — centro */
+.portal-glow-2 {
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 55%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(123, 71, 201, 0.12) 0%,
+    rgba(74, 34, 153, 0.08) 40%,
+    transparent 70%
+  );
+  animation: glowPulse 10s ease-in-out infinite 2s;
+}
+
+/* Glow 3: violeta claro — abajo derecha */
+.portal-glow-3 {
+  bottom: -20%;
+  right: -15%;
+  width: 55%;
+  height: 60%;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(123, 71, 201, 0.22) 0%,
+    rgba(74, 34, 153, 0.10) 40%,
+    transparent 70%
+  );
+  animation: glowPulse 12s ease-in-out infinite 4s;
+}
+
+/* ── Partículas flotantes (CSS-only) ── */
+.portal-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Partículas pequeñas — puntos de luz */
+.p-1 {
+  width: 2px; height: 2px;
+  top: 18%; left: 12%;
+  background: rgba(196, 165, 245, 0.55);
+  box-shadow: 0 0 6px rgba(196, 165, 245, 0.4);
+  animation: twinkle 5s ease-in-out infinite,
+             float 9s ease-in-out infinite;
+}
+.p-2 {
+  width: 3px; height: 3px;
+  top: 32%; right: 18%;
+  background: rgba(220, 185, 120, 0.45);
+  box-shadow: 0 0 8px rgba(220, 185, 120, 0.3);
+  animation: twinkle 7s ease-in-out infinite 1.5s,
+             float 11s ease-in-out infinite 1s;
+}
+.p-3 {
+  width: 2px; height: 2px;
+  top: 60%; left: 22%;
+  background: rgba(196, 165, 245, 0.45);
+  box-shadow: 0 0 6px rgba(196, 165, 245, 0.3);
+  animation: twinkle 6s ease-in-out infinite 0.8s,
+             float 8s ease-in-out infinite 2s;
+}
+.p-4 {
+  width: 2px; height: 2px;
+  top: 72%; right: 25%;
+  background: rgba(220, 185, 120, 0.35);
+  box-shadow: 0 0 5px rgba(220, 185, 120, 0.25);
+  animation: twinkle 9s ease-in-out infinite 3s,
+             float 13s ease-in-out infinite 0.5s;
+}
+.p-5 {
+  width: 4px; height: 4px;
+  top: 45%; left: 72%;
+  background: rgba(196, 165, 245, 0.30);
+  box-shadow: 0 0 10px rgba(196, 165, 245, 0.20);
+  animation: twinkle 8s ease-in-out infinite 2s,
+             float 10s ease-in-out infinite 3s;
+}
+.p-6 {
+  width: 2px; height: 2px;
+  top: 15%; right: 38%;
+  background: rgba(220, 185, 120, 0.40);
+  box-shadow: 0 0 6px rgba(220, 185, 120, 0.25);
+  animation: twinkle 6s ease-in-out infinite 4s,
+             float 12s ease-in-out infinite 1.5s;
+}
+.p-7 {
+  width: 3px; height: 3px;
+  top: 85%; left: 45%;
+  background: rgba(196, 165, 245, 0.25);
+  box-shadow: 0 0 8px rgba(196, 165, 245, 0.15);
+  animation: twinkle 10s ease-in-out infinite 1s,
+             float 14s ease-in-out infinite 4s;
+}
+
+/* ── Símbolo de marca ── */
+.brand-symbol {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleIn 1.4s var(--ease-smooth) 0s both;
+}
+
+.sym-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Glow detrás del símbolo */
+.sym-glow {
+  position: absolute;
+  inset: -25px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(123, 71, 201, 0.28) 0%,
+    rgba(74, 34, 153, 0.12) 45%,
+    transparent 70%
+  );
+  animation: glowPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Anillo exterior — rotación lenta */
+.sym-ring-outer {
+  transform-origin: 60px 60px;
+  animation: slowRotate 50s linear infinite;
+}
+
+/* Marcadores de brújula — pulso sutil */
+.sym-mark {
+  animation: glowPulse 5s ease-in-out infinite;
+}
+
+/* Las 3 líneas de la palma — se trazan animadas */
+.sym-line {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  /* fill: none ya está en el SVG */
+}
+
+.sym-l1 { animation: lineTrace 1.8s var(--ease-smooth) 0.8s forwards; }
+.sym-l2 { animation: lineTrace 1.8s var(--ease-smooth) 1.3s forwards; }
+.sym-l3 { animation: lineTrace 1.8s var(--ease-smooth) 1.8s forwards; }
+
+/* Estrella acento — pulsa */
+.sym-star {
+  animation: glowPulse 3s ease-in-out infinite 0.5s;
+}
+
+/* ── Texto del portal ── */
+.portal-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-5);
+  max-width: 580px;
+}
+
+.portal-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  color: var(--gold);
+  opacity: 0.60;
+}
+
+.portal-title {
+  font-family: var(--font-ritual);
+  font-size: clamp(44px, 7vw, 72px);
+  font-weight: var(--fw-light);
+  font-style: italic;
+  line-height: var(--lh-tight);
+  color: var(--white-90);
+  letter-spacing: var(--ls-tight);
+  /* Sombra de texto sutil para profundidad */
+  text-shadow:
+    0 0 40px rgba(196, 165, 245, 0.12),
+    0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.portal-subtitle {
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+  font-weight: var(--fw-light);
+  color: var(--white-40);
+  line-height: var(--lh-relaxed);
+  letter-spacing: 0.02em;
+  max-width: 420px;
+}
+
+/* ── Acciones del portal ── */
+.portal-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.portal-microcopy {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-light);
+  color: var(--white-20);
+  letter-spacing: 0.06em;
+}
+
+/* ── Indicador de scroll ── */
+.scroll-hint {
+  position: absolute;
+  bottom: var(--sp-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-above);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-hint-line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(220, 185, 120, 0.40),
+    transparent
+  );
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* ── Responsive portal ── */
+@media (max-width: 768px) {
+  .brand-symbol {
+    width: 100px;
+    height: 100px;
+  }
+  .portal-title {
+    font-size: clamp(36px, 10vw, 52px);
+  }
+  .portal-subtitle {
+    font-size: var(--text-base);
+  }
+  .portal-text {
+    gap: var(--sp-4);
+  }
+  .scroll-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-symbol {
+    width: 86px;
+    height: 86px;
+  }
+  .portal-title {
+    font-size: 38px;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   UTILIDADES DE COMPONENTES
+   ════════════════════════════════════════════════════════════ */
+
+/* Hover lift genérico */
+.hover-lift {
+  transition: transform var(--t-base) var(--ease-smooth);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Borde luminoso animado */
+.border-glow {
+  position: relative;
+}
+.border-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    transparent,
+    rgba(196, 165, 245, 0.15),
+    transparent
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--t-base) ease;
+}
+.border-glow:hover::after {
+  opacity: 1;
+}
+
+/* Checkmark con acento dorado */
+.check-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--fw-light);
+  color: var(--white-70);
+  line-height: var(--lh-snug);
+}
+.check-list li::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 10px;
+  margin-top: 4px;
+  flex-shrink: 0;
+  opacity: 0.75;
+}

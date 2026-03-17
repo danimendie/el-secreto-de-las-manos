@@ -1,0 +1,331 @@
+/* ============================================================
+   layout.css — El Secreto de las Manos v2
+   Containers · Grid · Espaciado · Breakpoints · Helpers
+   ============================================================ */
+
+
+/* ────────────────────────────────────────────────────────────
+   BREAKPOINTS
+   Referencia para uso en @media queries.
+   No hay variables CSS nativas para media queries,
+   así que los documentamos aquí como referencia.
+
+   --bp-sm:  480px   (móvil pequeño)
+   --bp-md:  768px   (tablet portrait)
+   --bp-lg: 1024px   (tablet landscape / desktop pequeño)
+   --bp-xl: 1280px   (desktop estándar)
+   --bp-2xl:1600px   (desktop grande)
+   ──────────────────────────────────────────────────────────── */
+
+
+/* ────────────────────────────────────────────────────────────
+   CONTAINERS
+   ──────────────────────────────────────────────────────────── */
+
+/* Container base — ancho máximo estándar */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--sp-6);
+}
+
+/* Container angosto — para texto y contenido centrado */
+.container-sm {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  padding-inline: var(--sp-6);
+}
+
+/* Container medio — para layouts de 2 columnas */
+.container-md {
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: var(--sp-6);
+}
+
+/* Container ancho — para layouts de 3 columnas */
+.container-lg {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: var(--sp-6);
+}
+
+/* Container full — sin máximo, solo padding lateral */
+.container-full {
+  width: 100%;
+  padding-inline: var(--sp-6);
+}
+
+@media (min-width: 768px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg {
+    padding-inline: var(--sp-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container,
+  .container-md,
+  .container-lg {
+    padding-inline: var(--sp-10);
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   SECCIONES BASE
+   Padding vertical estándar para bloques de scroll
+   ──────────────────────────────────────────────────────────── */
+.section {
+  padding-block: var(--sp-20);
+  position: relative;
+}
+
+.section-sm {
+  padding-block: var(--sp-12);
+  position: relative;
+}
+
+.section-lg {
+  padding-block: var(--sp-32);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section    { padding-block: var(--sp-12); }
+  .section-sm { padding-block: var(--sp-8); }
+  .section-lg { padding-block: var(--sp-20); }
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   GRID SYSTEM
+   Basado en CSS Grid con columnas explícitas o auto
+   ──────────────────────────────────────────────────────────── */
+
+/* Grid de 2 columnas iguales */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+}
+
+/* Grid de 3 columnas iguales */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+}
+
+/* Grid de 4 columnas iguales */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+}
+
+/* Grid auto — ajusta columnas según contenido (mínimo 280px) */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--sp-6);
+}
+
+/* Grid asimétrico — texto + visual */
+.grid-text-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-12);
+  align-items: center;
+}
+
+/* Grid que invierte orden en versiones alternadas */
+.grid-text-visual.reverse {
+  direction: rtl;
+}
+.grid-text-visual.reverse > * {
+  direction: ltr;
+}
+
+/* Responsive: colapsar grids a columna única en mobile */
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-text-visual,
+  .grid-text-visual.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .grid-text-visual {
+    gap: var(--sp-8);
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   FLEXBOX HELPERS
+   ──────────────────────────────────────────────────────────── */
+.flex         { display: flex; }
+.flex-col     { display: flex; flex-direction: column; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-start   { display: flex; align-items: center; justify-content: flex-start; }
+.flex-end     { display: flex; align-items: center; justify-content: flex-end; }
+.flex-wrap    { flex-wrap: wrap; }
+.flex-1       { flex: 1; }
+.items-start  { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end    { align-items: flex-end; }
+.gap-2  { gap: var(--sp-2); }
+.gap-3  { gap: var(--sp-3); }
+.gap-4  { gap: var(--sp-4); }
+.gap-6  { gap: var(--sp-6); }
+.gap-8  { gap: var(--sp-8); }
+.gap-10 { gap: var(--sp-10); }
+
+
+/* ────────────────────────────────────────────────────────────
+   SPACING HELPERS
+   Margin y padding utilitarios
+   ──────────────────────────────────────────────────────────── */
+
+/* Margin top */
+.mt-0  { margin-top: 0; }
+.mt-2  { margin-top: var(--sp-2); }
+.mt-3  { margin-top: var(--sp-3); }
+.mt-4  { margin-top: var(--sp-4); }
+.mt-5  { margin-top: var(--sp-5); }
+.mt-6  { margin-top: var(--sp-6); }
+.mt-8  { margin-top: var(--sp-8); }
+.mt-10 { margin-top: var(--sp-10); }
+.mt-12 { margin-top: var(--sp-12); }
+
+/* Margin bottom */
+.mb-0  { margin-bottom: 0; }
+.mb-2  { margin-bottom: var(--sp-2); }
+.mb-3  { margin-bottom: var(--sp-3); }
+.mb-4  { margin-bottom: var(--sp-4); }
+.mb-5  { margin-bottom: var(--sp-5); }
+.mb-6  { margin-bottom: var(--sp-6); }
+.mb-8  { margin-bottom: var(--sp-8); }
+.mb-10 { margin-bottom: var(--sp-10); }
+
+/* Margin horizontal auto (centrado) */
+.mx-auto { margin-inline: auto; }
+
+/* Padding */
+.p-4  { padding: var(--sp-4); }
+.p-6  { padding: var(--sp-6); }
+.p-8  { padding: var(--sp-8); }
+.px-4 { padding-inline: var(--sp-4); }
+.px-6 { padding-inline: var(--sp-6); }
+.py-4 { padding-block: var(--sp-4); }
+.py-6 { padding-block: var(--sp-6); }
+.py-8 { padding-block: var(--sp-8); }
+
+
+/* ────────────────────────────────────────────────────────────
+   TEXT ALIGNMENT
+   ──────────────────────────────────────────────────────────── */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+
+/* ────────────────────────────────────────────────────────────
+   DISPLAY / VISIBILITY HELPERS
+   ──────────────────────────────────────────────────────────── */
+.hidden       { display: none !important; }
+.invisible    { visibility: hidden; }
+.block        { display: block; }
+.inline-block { display: inline-block; }
+
+/* Show/hide por breakpoint */
+.d-mobile-only  { display: none; }
+.d-desktop-only { display: block; }
+
+@media (max-width: 768px) {
+  .d-mobile-only  { display: block; }
+  .d-desktop-only { display: none; }
+  .d-mobile-none  { display: none; }
+}
+@media (min-width: 769px) {
+  .d-mobile-none { display: block; }
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   POSICIONAMIENTO
+   ──────────────────────────────────────────────────────────── */
+.relative  { position: relative; }
+.absolute  { position: absolute; }
+.fixed     { position: fixed; }
+.sticky    { position: sticky; }
+.inset-0   { inset: 0; }
+.overflow-hidden { overflow: hidden; }
+.overflow-x-hidden { overflow-x: hidden; }
+
+/* Full width */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+.max-w-sm  { max-width: 480px; }
+.max-w-md  { max-width: 680px; }
+.max-w-lg  { max-width: 900px; }
+
+
+/* ────────────────────────────────────────────────────────────
+   HEADER LAYOUT
+   ──────────────────────────────────────────────────────────── */
+.header-container {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  height: 72px;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    height: 60px;
+    padding-inline: var(--sp-5);
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   PORTAL LAYOUT
+   ──────────────────────────────────────────────────────────── */
+.portal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--sp-8);
+  min-height: 100dvh;
+  min-height: 100vh; /* fallback */
+  padding-block: var(--sp-16);
+  position: relative;
+  z-index: var(--z-above);
+}
+
+@media (max-width: 768px) {
+  .portal-container {
+    gap: var(--sp-6);
+    padding-block: var(--sp-12);
+  }
+}
