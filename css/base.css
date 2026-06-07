@@ -10,47 +10,39 @@
    ──────────────────────────────────────────────────────────── */
 :root {
 
-  /* ── Colores de fondo (de más oscuro a más claro) ── */
-  --bg-void:      #020008;   /* negro casi puro — fondo base */
-  --bg-deep:      #070414;   /* fondo secundario */
-  --bg-surface:   #0e0824;   /* superficie de cards */
-  --bg-elevated:  #16103a;   /* elementos elevados */
-  --bg-overlay:   rgba(2, 0, 8, 0.85); /* overlays */
+  /* ── Fondos (claro) ── */
+  --bg-base:    #FBF9F5;   /* hueso, fondo principal */
+  --bg-tint:    #F7F1EA;   /* secciones alternas */
+  --bg-strip:   #F3EDE3;   /* tira de confianza */
+  --bg-card:    #FFFFFF;   /* tarjetas */
+  --bg-overlay: rgba(36, 31, 43, 0.55); /* overlays de modal */
 
-  /* ── Púrpuras (paleta primaria) ── */
-  --purple-abyss: #1a0c5e;   /* fondo de hero sections */
-  --purple-deep:  #2d1478;   /* fondos de cards */
-  --purple-mid:   #4a2299;   /* bordes activos */
-  --purple-core:  #7B47C9;   /* color de marca principal */
-  --purple-light: #9b6de0;   /* hover states */
-
-  /* ── Violetas (acento claro) ── */
-  --violet:       #c4a5f5;   /* texto acento, checkmarks */
-  --violet-faint: rgba(196, 165, 245, 0.15);
-  --violet-glow:  rgba(196, 165, 245, 0.08);
+  /* ── Tinta de marca (ciruela) ── */
+  --plum:       #7A3B6B;
+  --plum-deep:  #5E2C53;
+  --plum-soft:  rgba(122, 59, 107, 0.10);
 
   /* ── Dorado (acento secundario) ── */
-  --gold:         #DCB978;   /* acento dorado */
-  --gold-light:   #e8cc97;   /* dorado claro hover */
-  --gold-faint:   rgba(220, 185, 120, 0.15);
-  --gold-whisper: rgba(220, 185, 120, 0.07);
+  --gold:       #B8923D;
+  --gold-soft:  rgba(184, 146, 61, 0.12);
 
-  /* ── Blancos funcionales ── */
-  --white:        #ffffff;
-  --white-90:     rgba(255, 255, 255, 0.90);
-  --white-70:     rgba(255, 255, 255, 0.70);
-  --white-50:     rgba(255, 255, 255, 0.50);
-  --white-40:     rgba(255, 255, 255, 0.40);
-  --white-30:     rgba(255, 255, 255, 0.30);
-  --white-20:     rgba(255, 255, 255, 0.20);
-  --white-15:     rgba(255, 255, 255, 0.15);
-  --white-08:     rgba(255, 255, 255, 0.08);
-  --white-04:     rgba(255, 255, 255, 0.04);
+  /* ── WhatsApp ── */
+  --wa-green:   #25D366;
+  --wa-green-d: #1da851;
 
-  /* ── Tipografías ── */
-  --font-ritual:  'Cormorant Garamond', Georgia, serif;  /* ritual, quiz, diagnóstico */
-  --font-display: 'Playfair Display', Georgia, serif;    /* títulos de sección */
-  --font-ui:      'Inter', -apple-system, sans-serif;    /* UI funcional */
+  /* ── Texto ── */
+  --ink:        #241F2B;
+  --ink-soft:   #5C5564;
+  --ink-faint:  #9B94A3;
+
+  /* ── Líneas / bordes ── */
+  --line:       #EEE4D8;
+  --line-soft:  rgba(36, 31, 43, 0.08);
+
+  /* ── Tipografías (sin cambios) ── */
+  --font-ritual:  'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ui:      'Inter', -apple-system, sans-serif;
 
   /* ── Escala tipográfica ── */
   --text-xs:   11px;
@@ -108,12 +100,11 @@
   --r-full: 9999px;
 
   /* ── Sombras ── */
-  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md:  0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-lg:  0 8px 40px rgba(0, 0, 0, 0.5);
-  --shadow-xl:  0 16px 60px rgba(0, 0, 0, 0.6);
-  --shadow-glow-purple: 0 0 30px rgba(123, 71, 201, 0.4);
-  --shadow-glow-gold:   0 0 20px rgba(220, 185, 120, 0.2);
+  --shadow-sm:  0 1px 4px rgba(36,31,43,0.06);
+  --shadow-md:  0 6px 18px rgba(36,31,43,0.08);
+  --shadow-lg:  0 14px 40px rgba(36,31,43,0.10);
+  --shadow-glow-plum: 0 8px 24px rgba(122,59,107,0.25);
+  --shadow-wa:  0 8px 24px rgba(37,211,102,0.33);
 
   /* ── Transiciones ── */
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);  /* spring suave */
@@ -219,8 +210,8 @@ body {
   font-family: var(--font-ui);
   font-size: var(--text-base);
   font-weight: var(--fw-regular);
-  color: var(--white-70);
-  background-color: var(--bg-void);
+  background-color: var(--bg-base);
+  color: var(--ink);
 }
 
 
