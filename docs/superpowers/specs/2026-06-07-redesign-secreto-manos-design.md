@@ -120,9 +120,21 @@ en desktop.
 
 - Mecanismo existente: botones con clase `js-wa-trigger` y atributo `data-wa-service`
   (`default` / `tarot` / `manos`). Se mantiene.
-- **Input requerido del cliente:** número de WhatsApp real y, opcionalmente, mensajes
-  pre-escritos por servicio (ej. tarot: *"Hola, quiero una lectura de Tarot"*).
-- Link `https://wa.me/<numero>?text=<mensaje-encodeado>`.
+- **Número de WhatsApp:** `595992158077` (Paraguay).
+- Link `https://wa.me/595992158077?text=<mensaje-encodeado>`.
+- Mensajes pre-escritos por servicio:
+  - `default`: "Hola, vi la web y quiero una lectura ✨"
+  - `tarot`: "Hola, quiero una lectura de Tarot 🔮"
+  - `manos`: "Hola, quiero una lectura de Manos ✋"
+
+## 7b. Precio y oferta (ancla de conversión)
+
+- Precio vigente: **80.000 Gs** (guaraníes) para Tarot y para Manos.
+- Precio "original": **120.000 Gs**, mostrado tachado como ancla de descuento permanente
+  ("siempre en oferta").
+- Presentación: `<s>120.000 Gs</s> 80.000 Gs` con etiqueta tipo "Oferta" / "−33%".
+- Dónde aparece: en cada bloque de lectura (Tarot y Manos) cerca de su CTA, y opcionalmente
+  un recordatorio sutil en el CTA final. No en el hero (el hero se mantiene limpio).
 
 ## 8. Fuera de alcance (YAGNI)
 
