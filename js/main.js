@@ -16,16 +16,9 @@ const CONFIG = {
   WHATSAPP_NUMBER: '595992158077', // Paraguay: 595 + número sin 0 inicial
 
   MESSAGES: {
-    tarot:
-      'Hola, completé el diagnóstico y me recomendó la Lectura de Tarot. Me gustaría reservar. ✨',
-    manos:
-      'Hola, completé el diagnóstico y me recomendó la Lectura de Manos. Me gustaría reservar. 🌿',
-    tarot_gift:
-      'Hola, completé el diagnóstico, me recomendó la Lectura de Tarot y vi que puedo obtener la Lectura de Manos de regalo si reservo ahora. Me gustaría coordinar. ✨',
-    manos_gift:
-      'Hola, completé el diagnóstico, me recomendó la Lectura de Manos y vi que puedo obtener la Lectura de Tarot de regalo si reservo ahora. Me gustaría coordinar. 🌿',
-    default:
-      'Hola, me gustaría reservar una lectura. ✨',
+    tarot:   'Hola, quiero una lectura de Tarot 🔮',
+    manos:   'Hola, quiero una lectura de Manos ✋',
+    default: 'Hola, vi la web y quiero una lectura ✨',
   },
 
   HEADER_SCROLL_THRESHOLD: 80,   // px: header empieza a oscurecer
