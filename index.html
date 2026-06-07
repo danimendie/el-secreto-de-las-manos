@@ -248,7 +248,181 @@
         </div>
       </div>
     </section>
-    <!-- bloque 6: test opcional (Task 9) -->
+    <!-- bloque 6: test opcional -->
+    <section class="section test-opcional" aria-label="Test opcional">
+      <div class="container">
+        <div class="test-card" data-reveal>
+          <p class="test-q">¿No sabés cuál elegir?</p>
+          <p class="test-sub">Hacé el test de 30 segundos y te decimos qué lectura va con vos.</p>
+          <button class="btn btn-outline btn-lg" id="open-quiz">Hacer el test</button>
+          <p class="test-note">Opcional · No necesitás registrarte</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz (lanzado desde bloque 6) -->
+    <section id="quiz" class="section-quiz" aria-label="Diagnóstico de lecturas" hidden>
+
+      <!-- Capas de fondo -->
+      <div class="quiz-bg" aria-hidden="true">
+        <div class="quiz-glow quiz-glow-1"></div>
+        <div class="quiz-glow quiz-glow-2"></div>
+      </div>
+
+      <!-- Barra de progreso con lunas -->
+      <div class="quiz-progress"
+           role="progressbar"
+           aria-valuenow="0"
+           aria-valuemin="0"
+           aria-valuemax="5"
+           aria-label="Progreso del diagnóstico">
+        <div class="progress-moons" aria-hidden="true">
+          <span class="moon moon-1"></span>
+          <span class="moon moon-2"></span>
+          <span class="moon moon-3"></span>
+          <span class="moon moon-4"></span>
+          <span class="moon moon-5"></span>
+        </div>
+        <div class="progress-bar-track" aria-hidden="true">
+          <div class="progress-bar-fill" id="quiz-progress-fill"></div>
+        </div>
+        <span class="progress-label" id="quiz-progress-label" aria-live="polite">
+          Pregunta 1 de 5
+        </span>
+      </div>
+
+      <!-- Slides: intro + preguntas dinámicas -->
+      <div class="quiz-slides" id="quiz-slides">
+
+        <!-- Slide intro (estático en HTML) -->
+        <div class="quiz-slide quiz-intro is-hidden" id="quiz-intro">
+          <div class="quiz-container">
+            <div class="quiz-intro-content">
+
+              <div class="quiz-intro-symbol" aria-hidden="true">
+                <i class="ph ph-sparkle"></i>
+              </div>
+
+              <h2 class="quiz-intro-title">Tu diagnóstico gratuito</h2>
+              <p class="quiz-intro-subtitle">
+                5 preguntas para descubrir qué lectura conecta con lo que estás atravesando ahora.
+              </p>
+
+              <button class="btn btn-primary btn-lg glow-on-hover" id="quiz-start-btn">
+                Comenzar
+              </button>
+
+              <p class="quiz-intro-disclaimer">Sin registrarte · Sin compromiso · 2 minutos</p>
+
+            </div>
+          </div>
+        </div>
+        <!-- /quiz-intro -->
+
+        <!-- Preguntas renderizadas dinámicamente por quiz.js -->
+        <div id="quiz-questions-wrapper" class="quiz-questions-wrapper"></div>
+
+      </div>
+      <!-- /quiz-slides -->
+
+    </section>
+    <!-- /section-quiz -->
+
+    <!-- Loader ritual -->
+    <section id="loader" class="section-loader" aria-label="Analizando tu diagnóstico" hidden>
+
+      <!-- Capas de fondo ambientales -->
+      <div class="loader-bg" aria-hidden="true">
+        <div class="loader-glow loader-glow-1"></div>
+        <div class="loader-glow loader-glow-2"></div>
+      </div>
+
+      <div class="loader-inner">
+
+        <!-- Símbolo animado con líneas de palma -->
+        <div class="loader-symbol" aria-hidden="true">
+          <div class="loader-symbol-pulse"></div>
+          <svg class="loader-sym-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="34" stroke="rgba(122,59,107,0.09)" stroke-width="0.5"/>
+            <circle cx="40" cy="40" r="22" fill="rgba(122,59,107,0.05)"/>
+            <path class="loader-line loader-l1" d="M16,32 Q28,27 40,32 Q52,37 64,30" stroke="rgba(122,59,107,0.60)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            <path class="loader-line loader-l2" d="M15,42 Q28,37 40,42 Q52,47 63,40" stroke="rgba(122,59,107,0.40)" stroke-width="0.9" stroke-linecap="round" fill="none"/>
+            <path class="loader-line loader-l3" d="M20,25 Q17,35 18,46 Q19,55 26,62" stroke="rgba(122,59,107,0.25)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+            <path class="loader-star" d="M40,17 L41.6,21 L45,19.5 L42.6,23 L45,26 L41.5,24.3 L40,28 L38.5,24.3 L35,26 L37.4,23 L35,19.5 L38.4,21 Z" fill="rgba(184,146,61,0.50)"/>
+          </svg>
+        </div>
+
+        <!-- Frase ritual (actualizada por result.js) -->
+        <p class="loader-phrase" id="loader-phrase">Leyendo tus respuestas…</p>
+
+        <!-- Puntos de ritmo -->
+        <div class="loader-dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+      </div>
+    </section>
+    <!-- /section-loader -->
+
+    <!-- Resultado del diagnóstico -->
+    <section id="section-result" class="section-result" aria-label="Tu diagnóstico" hidden>
+
+      <!-- Background ambiental -->
+      <div class="result-bg" aria-hidden="true">
+        <div class="result-glow result-glow-1"></div>
+        <div class="result-glow result-glow-2"></div>
+      </div>
+
+      <!-- Área scrollable -->
+      <div class="result-scroll">
+        <div class="result-inner">
+
+          <!-- HEADER: eyebrow + título + badge -->
+          <div class="result-reveal-block" id="result-header">
+            <span class="eyebrow result-eyebrow" id="result-eyebrow"></span>
+            <h2 class="result-title" id="result-title"></h2>
+            <div class="result-badge-row">
+              <span class="badge badge-affinity" id="result-affinity-badge"></span>
+            </div>
+          </div>
+
+          <!-- PÁRRAFO 1 -->
+          <p class="result-para result-reveal-block" id="result-para-1"></p>
+
+          <!-- PÁRRAFO 2 -->
+          <p class="result-para result-para-secondary result-reveal-block" id="result-para-2"></p>
+
+          <!-- PÁRRAFO 3 -->
+          <p class="result-reveal-block" id="result-para-3"></p>
+
+          <!-- CHECKLIST -->
+          <div class="result-checklist-wrapper result-reveal-block" id="result-checklist-wrapper">
+            <span class="result-checklist-label">Lo que vas a descubrir en tu lectura:</span>
+            <ul class="check-list result-checklist" id="result-checklist"></ul>
+          </div>
+
+          <!-- CTA PRINCIPAL -->
+          <div class="result-reveal-block" id="result-cta-wrapper">
+            <button
+              class="btn btn-wa btn-lg js-wa-trigger"
+              id="result-cta"
+              data-wa-service=""
+              aria-label="Reservar lectura por WhatsApp">
+              Reservar mi lectura
+            </button>
+            <p class="result-cta-disclaimer">Sin videollamada · A tu ritmo · Por WhatsApp</p>
+          </div>
+
+        </div>
+        <!-- /result-inner -->
+      </div>
+      <!-- /result-scroll -->
+
+    </section>
+    <!-- /section-result -->
+
     <!-- bloque 7: testimonios (Task 10) -->
     <!-- bloque 8: faq + cta final (Task 11) -->
   </main>

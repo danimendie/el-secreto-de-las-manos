@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeader();
   setupMobileMenu();
   setupWhatsAppTriggers();
-  setupPortalCTA();
+  setupQuizTrigger();
   detectAdsMode();
 });
 
@@ -180,18 +180,14 @@ function setupWhatsAppTriggers() {
 
 
 /* ─────────────────────────────────────────────────────────────
-   PORTAL CTA
-   En Fase 1: scroll suave hacia la primera sección disponible.
-   En Fase 2: se reemplaza para activar el quiz.
+   QUIZ TRIGGER
+   Lanza el quiz desde el bloque de test opcional (bloque 6).
    ───────────────────────────────────────────────────────────── */
-function setupPortalCTA() {
-  const cta = document.getElementById('portal-cta');
-  if (!cta) return;
-
-  cta.addEventListener('click', () => {
-    if (typeof window.activateQuiz === 'function') {
-      window.activateQuiz();
-    }
+function setupQuizTrigger() {
+  const btn = document.getElementById('open-quiz');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    if (typeof window.activateQuiz === 'function') window.activateQuiz();
   });
 }
 
@@ -201,7 +197,6 @@ function setupPortalCTA() {
    Si ?src=ads está en la URL:
    - Agrega data-mode="ads" al <html>
    - El header empieza oculto
-   - En Fase 2: el quiz se activará automáticamente
    ───────────────────────────────────────────────────────────── */
 function detectAdsMode() {
   const params = new URLSearchParams(window.location.search);
@@ -214,12 +209,7 @@ function detectAdsMode() {
     header.classList.add('ads-mode');
   }
 
-  // Fase 2: activar quiz automáticamente en modo ads
-  setTimeout(() => {
-    if (typeof window.activateQuiz === 'function') {
-      window.activateQuiz();
-    }
-  }, 500);
+  // En el rediseño, los ads caen al hero — el quiz es opcional desde bloque 6.
 }
 
 
