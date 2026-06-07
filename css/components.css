@@ -902,31 +902,6 @@
   opacity: 1;
 }
 
-/* Checkmark con acento dorado (paleta clara) */
-.check-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-}
-.check-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-3);
-  font-family: var(--font-ui);
-  font-size: var(--text-base);
-  font-weight: var(--fw-light);
-  color: var(--ink-soft);
-  line-height: var(--lh-snug);
-}
-.check-list li::before {
-  content: '✦';
-  color: var(--gold);
-  font-size: 10px;
-  margin-top: 4px;
-  flex-shrink: 0;
-  opacity: 0.9;
-}
-
 
 /* ════════════════════════════════════════════════════════════
    TAROT MODAL (paleta clara)

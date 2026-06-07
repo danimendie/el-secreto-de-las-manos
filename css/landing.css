@@ -164,3 +164,140 @@
 .hand-explorer { width: 100%; max-width: 320px; margin: 0 auto; }
 .hand-image-wrapper { position: relative; }
 .hand-image-wrapper svg { width: 100%; height: auto; display: block; }
+
+
+/* HAND EXPLORER — hotspots (portado de sections.css) */
+
+.hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Posiciones sobre el SVG */
+.hs-corazon { top: 55%; left: 54%; }
+.hs-cabeza  { top: 63%; left: 52%; }
+.hs-vida    { top: 67%; left: 33%; }
+
+.hs-pulse {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(122, 59, 107, 0.15);
+  border: 1.5px solid var(--plum);
+  cursor: pointer;
+  position: relative;
+  animation: hsPulse 2.5s ease-in-out infinite;
+  transition: background 0.2s, border-color 0.2s;
+}
+.hs-pulse:hover,
+.hotspot.is-active .hs-pulse {
+  background: rgba(122, 59, 107, 0.28);
+  border-color: var(--plum-deep);
+}
+
+@keyframes hsPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(122, 59, 107, 0.45); }
+  60%  { box-shadow: 0 0 0 8px rgba(122, 59, 107, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(122, 59, 107, 0); }
+}
+
+/* Cada hotspot tiene su propio delay para no pulsar sincronizados */
+.hs-corazon .hs-pulse { animation-delay: 0s; }
+.hs-cabeza  .hs-pulse { animation-delay: 0.8s; }
+.hs-vida    .hs-pulse { animation-delay: 1.6s; }
+
+/* Tooltips (default: aparece arriba centrado) */
+.hs-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  width: 150px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm, 8px);
+  padding: 10px 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  box-shadow: var(--shadow-md);
+}
+.hotspot.is-active .hs-tooltip,
+.hotspot:hover     .hs-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Tooltip derecho (para hs-vida, que está al borde izquierdo) */
+.hs-tooltip-right {
+  left: calc(100% + 10px);
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%) translateX(-6px);
+  width: 146px;
+}
+.hotspot.is-active .hs-tooltip-right,
+.hotspot:hover     .hs-tooltip-right {
+  transform: translateY(-50%) translateX(0);
+}
+
+.hs-tooltip h4 {
+  font-family: var(--font-ritual);
+  font-size: 13px;
+  color: var(--plum);
+  margin: 0 0 4px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+.hs-tooltip p {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile: reducir dimensiones del wrapper (alineado con hand-explorer.js) */
+@media (max-width: 768px) {
+  .hand-explorer,
+  .hand-image-wrapper,
+  .hand-image-wrapper svg {
+    width: 180px;
+    height: 218px;
+  }
+}
+
+/* Mobile pequeño: tooltip de hs-vida se redirige hacia arriba */
+@media (max-width: 480px) {
+  .hs-vida .hs-tooltip-right {
+    left: 0;
+    right: auto;
+    bottom: calc(100% + 10px);
+    top: auto;
+    width: 130px;
+    transform: translateY(6px);
+  }
+  .hotspot.is-active .hs-vida .hs-tooltip-right,
+  .hotspot:hover     .hs-vida .hs-tooltip-right {
+    transform: translateY(0);
+  }
+}
+
+
+/* TAROT DECK — instruccion y pie (portado de sections.css) */
+
+.tarot-instruction {
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+  margin-bottom: var(--sp-3);
+  font-family: var(--font-ritual);
+  font-style: italic;
+  font-weight: 300;
+  text-align: center;
+  transition: opacity 0.8s ease;
+  margin: 0 0 var(--sp-3);
+  opacity: 0;
+}
+.tarot-instruction.visible { opacity: 1; }
