@@ -76,17 +76,18 @@
   background: var(--white-04);
 }
 
-/* ── Botón outline — borde gold ── */
+/* ── Botón outline — borde ciruela (paleta clara) ── */
 .btn-outline {
   background: transparent;
-  border-color: var(--gold-faint);
-  color: rgba(220, 185, 120, 0.55);
+  border-color: var(--plum);
+  color: var(--plum);
 }
 
 .btn-outline:hover {
-  border-color: rgba(220, 185, 120, 0.45);
-  color: var(--gold);
-  box-shadow: 0 0 16px rgba(220, 185, 120, 0.08);
+  background: var(--plum-soft);
+  border-color: var(--plum-deep);
+  color: var(--plum-deep);
+  box-shadow: none;
 }
 
 /* ── Tamaños ── */
@@ -901,7 +902,7 @@
   opacity: 1;
 }
 
-/* Checkmark con acento dorado */
+/* Checkmark con acento dorado (paleta clara) */
 .check-list {
   display: flex;
   flex-direction: column;
@@ -914,7 +915,7 @@
   font-family: var(--font-ui);
   font-size: var(--text-base);
   font-weight: var(--fw-light);
-  color: var(--white-70);
+  color: var(--ink-soft);
   line-height: var(--lh-snug);
 }
 .check-list li::before {
@@ -923,5 +924,194 @@
   font-size: 10px;
   margin-top: 4px;
   flex-shrink: 0;
-  opacity: 0.75;
+  opacity: 0.9;
 }
+
+
+/* ════════════════════════════════════════════════════════════
+   TAROT MODAL (paleta clara)
+   deck.js usa: #tarot-modal, #modal-img, #modal-name,
+   #modal-keywords, #modal-meaning, #modal-close, #modal-otra
+   ════════════════════════════════════════════════════════════ */
+
+.tarot-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 900);
+  background: var(--bg-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-base) ease;
+}
+
+.tarot-modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.tarot-modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl, 20px);
+  box-shadow: var(--shadow-lg);
+  padding: var(--sp-8);
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.tarot-modal-close {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-faint);
+  font-size: var(--text-md);
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: var(--r-sm);
+  transition: color var(--t-fast);
+}
+.tarot-modal-close:hover { color: var(--ink); }
+
+.tarot-modal-card img {
+  width: 140px;
+  height: auto;
+  border-radius: var(--r-base);
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+.tarot-modal-text { text-align: center; }
+
+.tarot-modal-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--ink);
+  margin-bottom: var(--sp-2);
+}
+
+.tarot-modal-keywords {
+  font-size: var(--text-sm);
+  color: var(--gold);
+  letter-spacing: var(--ls-wide);
+  margin-bottom: var(--sp-3);
+}
+
+.tarot-modal-meaning {
+  color: var(--ink-soft);
+  font-size: var(--text-base);
+  line-height: var(--lh-relaxed);
+}
+
+.tarot-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  justify-content: center;
+  margin-top: var(--sp-2);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   DECK DE TAROT (paleta clara)
+   deck.js construye .deck-card > .card-inner > .card-face
+   ════════════════════════════════════════════════════════════ */
+
+.deck-stage {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.deck-card {
+  position: absolute;
+  width: 80px;
+  height: 128px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(40px) scale(0.92);
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    transform var(--t-base) var(--ease-smooth),
+    opacity   var(--t-base) ease,
+    box-shadow var(--t-base) ease;
+  border-radius: var(--r-base);
+}
+
+.deck-card.spread {
+  opacity: 1;
+}
+
+.deck-card.dimmed {
+  opacity: 0.3;
+  filter: saturate(0.4);
+}
+
+.deck-card.chosen {
+  transform: translate(-50%, -60%) scale(1.08) !important;
+  z-index: 20 !important;
+  box-shadow: var(--shadow-glow-plum);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.card-face {
+  width: 100%;
+  height: 100%;
+  background: var(--plum);
+  border-radius: inherit;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.card-ornament {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.card-ornament svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card-star {
+  position: absolute;
+  font-size: 6px;
+  color: rgba(255,255,255,0.35);
+  animation: twinkle var(--dur, 5s) ease-in-out infinite var(--delay, 0s);
+  pointer-events: none;
+}
+
+.card-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(255,255,255,0.18);
+  border-style: solid;
+}
+.card-corner.tl { top: 6px;  left: 6px;  border-width: 1px 0 0 1px; }
+.card-corner.tr { top: 6px;  right: 6px; border-width: 1px 1px 0 0; }
+.card-corner.bl { bottom: 6px; left: 6px;  border-width: 0 0 1px 1px; }
+.card-corner.br { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }

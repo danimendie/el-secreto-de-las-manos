@@ -127,7 +127,126 @@
       </div>
     </section>
     <!-- bloque 4: cómo funciona (Task 7) -->
+    <section id="como-funciona" class="section section-tint proceso" aria-label="Cómo funciona">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="eyebrow gold">Cómo funciona</span>
+          <h2 class="section-title">Simple, personal, a tu ritmo</h2>
+        </div>
+        <div class="proceso-steps" data-reveal>
+          <div class="proceso-step"><span class="proceso-num">1</span><h3>Nos contás tu duda</h3><p>Por WhatsApp, lo que estás atravesando: amor, una decisión, lo que sea.</p></div>
+          <div class="proceso-step"><span class="proceso-num">2</span><h3>Hacemos tu lectura</h3><p>Una lectura de Tarot personal, pensada para tu situación.</p></div>
+          <div class="proceso-step"><span class="proceso-num">3</span><h3>La recibís por WhatsApp</h3><p>En audio o texto. La escuchás o leés cuando quieras, las veces que quieras.</p></div>
+        </div>
+      </div>
+    </section>
     <!-- bloque 5: lecturas (Task 8) -->
+    <section id="lecturas" class="section lecturas" aria-label="Las lecturas">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="eyebrow gold">Las lecturas</span>
+          <h2 class="section-title">Tarot, y también Manos</h2>
+        </div>
+
+        <!-- TAROT (estrella) -->
+        <div class="reading-block" data-reveal>
+          <div class="reading-visual">
+            <div class="tarot-deck-wrapper" id="tarot-deck-visual">
+              <p class="tarot-hint">— Elegí una carta y descubrí qué energía quiere hablarte hoy —</p>
+              <div class="deck-stage" id="deck-stage"></div>
+              <div class="tarot-bottom">
+                <button class="btn btn-outline btn-sm" id="tarot-reshuffle"><i class="ph-bold ph-arrows-left-right"></i> Barajar de nuevo</button>
+              </div>
+            </div>
+          </div>
+          <div class="reading-text">
+            <span class="eyebrow plum">Lectura de Tarot</span>
+            <h3 class="reading-title">El espejo de lo que estás viviendo</h3>
+            <p class="reading-desc">El Tarot no predice: ilumina. Cada carta refleja una energía de tu situación y te ayuda a ver con claridad lo que desde adentro cuesta nombrar.</p>
+            <ul class="check-list"><li>Ideal para el amor, decisiones y encrucijadas</li><li>Claridad sobre vínculos, trabajo o tu momento</li><li>Una perspectiva externa que te devuelve el centro</li></ul>
+            <div class="price"><span class="price-old">120.000 Gs</span><span class="price-now">80.000 Gs</span><span class="price-badge">Oferta</span></div>
+            <button class="btn btn-wa btn-lg js-wa-trigger" data-wa-service="tarot">Reservar lectura de Tarot</button>
+          </div>
+        </div>
+
+        <!-- MANOS (secundaria) -->
+        <div class="reading-block reading-block-reverse" data-reveal>
+          <div class="reading-visual">
+            <!-- Explorador de mano interactivo — hand-explorer.js -->
+            <div class="hand-explorer" id="hand-explorer-visual">
+              <div class="hand-image-wrapper">
+                <svg viewBox="0 0 220 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- Palma -->
+                  <ellipse cx="110" cy="210" rx="62" ry="72"
+                    fill="rgba(122,59,107,0.07)" stroke="rgba(122,59,107,0.20)" stroke-width="1.2"/>
+                  <!-- Pulgar -->
+                  <ellipse cx="46" cy="180" rx="18" ry="30"
+                    fill="rgba(122,59,107,0.05)" stroke="rgba(122,59,107,0.15)" stroke-width="1"
+                    transform="rotate(-20 46 180)"/>
+                  <!-- Índice -->
+                  <rect x="62" y="90" width="22" height="85" rx="11"
+                    fill="rgba(122,59,107,0.05)" stroke="rgba(122,59,107,0.15)" stroke-width="1"/>
+                  <!-- Medio -->
+                  <rect x="90" y="75" width="22" height="98" rx="11"
+                    fill="rgba(122,59,107,0.05)" stroke="rgba(122,59,107,0.15)" stroke-width="1"/>
+                  <!-- Anular -->
+                  <rect x="118" y="82" width="22" height="91" rx="11"
+                    fill="rgba(122,59,107,0.05)" stroke="rgba(122,59,107,0.15)" stroke-width="1"/>
+                  <!-- Meñique -->
+                  <rect x="146" y="102" width="18" height="72" rx="9"
+                    fill="rgba(122,59,107,0.05)" stroke="rgba(122,59,107,0.15)" stroke-width="1"/>
+                  <!-- Línea del corazón -->
+                  <path d="M62,170 Q90,158 120,165 Q148,172 168,158"
+                    stroke="rgba(122,59,107,0.55)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+                  <!-- Línea de la cabeza -->
+                  <path d="M60,192 Q90,180 118,188 Q148,196 166,182"
+                    stroke="rgba(122,59,107,0.35)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+                  <!-- Línea de la vida -->
+                  <path d="M76,155 Q68,178 68,200 Q68,222 78,240"
+                    stroke="rgba(184,146,61,0.55)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                </svg>
+
+                <!-- Hotspot: Línea del corazón -->
+                <div class="hotspot hs-corazon">
+                  <button class="hs-pulse js-hs-btn" aria-label="Línea del corazón"></button>
+                  <div class="hs-tooltip">
+                    <h4>Línea del corazón</h4>
+                    <p>Habla de tu forma de amar y abrirte emocionalmente.</p>
+                  </div>
+                </div>
+
+                <!-- Hotspot: Línea de la cabeza -->
+                <div class="hotspot hs-cabeza">
+                  <button class="hs-pulse js-hs-btn" aria-label="Línea de la cabeza"></button>
+                  <div class="hs-tooltip">
+                    <h4>Línea de la cabeza</h4>
+                    <p>Refleja tu mente y cómo procesás lo que vivís.</p>
+                  </div>
+                </div>
+
+                <!-- Hotspot: Línea de la vida -->
+                <div class="hotspot hs-vida">
+                  <button class="hs-pulse js-hs-btn" aria-label="Línea de la vida"></button>
+                  <div class="hs-tooltip hs-tooltip-right">
+                    <h4>Línea de la vida</h4>
+                    <p>Fuerza vital, cambios y etapas importantes.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="reading-text">
+            <span class="eyebrow plum">Lectura de Manos</span>
+            <h3 class="reading-title">El mapa que traés desde siempre</h3>
+            <p class="reading-desc">Las líneas de la palma revelan cómo procesás la vida: tus patrones emocionales, tu forma de decidir, tu vínculo con el tiempo.</p>
+            <ul class="check-list"><li>Patrones de carácter, emoción y pensamiento</li><li>Cómo te relacionás con el cambio y el amor</li><li>Una lectura sobre quién sos, no solo qué vivís</li></ul>
+            <div class="price"><span class="price-old">120.000 Gs</span><span class="price-now">80.000 Gs</span><span class="price-badge">Oferta</span></div>
+            <button class="btn btn-wa btn-lg js-wa-trigger" data-wa-service="manos">Reservar lectura de Manos</button>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- bloque 6: test opcional (Task 9) -->
     <!-- bloque 7: testimonios (Task 10) -->
     <!-- bloque 8: faq + cta final (Task 11) -->
@@ -138,7 +257,33 @@
   </footer>
 
   <!-- sticky WA bar mobile + floating desktop (Task 12) -->
-  <!-- modal tarot (lo provee deck.js / queda como en el actual, Task 8) -->
+
+  <!-- modal tarot — deck.js usa: #tarot-modal, #modal-img, #modal-name, #modal-keywords, #modal-meaning, #modal-close, #modal-otra -->
+  <div class="tarot-modal-overlay" id="tarot-modal" role="dialog" aria-modal="true" aria-label="Carta de tarot">
+    <div class="tarot-modal-content">
+
+      <button class="tarot-modal-close" id="modal-close" aria-label="Cerrar">✕</button>
+
+      <div class="tarot-modal-card">
+        <img id="modal-img" src="" alt="Carta de tarot">
+      </div>
+
+      <div class="tarot-modal-text">
+        <p class="tarot-modal-name"><span id="modal-name"></span></p>
+        <p class="tarot-modal-keywords" id="modal-keywords"></p>
+        <p class="tarot-modal-meaning"  id="modal-meaning"></p>
+      </div>
+
+      <div class="tarot-modal-actions">
+        <button class="btn btn-outline btn-sm" id="modal-otra">Elegir otra carta</button>
+        <button class="btn btn-wa btn-sm js-wa-trigger" data-wa-service="tarot">
+          Quiero mi lectura completa →
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <!-- /modal tarot -->
 
   <script src="js/main.js"></script>
   <script src="data/quiz-copy.js"></script>
