@@ -144,7 +144,6 @@ function setupMobileMenu() {
 /* ─────────────────────────────────────────────────────────────
    WHATSAPP TRIGGER
    Construye la URL con el mensaje correcto según el servicio.
-   Detecta si hay oferta regalo activa (countdown en curso).
    Lee el servicio de: data-wa-service → sessionStorage → default
    ───────────────────────────────────────────────────────────── */
 function setupWhatsAppTriggers() {
@@ -161,12 +160,7 @@ function setupWhatsAppTriggers() {
       sessionStorage.getItem('selectedService') ||
       'default';
 
-    // Determinar si hay regalo activo
-    const giftActive = sessionStorage.getItem('giftActive') === 'true';
-    const messageKey = giftActive ? `${service}_gift` : service;
-
-    const message =
-      CONFIG.MESSAGES[messageKey] || CONFIG.MESSAGES[service] || CONFIG.MESSAGES.default;
+    const message = CONFIG.MESSAGES[service] || CONFIG.MESSAGES.default;
 
     const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');

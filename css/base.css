@@ -124,7 +124,6 @@
   --z-overlay:100;
   --z-modal: 1000;
   --z-header:2000;
-  --z-noise: 8000;
   --z-top:   9999;
 }
 
@@ -214,23 +213,6 @@ body {
   color: var(--ink);
 }
 
-
-/* ────────────────────────────────────────────────────────────
-   FONDO GLOBAL CON TEXTURA DE RUIDO
-   El .noise-overlay es un div fixed que vive encima de todo
-   (excepto modales y header) y da la sensación de grano/película
-   ──────────────────────────────────────────────────────────── */
-.noise-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-noise);
-  pointer-events: none;
-  /* SVG turbulence inline como textura de grano */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
-  background-size: 250px 250px;
-  background-repeat: repeat;
-  opacity: 1;
-}
 
 
 /* ────────────────────────────────────────────────────────────

@@ -156,7 +156,7 @@ function transitionToResult(diagnosis) {
         void resultSection.offsetWidth;
         setTimeout(() => {
           resultSection.classList.remove('is-entering');
-          revealProgressively(diagnosis);
+          revealProgressively();
         }, 60);
       }
     }, 420);

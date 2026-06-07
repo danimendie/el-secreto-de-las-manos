@@ -523,13 +523,3 @@
   from { opacity: 1; }
   to   { opacity: 0; }
 }
-
-.section-portal.is-exiting {
-  animation: portalExit 0.52s ease forwards;
-  pointer-events: none;
-}
-
-@keyframes portalExit {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(-28px); }
-}
