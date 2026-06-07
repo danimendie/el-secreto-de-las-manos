@@ -16,16 +16,9 @@ const CONFIG = {
   WHATSAPP_NUMBER: '595992158077', // Paraguay: 595 + número sin 0 inicial
 
   MESSAGES: {
-    tarot:
-      'Hola, completé el diagnóstico y me recomendó la Lectura de Tarot. Me gustaría reservar. ✨',
-    manos:
-      'Hola, completé el diagnóstico y me recomendó la Lectura de Manos. Me gustaría reservar. 🌿',
-    tarot_gift:
-      'Hola, completé el diagnóstico, me recomendó la Lectura de Tarot y vi que puedo obtener la Lectura de Manos de regalo si reservo ahora. Me gustaría coordinar. ✨',
-    manos_gift:
-      'Hola, completé el diagnóstico, me recomendó la Lectura de Manos y vi que puedo obtener la Lectura de Tarot de regalo si reservo ahora. Me gustaría coordinar. 🌿',
-    default:
-      'Hola, me gustaría reservar una lectura. ✨',
+    tarot:   'Hola, quiero una lectura de Tarot 🔮',
+    manos:   'Hola, quiero una lectura de Manos ✋',
+    default: 'Hola, vi la web y quiero una lectura ✨',
   },
 
   HEADER_SCROLL_THRESHOLD: 80,   // px: header empieza a oscurecer
@@ -41,7 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeader();
   setupMobileMenu();
   setupWhatsAppTriggers();
-  setupPortalCTA();
+  setupQuizTrigger();
+  setupFaq();
+  setupStickyWa();
   detectAdsMode();
 });
 
@@ -149,7 +144,6 @@ function setupMobileMenu() {
 /* ─────────────────────────────────────────────────────────────
    WHATSAPP TRIGGER
    Construye la URL con el mensaje correcto según el servicio.
-   Detecta si hay oferta regalo activa (countdown en curso).
    Lee el servicio de: data-wa-service → sessionStorage → default
    ───────────────────────────────────────────────────────────── */
 function setupWhatsAppTriggers() {
@@ -166,12 +160,7 @@ function setupWhatsAppTriggers() {
       sessionStorage.getItem('selectedService') ||
       'default';
 
-    // Determinar si hay regalo activo
-    const giftActive = sessionStorage.getItem('giftActive') === 'true';
-    const messageKey = giftActive ? `${service}_gift` : service;
-
-    const message =
-      CONFIG.MESSAGES[messageKey] || CONFIG.MESSAGES[service] || CONFIG.MESSAGES.default;
+    const message = CONFIG.MESSAGES[service] || CONFIG.MESSAGES.default;
 
     const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -187,18 +176,14 @@ function setupWhatsAppTriggers() {
 
 
 /* ─────────────────────────────────────────────────────────────
-   PORTAL CTA
-   En Fase 1: scroll suave hacia la primera sección disponible.
-   En Fase 2: se reemplaza para activar el quiz.
+   QUIZ TRIGGER
+   Lanza el quiz desde el bloque de test opcional (bloque 6).
    ───────────────────────────────────────────────────────────── */
-function setupPortalCTA() {
-  const cta = document.getElementById('portal-cta');
-  if (!cta) return;
-
-  cta.addEventListener('click', () => {
-    if (typeof window.activateQuiz === 'function') {
-      window.activateQuiz();
-    }
+function setupQuizTrigger() {
+  const btn = document.getElementById('open-quiz');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    if (typeof window.activateQuiz === 'function') window.activateQuiz();
   });
 }
 
@@ -208,7 +193,6 @@ function setupPortalCTA() {
    Si ?src=ads está en la URL:
    - Agrega data-mode="ads" al <html>
    - El header empieza oculto
-   - En Fase 2: el quiz se activará automáticamente
    ───────────────────────────────────────────────────────────── */
 function detectAdsMode() {
   const params = new URLSearchParams(window.location.search);
@@ -221,12 +205,39 @@ function detectAdsMode() {
     header.classList.add('ads-mode');
   }
 
-  // Fase 2: activar quiz automáticamente en modo ads
-  setTimeout(() => {
-    if (typeof window.activateQuiz === 'function') {
-      window.activateQuiz();
-    }
-  }, 500);
+  // En el rediseño, los ads caen al hero — el quiz es opcional desde bloque 6.
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   FAQ ACORDEÓN
+   Abre/cierra items con aria-expanded + maxHeight animado
+   ───────────────────────────────────────────────────────────── */
+function setupFaq() {
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const open = q.getAttribute('aria-expanded') === 'true';
+      q.setAttribute('aria-expanded', String(!open));
+      const panel = q.nextElementSibling;
+      panel.style.maxHeight = open ? '0' : panel.scrollHeight + 'px';
+    });
+  });
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   STICKY WA BAR (mobile)
+   Aparece al pasar CONFIG.STICKY_FOOTER_THRESHOLD % de scroll
+   ───────────────────────────────────────────────────────────── */
+function setupStickyWa() {
+  const bar = document.getElementById('sticky-wa');
+  if (!bar) return;
+  const onScroll = () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.classList.toggle('is-visible', pct > CONFIG.STICKY_FOOTER_THRESHOLD);
+    bar.setAttribute('aria-hidden', pct > CONFIG.STICKY_FOOTER_THRESHOLD ? 'false' : 'true');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 

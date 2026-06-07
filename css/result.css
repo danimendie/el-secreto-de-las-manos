@@ -1,17 +1,14 @@
 /* ============================================================
-   result.css — El Secreto de las Manos v2
-   Fase 3: Loader ritual · Pantalla de diagnóstico · Oferta regalo
-   Paleta: negro profundo · violeta oscuro · violeta claro · dorado suave
+   result.css — El Secreto de las Manos
+   Loader ritual · Pantalla de diagnóstico — paleta clara
    ============================================================ */
 
 
 /* ════════════════════════════════════════════════════════════
    LOADER RITUAL
-   Extiende y reemplaza los estilos básicos de quiz.css
-   (#loader .section-loader)
+   Extiende los estilos básicos de quiz.css (#loader .section-loader)
    ════════════════════════════════════════════════════════════ */
 
-/* Background ambiental del loader */
 .loader-bg {
   position: absolute;
   inset: 0;
@@ -32,7 +29,7 @@
   top: -80px;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(26, 12, 94, 0.65) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(122, 59, 107, 0.08) 0%, transparent 70%);
   animation: glowPulse 7s ease-in-out infinite;
 }
 
@@ -41,11 +38,11 @@
   height: 320px;
   bottom: -60px;
   right: 8%;
-  background: radial-gradient(circle, rgba(123, 71, 201, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(184, 146, 61, 0.06) 0%, transparent 70%);
   animation: glowPulse 9s ease-in-out infinite 2.5s;
 }
 
-/* Inner: más espacioso para el ritual */
+/* Inner */
 .section-loader .loader-inner {
   display: flex;
   flex-direction: column;
@@ -56,7 +53,7 @@
   padding: 2rem;
 }
 
-/* ── Símbolo del loader ── */
+/* Símbolo del loader */
 .loader-symbol {
   position: relative;
   width: 96px;
@@ -70,7 +67,7 @@
   position: absolute;
   inset: -14px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(123, 71, 201, 0.22) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(122, 59, 107, 0.12) 0%, transparent 70%);
   animation: glowPulse 3.5s ease-in-out infinite;
 }
 
@@ -80,7 +77,7 @@
   overflow: visible;
 }
 
-/* Las 3 líneas de la palma — se trazan una sola vez */
+/* Las 3 líneas de la palma */
 .loader-line {
   stroke-dasharray: 80;
   stroke-dashoffset: 80;
@@ -94,13 +91,13 @@
   animation: glowPulse 2.8s ease-in-out infinite 0.5s;
 }
 
-/* ── Frase ritual ── */
+/* Frase ritual */
 .loader-phrase {
   font-family: var(--font-ritual);
   font-size: clamp(1.2rem, 3.5vw, 1.55rem);
   font-weight: 300;
   font-style: italic;
-  color: var(--white-70);
+  color: var(--ink-soft);
   text-align: center;
   margin: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -115,7 +112,7 @@
   animation: fadeInUp 0.4s ease both;
 }
 
-/* ── Puntos animados ── */
+/* Puntos animados */
 .loader-dots {
   display: flex;
   gap: 7px;
@@ -127,7 +124,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: rgba(196, 165, 245, 0.35);
+  background: var(--line);
 }
 
 .loader-dots span:nth-child(1) { animation: dotPulse 1.5s ease-in-out infinite 0s; }
@@ -136,14 +133,14 @@
 
 @keyframes dotPulse {
   0%, 80%, 100% {
-    opacity: 0.22;
+    opacity: 0.3;
     transform: scale(0.9);
-    background: rgba(196, 165, 245, 0.35);
+    background: var(--line);
   }
   40% {
     opacity: 1;
     transform: scale(1.3);
-    background: var(--violet);
+    background: var(--plum);
   }
 }
 
@@ -167,7 +164,7 @@
   position: fixed;
   inset: 0;
   z-index: 500;
-  background: var(--bg-void);
+  background: var(--bg-base);
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -187,7 +184,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Background ambiental (fijo, no scrollea) ── */
+/* Background ambiental */
 .result-bg {
   position: fixed;
   inset: 0;
@@ -207,7 +204,7 @@
   height: 550px;
   top: -120px;
   left: -100px;
-  background: radial-gradient(circle, rgba(26, 12, 94, 0.55) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(122, 59, 107, 0.07) 0%, transparent 70%);
   animation: glowPulse 10s ease-in-out infinite;
 }
 
@@ -216,11 +213,11 @@
   height: 420px;
   bottom: 5%;
   right: -80px;
-  background: radial-gradient(circle, rgba(123, 71, 201, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(184, 146, 61, 0.06) 0%, transparent 70%);
   animation: glowPulse 12s ease-in-out infinite 4s;
 }
 
-/* ── Área scrollable ── */
+/* Área scrollable */
 .result-scroll {
   position: relative;
   z-index: 1;
@@ -230,7 +227,7 @@
   padding: 88px 24px 80px;
 }
 
-/* ── Columna central ── */
+/* Columna central */
 .result-inner {
   width: 100%;
   max-width: 680px;
@@ -241,7 +238,6 @@
 
 /* ════════════════════════════════════════════════════════════
    REVELACIÓN PROGRESIVA
-   Cada bloque empieza invisible y aparece con .is-revealed
    ════════════════════════════════════════════════════════════ */
 
 .result-reveal-block {
@@ -257,7 +253,6 @@
   transform: translateY(0);
 }
 
-/* Sin animación en recarga */
 .result-reveal-block.no-animation {
   transition: none;
   opacity: 1;
@@ -267,7 +262,6 @@
 
 /* ════════════════════════════════════════════════════════════
    HEADER DEL DIAGNÓSTICO
-   Eyebrow + título + badge de afinidad
    ════════════════════════════════════════════════════════════ */
 
 #result-header {
@@ -280,7 +274,6 @@
 }
 
 .result-eyebrow {
-  /* hereda .eyebrow de base.css */
   letter-spacing: 0.18em;
 }
 
@@ -289,20 +282,15 @@
   font-size: clamp(1.9rem, 5.5vw, 3.1rem);
   font-weight: 300;
   font-style: italic;
-  color: var(--white-90);
+  color: var(--ink);
   line-height: 1.15;
   letter-spacing: -0.01em;
-  text-shadow:
-    0 0 50px rgba(196, 165, 245, 0.10),
-    0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .result-badge-row {
   display: flex;
   justify-content: center;
 }
-
-/* El badge .badge-affinity ya tiene shimmer en components.css */
 
 
 /* ════════════════════════════════════════════════════════════
@@ -313,7 +301,7 @@
   font-family: var(--font-ritual);
   font-size: clamp(1.1rem, 2.6vw, 1.3rem);
   font-weight: 300;
-  color: var(--white-70);
+  color: var(--ink-soft);
   line-height: 1.80;
   margin-bottom: var(--sp-6);
 }
@@ -321,21 +309,20 @@
 .result-para-secondary {
   font-family: var(--font-ritual);
   font-size: clamp(1rem, 2.2vw, 1.15rem);
-  color: var(--white-50);
+  color: var(--ink-soft);
   line-height: 1.75;
   font-style: italic;
 }
 
-/* Tercer párrafo — modulado por P3, tono más contenido */
 #result-para-3 {
   font-family: var(--font-ui);
   font-size: var(--text-base);
   font-weight: var(--fw-light);
-  color: var(--white-40);
+  color: var(--ink-soft);
   line-height: 1.70;
   padding: var(--sp-5) var(--sp-6);
-  border-left: 1px solid rgba(196, 165, 245, 0.18);
-  background: rgba(196, 165, 245, 0.03);
+  border-left: 2px solid var(--plum-soft);
+  background: var(--bg-tint);
   border-radius: 0 var(--r-sm) var(--r-sm) 0;
   margin-bottom: var(--sp-10);
 }
@@ -356,12 +343,9 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.60;
   margin-bottom: var(--sp-5);
   display: block;
 }
-
-/* .check-list y sus li ya están definidos en components.css */
 
 
 /* ════════════════════════════════════════════════════════════
@@ -379,217 +363,33 @@
 
 .result-cta-disclaimer {
   font-size: var(--text-xs);
-  color: var(--white-20);
+  color: var(--ink-faint);
   letter-spacing: 0.06em;
   font-weight: var(--fw-light);
 }
 
 
 /* ════════════════════════════════════════════════════════════
-   BLOQUE REGALO
-   Separador + tarjeta con la oferta + countdown + CTA
+   KEYFRAMES COMPARTIDOS
    ════════════════════════════════════════════════════════════ */
 
-#result-gift {
-  margin-bottom: var(--sp-16);
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.05); }
 }
 
-#result-gift.is-entering {
-  animation: revealFromBottom 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+@keyframes lineTrace {
+  to { stroke-dashoffset: 0; }
 }
 
-#result-gift.no-animation {
-  animation: none;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Separador decorativo antes del regalo */
-.gift-separator {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(220, 185, 120, 0.22),
-    transparent
-  );
-  margin-bottom: var(--sp-12);
-}
-
-/* Tarjeta del regalo — extiende .glass-panel-gold de components.css */
-.gift-card {
-  padding: var(--sp-10) var(--sp-8);
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-
-/* Resplandor suave en la parte superior de la card */
-.gift-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(220, 185, 120, 0.30), transparent);
-  pointer-events: none;
-}
-
-.gift-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(220, 185, 120, 0.04) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-/* Estrella decorativa */
-.gift-star {
-  display: block;
-  font-size: 16px;
-  letter-spacing: 0.6em;
-  color: var(--gold);
-  opacity: 0.45;
-  margin-bottom: var(--sp-6);
-}
-
-.gift-eyebrow {
-  /* hereda .eyebrow de base.css */
-  display: block;
-  margin-bottom: var(--sp-5);
-}
-
-.gift-title {
-  font-family: var(--font-ritual);
-  font-size: clamp(1.45rem, 4vw, 2.1rem);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--white-90);
-  line-height: 1.25;
-  margin-bottom: var(--sp-6);
-  text-shadow: 0 0 30px rgba(220, 185, 120, 0.08);
-}
-
-.gift-body {
-  font-family: var(--font-ui);
-  font-size: var(--text-base);
-  font-weight: var(--fw-light);
-  color: var(--white-50);
-  line-height: 1.72;
-  max-width: 520px;
-  margin: 0 auto var(--sp-10);
-}
-
-
-/* ════════════════════════════════════════════════════════════
-   COUNTDOWN — urgencia premium, no alarmista
-   Dorado suave sobre fondo oscuro, sin rojo ni agresividad
-   ════════════════════════════════════════════════════════════ */
-
-.gift-countdown-wrapper {
-  margin-bottom: var(--sp-8);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-
-.gift-countdown-wrapper.is-fading-out {
-  opacity: 0;
-  transform: translateY(-6px);
-}
-
-.gift-countdown-label {
-  font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--white-30);
-  margin-bottom: var(--sp-4);
-  display: block;
-}
-
-/* Dígitos del countdown */
-.gift-countdown {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-4) var(--sp-10);
-  background: rgba(220, 185, 120, 0.05);
-  border: 1px solid rgba(220, 185, 120, 0.14);
-  border-radius: var(--r-base);
-}
-
-.countdown-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  min-width: 44px;
-}
-
-.countdown-number {
-  font-family: var(--font-ritual);
-  font-size: 2.2rem;
-  font-weight: 300;
-  color: var(--gold-light);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.countdown-sep {
-  font-family: var(--font-ritual);
-  font-size: 1.8rem;
-  font-weight: 300;
-  color: rgba(220, 185, 120, 0.22);
-  line-height: 1;
-  margin-bottom: 14px; /* alinear visualmente con los números */
-}
-
-.countdown-label {
-  font-family: var(--font-ui);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(220, 185, 120, 0.38);
-}
-
-
-/* ════════════════════════════════════════════════════════════
-   ESTADO EXPIRADO
-   Mensaje sutil — no punitivo ni agresivo
-   ════════════════════════════════════════════════════════════ */
-
-.gift-expired-msg {
-  font-family: var(--font-ui);
-  font-size: var(--text-sm);
-  font-weight: var(--fw-light);
-  font-style: italic;
-  color: var(--white-30);
-  line-height: 1.65;
-  padding: var(--sp-5) var(--sp-6);
-  border: 1px solid var(--white-08);
-  border-radius: var(--r-sm);
-  margin-bottom: var(--sp-6);
-}
-
-.gift-expired-msg.is-appearing {
-  animation: fadeInUp 0.5s ease both;
-}
-
-/* CTA desactivado cuando expiró */
-#gift-cta.is-expired {
-  opacity: 0.25;
-  pointer-events: none;
-  cursor: default;
-  filter: saturate(0);
-}
-
-.gift-disclaimer {
-  display: block;
-  font-size: var(--text-xs);
-  color: var(--white-20);
-  letter-spacing: 0.05em;
-  font-weight: var(--fw-light);
-  margin-top: var(--sp-5);
+@keyframes revealFromBottom {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -605,18 +405,6 @@
   #result-header {
     margin-bottom: var(--sp-10);
     gap: var(--sp-4);
-  }
-
-  .gift-card {
-    padding: var(--sp-8) var(--sp-5);
-  }
-
-  .gift-body {
-    font-size: var(--text-sm);
-  }
-
-  .gift-countdown {
-    padding: var(--sp-4) var(--sp-8);
   }
 }
 
@@ -636,21 +424,5 @@
   #result-para-3 {
     padding: var(--sp-4) var(--sp-4);
     font-size: var(--text-sm);
-  }
-
-  .gift-card {
-    padding: var(--sp-6) var(--sp-4);
-  }
-
-  .gift-title {
-    font-size: 1.45rem;
-  }
-
-  .countdown-number {
-    font-size: 1.9rem;
-  }
-
-  .gift-countdown {
-    padding: var(--sp-3) var(--sp-6);
   }
 }
