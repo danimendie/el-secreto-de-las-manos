@@ -278,10 +278,10 @@
 }
 
 .result-title {
-  font-family: var(--font-ritual);
-  font-size: clamp(1.9rem, 5.5vw, 3.1rem);
-  font-weight: 300;
-  font-style: italic;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 600;
+  font-style: normal;
   color: var(--ink);
   line-height: 1.15;
   letter-spacing: -0.01em;
@@ -298,20 +298,21 @@
    ════════════════════════════════════════════════════════════ */
 
 .result-para {
-  font-family: var(--font-ritual);
-  font-size: clamp(1.1rem, 2.6vw, 1.3rem);
-  font-weight: 300;
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+  font-weight: var(--fw-regular);
   color: var(--ink-soft);
-  line-height: 1.80;
+  line-height: var(--lh-relaxed);
   margin-bottom: var(--sp-6);
 }
 
 .result-para-secondary {
-  font-family: var(--font-ritual);
-  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--fw-regular);
   color: var(--ink-soft);
-  line-height: 1.75;
-  font-style: italic;
+  line-height: var(--lh-relaxed);
+  font-style: normal;
 }
 
 #result-para-3 {

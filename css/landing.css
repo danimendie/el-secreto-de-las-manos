@@ -355,18 +355,27 @@
    BLOQUE 6 — TEST OPCIONAL
    ──────────────────────────────────────────────────────────── */
 .test-card {
-  border: 1px dashed var(--gold);
-  border-radius: var(--r-lg);
-  padding: var(--sp-8);
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: var(--sp-10) var(--sp-6) var(--sp-8);
   text-align: center;
   max-width: 480px;
   margin: 0 auto;
-  background: var(--bg-card);
+  background: linear-gradient(165deg, #ffffff 0%, var(--bg-tint) 100%);
+  box-shadow: var(--shadow-md);
+}
+.test-card::before {
+  content: "✦";
+  display: block;
+  color: var(--gold);
+  font-size: var(--text-xl);
+  margin-bottom: var(--sp-3);
 }
 .test-q {
   font-family: var(--font-display);
   color: var(--ink);
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   margin: 0 0 6px;
 }
 .test-sub {
