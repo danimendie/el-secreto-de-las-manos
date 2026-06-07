@@ -51,11 +51,51 @@
 
 <body>
   <header id="site-header" class="site-header" role="banner">
-    <!-- bloque header (Task 4) -->
+    <div class="container header-container">
+      <a href="#hero" class="header-logo" aria-label="El Secreto de las Manos — inicio">
+        <span class="logo-text">El Secreto de las Manos</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list" role="list">
+          <li><a href="#lecturas" class="nav-link">Lecturas</a></li>
+          <li><a href="#como-funciona" class="nav-link">Cómo funciona</a></li>
+          <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="btn btn-wa btn-sm js-wa-trigger" data-wa-service="default">Escribir</button>
+      </div>
+      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
+        <span class="menu-line"></span><span class="menu-line"></span><span class="menu-line"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-label="Menú">
+      <nav class="mobile-nav" aria-label="Navegación móvil">
+        <a href="#lecturas" class="mobile-nav-link">Lecturas</a>
+        <a href="#como-funciona" class="mobile-nav-link">Cómo funciona</a>
+        <a href="#testimonios" class="mobile-nav-link">Testimonios</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <button class="btn btn-wa btn-full js-wa-trigger" data-wa-service="default">Escribir por WhatsApp</button>
+      </div>
+    </div>
   </header>
 
   <main id="main" role="main">
     <!-- bloque 1: hero (Task 4) -->
+    <section id="hero" class="hero" aria-label="Inicio">
+      <div class="container hero-inner">
+        <span class="eyebrow hero-eyebrow">Lectura de Tarot · por WhatsApp</span>
+        <h1 class="hero-title">Las cartas tienen<br>algo para decirte</h1>
+        <p class="hero-subtitle">Una lectura de Tarot personal sobre lo que hoy te tiene en duda. A tu ritmo, por WhatsApp.</p>
+        <button class="btn btn-wa btn-lg js-wa-trigger" data-wa-service="default">
+          <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i> Escribir por WhatsApp
+        </button>
+        <p class="hero-microcopy">Sin videollamada · Sin compromiso</p>
+      </div>
+    </section>
     <!-- bloque 2: tira de confianza (Task 5) -->
     <!-- bloque 3: temas (Task 6) -->
     <!-- bloque 4: cómo funciona (Task 7) -->

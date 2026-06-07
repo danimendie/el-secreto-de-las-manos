@@ -2,3 +2,81 @@
    landing.css — El Secreto de las Manos (rediseño claro)
    Estilos de los 8 bloques de la landing. Usa tokens de base.css
    ============================================================ */
+
+
+/* ────────────────────────────────────────────────────────────
+   BOTÓN WHATSAPP (CTA primario)
+   ──────────────────────────────────────────────────────────── */
+.btn-wa {
+  background: var(--wa-green);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-full);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-semibold);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px;
+  cursor: pointer;
+  box-shadow: var(--shadow-wa);
+  transition: transform var(--t-fast) var(--ease-out), background var(--t-fast);
+}
+.btn-wa:hover { background: var(--wa-green-d); transform: translateY(-1px); }
+.btn-wa.btn-sm { padding: 9px 18px; font-size: var(--text-sm); }
+.btn-wa.btn-lg { padding: 16px 32px; font-size: var(--text-md); }
+.btn-wa.btn-full { width: 100%; justify-content: center; }
+
+
+/* ────────────────────────────────────────────────────────────
+   HEADER CLARO
+   Overrides sobre los estilos oscuros de components.css
+   ──────────────────────────────────────────────────────────── */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: var(--z-header);
+  background: transparent; transition: background var(--t-base), box-shadow var(--t-base), transform var(--t-base);
+}
+.site-header.is-scrolled {
+  background: rgba(251,249,245,0.85); backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  border-bottom-color: var(--line);
+}
+.site-header.is-hidden { transform: translateY(-100%); }
+.header-container { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+
+/* Logo — override var(--white-70) de components.css */
+.logo-text { font-family: var(--font-display); color: var(--ink); font-size: var(--text-md); }
+.header-logo:hover .logo-text { color: var(--plum); }
+
+/* Nav links — override var(--white-40) de components.css */
+.nav-link { color: var(--ink-soft); text-decoration: none; font-size: var(--text-sm); }
+.nav-link:hover { color: var(--plum); }
+.nav-link::after { background: var(--plum); }
+
+/* Hamburger lines — override var(--white-50) de components.css */
+.menu-toggle:hover { background: var(--plum-soft); }
+.menu-line { background: var(--ink); }
+
+/* Mobile menu — override fondo oscuro de components.css */
+.mobile-menu {
+  background: rgba(251,249,245,0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+.mobile-nav-link { color: var(--ink-soft); }
+.mobile-nav-link:hover { color: var(--plum); }
+
+
+/* ────────────────────────────────────────────────────────────
+   HERO (bloque 1)
+   ──────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 92vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; background: var(--bg-base);
+  padding: 100px 0 60px;
+}
+.hero-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 560px; }
+.eyebrow { font-family: var(--font-ui); font-size: var(--text-xs); letter-spacing: var(--ls-wider); text-transform: uppercase; font-weight: var(--fw-semibold); }
+.hero-eyebrow { color: var(--plum); }
+.hero-title { font-family: var(--font-display); font-weight: 600; color: var(--ink); font-size: clamp(34px, 9vw, var(--text-4xl)); line-height: var(--lh-tight); }
+.hero-subtitle { font-size: var(--text-md); color: var(--ink-soft); line-height: var(--lh-relaxed); max-width: 28ch; }
+.hero-microcopy { font-size: var(--text-xs); color: var(--ink-faint); }
