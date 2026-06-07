@@ -391,3 +391,23 @@
   box-shadow: var(--shadow-sm);
   display: block;
 }
+
+
+/* ────────────────────────────────────────────────────────────
+   BLOQUE 8 — FAQ ACORDEÓN
+   ──────────────────────────────────────────────────────────── */
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: none; border: none; cursor: pointer; padding: var(--sp-4) 0; text-align: left; color: var(--ink); font-size: var(--text-base); font-family: var(--font-ui); }
+.faq-ico { color: var(--gold); font-size: var(--text-lg); transition: transform var(--t-fast); }
+.faq-q[aria-expanded="true"] .faq-ico { transform: rotate(45deg); }
+.faq-a { overflow: hidden; max-height: 0; transition: max-height var(--t-base) var(--ease-out); }
+.faq-a-inner { padding: 0 0 var(--sp-4); color: var(--ink-soft); font-size: var(--text-sm); line-height: var(--lh-relaxed); }
+
+
+/* ────────────────────────────────────────────────────────────
+   BLOQUE 8 — CTA FINAL
+   ──────────────────────────────────────────────────────────── */
+.cta-final { text-align: center; background: var(--bg-tint); }
+.cta-final-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cta-final-title { font-family: var(--font-display); color: var(--ink); font-size: var(--text-2xl); }
+.cta-final-sub { color: var(--ink-soft); }

@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
   setupWhatsAppTriggers();
   setupQuizTrigger();
+  setupFaq();
+  setupStickyWa();
   detectAdsMode();
 });
 
@@ -210,6 +212,38 @@ function detectAdsMode() {
   }
 
   // En el rediseño, los ads caen al hero — el quiz es opcional desde bloque 6.
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   FAQ ACORDEÓN
+   Abre/cierra items con aria-expanded + maxHeight animado
+   ───────────────────────────────────────────────────────────── */
+function setupFaq() {
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const open = q.getAttribute('aria-expanded') === 'true';
+      q.setAttribute('aria-expanded', String(!open));
+      const panel = q.nextElementSibling;
+      panel.style.maxHeight = open ? '0' : panel.scrollHeight + 'px';
+    });
+  });
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   STICKY WA BAR (mobile)
+   Aparece al pasar CONFIG.STICKY_FOOTER_THRESHOLD % de scroll
+   ───────────────────────────────────────────────────────────── */
+function setupStickyWa() {
+  const bar = document.getElementById('sticky-wa');
+  if (!bar) return;
+  const onScroll = () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.classList.toggle('is-visible', pct > CONFIG.STICKY_FOOTER_THRESHOLD);
+    bar.setAttribute('aria-hidden', pct > CONFIG.STICKY_FOOTER_THRESHOLD ? 'false' : 'true');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 
