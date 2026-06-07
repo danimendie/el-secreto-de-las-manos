@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
   setupReveal();
   setupCounters();
   setupStagger();
-  setupFAQ();
-  setupScrollVisibility();
+  // FAQ y visibilidad de CTAs los maneja main.js (setupFaq / setupStickyWa)
 });
 
 
