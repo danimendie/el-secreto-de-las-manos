@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
   setupWhatsAppTriggers();
   setupQuizTrigger();
+  setupFlowExit();
   setupFaq();
   setupStickyWa();
   detectAdsMode();
@@ -184,6 +185,19 @@ function setupQuizTrigger() {
   if (!btn) return;
   btn.addEventListener('click', () => {
     if (typeof window.activateQuiz === 'function') window.activateQuiz();
+  });
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   SALIR DEL FLUJO DEL QUIZ
+   Botón "Volver" en el quiz y en el resultado → vuelve a la landing.
+   ───────────────────────────────────────────────────────────── */
+function setupFlowExit() {
+  document.querySelectorAll('.js-flow-exit').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (typeof window.resetQuizFlow === 'function') window.resetQuizFlow();
+    });
   });
 }
 

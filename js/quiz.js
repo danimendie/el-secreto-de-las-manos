@@ -350,7 +350,55 @@ function transitionToLoader() {
 
 
 /* ─────────────────────────────────────────────────────
+   SALIR / RESETEAR EL FLUJO
+   Vuelve a la landing y deja el quiz listo para retomarse.
+   Llamado desde main.js (botón "Volver").
+   ───────────────────────────────────────────────────── */
+function resetQuizFlow() {
+  // Ocultar las 3 secciones overlay
+  ['quiz', 'loader', 'section-result'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.setAttribute('hidden', '');
+      el.classList.remove('is-entering', 'is-exiting');
+    }
+  });
+
+  // Resetear estado
+  QUIZ_STATE.currentQuestion = -1;
+  QUIZ_STATE.answers = [];
+  QUIZ_STATE.totalT = 0;
+  QUIZ_STATE.totalM = 0;
+  QUIZ_STATE.isTransitioning = false;
+
+  // Limpiar preguntas renderizadas
+  const wrapper = document.getElementById('quiz-questions-wrapper');
+  if (wrapper) wrapper.innerHTML = '';
+
+  // Resetear intro
+  const intro = document.getElementById('quiz-intro');
+  if (intro) {
+    intro.classList.remove('is-active', 'is-exiting');
+    intro.classList.add('is-hidden');
+  }
+
+  // Resetear barra de progreso y lunas
+  const fill     = document.getElementById('quiz-progress-fill');
+  const label    = document.getElementById('quiz-progress-label');
+  const progress = document.querySelector('.quiz-progress');
+  if (fill)     fill.style.width = '0%';
+  if (label)    label.textContent = 'Pregunta 1 de 5';
+  if (progress) progress.classList.remove('is-visible');
+  for (let i = 1; i <= 5; i++) {
+    const moon = document.querySelector(`.moon-${i}`);
+    if (moon) moon.classList.remove('is-active', 'is-completed');
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────
    EXPONER GLOBALMENTE
    main.js llama window.activateQuiz()
    ───────────────────────────────────────────────────── */
-window.activateQuiz = activateQuiz;
+window.activateQuiz  = activateQuiz;
+window.resetQuizFlow = resetQuizFlow;

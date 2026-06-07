@@ -501,3 +501,24 @@
 
 /* La barra completa de WhatsApp se reemplazó por el ícono flotante */
 .sticky-wa { display: none; }
+
+
+/* ────────────────────────────────────────────────────────────
+   BOTÓN "VOLVER" — salir del quiz/resultado hacia la landing
+   Vive dentro de los overlays #quiz y #section-result
+   ──────────────────────────────────────────────────────────── */
+.flow-exit {
+  position: fixed;
+  top: calc(14px + env(safe-area-inset-top));
+  left: 14px;
+  z-index: 50;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--bg-card); color: var(--ink-soft);
+  border: 1px solid var(--line); border-radius: var(--r-full);
+  padding: 8px 16px;
+  font-family: var(--font-ui); font-size: var(--text-sm); font-weight: var(--fw-medium);
+  cursor: pointer; box-shadow: var(--shadow-sm);
+  transition: color var(--t-fast), background var(--t-fast), border-color var(--t-fast);
+}
+.flow-exit:hover { color: var(--plum); border-color: var(--plum); }
+.flow-exit i { font-size: 16px; }
