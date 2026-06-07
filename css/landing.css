@@ -331,3 +331,63 @@
   font-size: var(--text-xs);
   margin-top: 10px;
 }
+
+
+/* ────────────────────────────────────────────────────────────
+   BLOQUE 7 — TESTIMONIOS
+   ──────────────────────────────────────────────────────────── */
+.testi-quotes {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: 720px;
+  margin: 0 auto var(--sp-10);
+}
+@media (min-width: 720px) { .testi-quotes { grid-template-columns: 1fr 1fr; } }
+.testi-quote {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  margin: 0;
+}
+.testi-quote p {
+  font-family: var(--font-ritual);
+  font-style: italic;
+  color: var(--ink);
+  font-size: var(--text-md);
+  line-height: var(--lh-relaxed);
+  margin: 0 0 var(--sp-3);
+}
+.testi-quote cite {
+  display: block;
+  font-style: normal;
+  color: var(--plum);
+  font-size: var(--text-sm);
+}
+.testi-shots-label {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  margin-bottom: var(--sp-4);
+}
+.testi-track {
+  display: flex;
+  gap: var(--sp-3);
+  overflow-x: auto;
+  padding-bottom: var(--sp-3);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.testi-shot {
+  flex: 0 0 auto;
+  width: 150px;
+  scroll-snap-align: start;
+}
+.testi-shot img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-base);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  display: block;
+}
