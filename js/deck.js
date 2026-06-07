@@ -50,7 +50,7 @@
     '<svg viewBox="0 0 80 128" fill="none"><ellipse cx="40" cy="62" rx="20" ry="11" stroke="rgba(220,185,120,0.12)" stroke-width="0.5"/><circle cx="40" cy="62" r="7" stroke="rgba(220,185,120,0.14)" stroke-width="0.5"/><circle cx="40" cy="62" r="3" fill="rgba(220,185,120,0.04)" stroke="rgba(220,185,120,0.10)" stroke-width="0.4"/><circle cx="40" cy="62" r="1.2" fill="rgba(220,185,120,0.10)"/></svg>'
   ];
 
-  var N        = 10;
+  var N        = 5;
   var cardEls  = [];
   var isSpread = false;
   var isLocked = false;

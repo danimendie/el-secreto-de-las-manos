@@ -999,8 +999,9 @@
 
 .deck-stage {
   position: relative;
-  width: 280px;
-  height: 180px;
+  width: 300px;
+  max-width: 100%;
+  height: 230px;
   margin: 0 auto;
 }
 
@@ -1020,8 +1021,21 @@
   border-radius: var(--r-base);
 }
 
-.deck-card.spread {
-  opacity: 1;
+/* Abanico de 5 cartas esparcidas */
+.deck-card.spread { opacity: 1; }
+.deck-card.spread:nth-child(1) { transform: translate(-50%, -50%) translateX(-104px) translateY(18px) rotate(-18deg); }
+.deck-card.spread:nth-child(2) { transform: translate(-50%, -50%) translateX(-52px)  translateY(2px)  rotate(-9deg); }
+.deck-card.spread:nth-child(3) { transform: translate(-50%, -50%) translateX(0)      translateY(-6px) rotate(0deg); }
+.deck-card.spread:nth-child(4) { transform: translate(-50%, -50%) translateX(52px)   translateY(2px)  rotate(9deg); }
+.deck-card.spread:nth-child(5) { transform: translate(-50%, -50%) translateX(104px)  translateY(18px) rotate(18deg); }
+
+/* Levantar la carta al pasar el dedo/mouse, sin romper el abanico */
+.deck-card.spread .card-inner { transition: transform var(--t-base) var(--ease-smooth); }
+.deck-card.spread:hover { z-index: 30; }
+.deck-card.spread:hover .card-inner { transform: translateY(-12px); }
+
+@media (max-width: 380px) {
+  .deck-stage { transform: scale(0.85); }
 }
 
 .deck-card.dimmed {
