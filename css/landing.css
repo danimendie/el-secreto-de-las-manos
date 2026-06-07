@@ -442,3 +442,15 @@
 .sticky-wa { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(251,249,245,0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-top: 1px solid var(--line); z-index: var(--z-overlay); transform: translateY(120%); transition: transform var(--t-base) var(--ease-out); }
 .sticky-wa.is-visible { transform: translateY(0); }
 @media (min-width: 720px) { .sticky-wa { display: none; } }
+
+
+/* ────────────────────────────────────────────────────────────
+   MOBILE STICKY BAR — breathing room
+   Prevent the fixed sticky WA bar from covering the final CTA.
+   Only on mobile where the bar is visible (< 720px).
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 719px) {
+  body {
+    padding-bottom: 84px;
+  }
+}
